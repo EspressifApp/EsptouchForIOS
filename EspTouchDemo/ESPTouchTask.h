@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ESPTouchResult.h"
+#import "ESPTouchDelegate.h"
 
 #define DEBUG_ON   YES
 
@@ -40,7 +41,7 @@
  *            the Ap's password
  * @param isSsidHidden
  *            whether the Ap's ssid is hidden
- * @param timeoutMillisecond(it should be >= 10000+8000)
+ * @param timeoutMillisecond(it should be >= 15000+6000)
  * 			  millisecond of total timeout
  * @param context
  *            the Context of the Application
@@ -55,7 +56,7 @@
 /**
  * Note: !!!Don't call the task at UI Main Thread
  *
- * Smart Config v2.2 support the API
+ * Smart Config v2.4 support the API
  *
  * @return the ESPTouchResult
  */
@@ -64,7 +65,7 @@
 /**
  * Note: !!!Don't call the task at UI Main Thread
  *
- * Smart Config v2.2 support the API
+ * Smart Config v2.4 support the API
  *
  * It will be blocked until the client receive result count >= expectTaskResultCount.
  * If it fail, it will return one fail result will be returned in the list.
@@ -79,5 +80,11 @@
  * @throws RuntimeException
  */
 - (NSArray*) executeForResults:(int) expectTaskResultCount;
+
+/**
+ * set the esptouch delegate, when one device is connected to the Ap, it will be called back
+ * @param esptouchDelegate when one device is connected to the Ap, it will be called back
+ */
+- (void) setEsptouchDelegate: (NSObject<ESPTouchDelegate> *) esptouchDelegate;
 
 @end

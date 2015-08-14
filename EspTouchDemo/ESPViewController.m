@@ -10,6 +10,7 @@
 #import "ESPTouchTask.h"
 #import "ESPTouchResult.h"
 #import "ESP_NetUtil.h"
+#import "ESPTouchDelegate.h"
 
 #import <SystemConfiguration/CaptiveNetwork.h>
 
@@ -17,6 +18,38 @@
 #define HEIGHT_KEYBOARD 216
 #define HEIGHT_TEXT_FIELD 30
 #define HEIGHT_SPACE (6+HEIGHT_TEXT_FIELD)
+
+
+@interface EspTouchDelegateImpl : NSObject<ESPTouchDelegate>
+
+@end
+
+@implementation EspTouchDelegateImpl
+
+-(void) dismissAlert:(UIAlertView *)alertView
+{
+    [alertView dismissWithClickedButtonIndex:[alertView cancelButtonIndex] animated:YES];
+}
+
+-(void) showAlertWithResult: (ESPTouchResult *) result
+{
+    NSString *title = nil;
+    NSString *message = [NSString stringWithFormat:@"%@ is connected to the wifi" , result.bssid];
+    NSTimeInterval dismissSeconds = 3.5;
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:title message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+    [alertView show];
+    [self performSelector:@selector(dismissAlert:) withObject:alertView afterDelay:dismissSeconds];
+}
+
+-(void) onEsptouchResultAddedWithResult: (ESPTouchResult *) result
+{
+    NSLog(@"EspTouchDelegateImpl onEsptouchResultAddedWithResult bssid: %@", result.bssid);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showAlertWithResult:result];
+    });
+}
+
+@end
 
 @interface ESPViewController ()
 
@@ -41,6 +74,7 @@
 @property (nonatomic, strong) NSCondition *_condition;
 
 @property (nonatomic, strong) UIButton *_doneButton;
+@property (nonatomic, strong) EspTouchDelegateImpl *_esptouchDelegate;
 @end
 
 @implementation ESPViewController
@@ -177,6 +211,8 @@
     int taskCount = [self._taskResultCountTextView.text intValue];
     self._esptouchTask =
     [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd andIsSsidHiden:isSsidHidden];
+    // set delegate
+    [self._esptouchTask setEsptouchDelegate:self._esptouchDelegate];
     [self._condition unlock];
     NSArray * esptouchResults = [self._esptouchTask executeForResults:taskCount];
     NSLog(@"ESPViewController executeForResult() result is: %@",esptouchResults);
@@ -194,6 +230,8 @@
     BOOL isSsidHidden = [self._isSsidHiddenSwitch isOn];
     self._esptouchTask =
     [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd andIsSsidHiden:isSsidHidden];
+    // set delegate
+    [self._esptouchTask setEsptouchDelegate:self._esptouchDelegate];
     [self._condition unlock];
     ESPTouchResult * esptouchResult = [self._esptouchTask executeForResult];
     NSLog(@"ESPViewController executeForResult() result is: %@",esptouchResult);
@@ -225,6 +263,7 @@
     self._taskResultCountTextView.delegate = self;
     self._taskResultCountTextView.keyboardType = UIKeyboardTypeNumberPad;
     self._condition = [[NSCondition alloc]init];
+    self._esptouchDelegate = [[EspTouchDelegateImpl alloc]init];
     [self enableConfirmBtn];
 }
 
@@ -310,3 +349,4 @@
 }
 
 @end
+

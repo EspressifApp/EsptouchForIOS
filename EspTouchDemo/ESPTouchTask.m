@@ -52,6 +52,8 @@
 
 @property (nonatomic,assign) __block UIBackgroundTaskIdentifier _backgroundTask;
 
+@property (nonatomic,strong) id<ESPTouchDelegate> _esptouchDelegate;
+
 @end
 
 @implementation ESPTouchTask
@@ -154,6 +156,10 @@
         }
         ESPTouchResult *esptouchResult = [[ESPTouchResult alloc]initWithIsSuc:isSuc andBssid:bssid andInetAddrData:inetAddr];
         [self._esptouchResultArray addObject:esptouchResult];
+        if (self._esptouchDelegate != nil)
+        {
+            [self._esptouchDelegate onEsptouchResultAddedWithResult:esptouchResult];
+        }
     }
     [self._esptouchResultArrayCondition unlock];
 }
@@ -444,6 +450,11 @@
     self._isWakeUp = YES;
     [self._condition signal];
     [self._condition unlock];
+}
+
+- (void) setEsptouchDelegate: (NSObject<ESPTouchDelegate> *) esptouchDelegate
+{
+    self._esptouchDelegate = esptouchDelegate;
 }
 
 @end
