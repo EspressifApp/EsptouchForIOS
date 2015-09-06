@@ -413,8 +413,12 @@
         }
     }
     
-    [self __sleep: [self._parameter getWaitUdpReceivingMillisecond]];
-    [self __interrupt];
+    if (!self._isInterrupt)
+    {
+        [self __sleep: [self._parameter getWaitUdpReceivingMillisecond]];
+        [self __interrupt];
+    }
+    
     return [self __getEsptouchResultList];
 }
 
