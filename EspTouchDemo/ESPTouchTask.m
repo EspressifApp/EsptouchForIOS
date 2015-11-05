@@ -173,8 +173,8 @@
         esptouchResult.isCancelled = self.isCancelled;
         [self._esptouchResultArray addObject:esptouchResult];
     }
-    return self._esptouchResultArray;
     [self._esptouchResultArrayCondition unlock];
+    return self._esptouchResultArray;
 }
 
 
