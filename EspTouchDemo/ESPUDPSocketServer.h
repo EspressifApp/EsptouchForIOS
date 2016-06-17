@@ -16,6 +16,8 @@
     Byte _buffer[BUFFER_SIZE];
 }
 
+@property (nonatomic, assign) int port;
+
 - (void) close;
 
 - (void) interrupt;
@@ -34,9 +36,13 @@
  *
  * @return one byte receive from the port or UINT8_MAX(it impossible receive it from the socket)
  */
-- (Byte) receiveOneByte;
+- (Byte) receiveOneByte4;
 
-- (NSData *) receiveSpecLenBytes: (int)len;
+- (NSData *) receiveSpecLenBytes4: (int)len;
+
+- (Byte) receiveOneByte6;
+
+- (NSData *) receiveSpecLenBytes6:(int)len;
 
 - (id) initWithPort: (int) port AndSocketTimeout: (int) socketTimeout;
 

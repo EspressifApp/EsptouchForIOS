@@ -136,4 +136,33 @@
  */
 - (void) setExpectTaskResultCount: (int) expectTaskResultCount;
 
+/**
+ * get whether the router support IPv4
+ * @return whether the router support IPv4
+ */
+- (BOOL) isIPv4Supported;
+
+/**
+ * set whether the router support IPv4
+ * @param isIPv4Supported whether the router support IPv4
+ */
+- (void) setIsIPv4Supported:(BOOL) isIPv4Supported;
+
+/**
+ * get whether the router support IPv6
+ * @return whether the router support IPv6
+ */
+- (BOOL) isIPv6Supported;
+
+/**
+ * set whether the router support IPv6
+ * @param isIPv4Supported whether the router support IPv6
+ */
+- (void) setIsIPv6Supported:(BOOL) isIPv6Supported;
+
+/**
+ * set listening port for IPv6
+ */
+- (void) setListeningPort6:(int) listeningPort6;
+
 @end

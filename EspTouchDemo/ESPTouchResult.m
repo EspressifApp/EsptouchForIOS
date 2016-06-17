@@ -26,7 +26,10 @@
 
 - (NSString *)description
 {
-    NSString *ipAddrDataStr = [ESP_NetUtil descriptionInetAddrByData:self.ipAddrData];
+    NSString *ipAddrDataStr = [ESP_NetUtil descriptionInetAddr4ByData:self.ipAddrData];
+    if (ipAddrDataStr==nil) {
+        ipAddrDataStr = [ESP_NetUtil descriptionInetAddr6ByData:self.ipAddrData];
+    }
     return [[NSString alloc]initWithFormat:@"[isSuc: %@,isCancelled: %@,bssid: %@,inetAddress: %@]",self.isSuc? @"YES":@"NO",
             self.isCancelled? @"YES":@"NO"
             ,self.bssid
