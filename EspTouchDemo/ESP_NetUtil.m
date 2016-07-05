@@ -77,9 +77,9 @@
 
 + (NSData *) getLocalInetAddress6ByPort:(int) localPort
 {
-    Byte highPort = localPort / 0xff;
-    Byte lowPort = localPort % 0xff;
-    Byte bytes[] = {lowPort,highPort,0xff,0xff};
+    Byte lowPort = localPort & 0xff;
+    Byte highPort = (localPort>>8) & 0xff;
+    Byte bytes[] = {highPort,lowPort,0xff,0xff};
     NSData *ip6data = [NSData dataWithBytes:bytes length:IP4_LEN];
     return ip6data;
 }
