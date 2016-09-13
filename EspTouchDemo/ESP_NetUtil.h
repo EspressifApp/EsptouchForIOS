@@ -9,12 +9,46 @@
 #import <Foundation/Foundation.h>
 
 @interface ESP_NetUtil : NSObject
+/**
+ * get local ip v4 or nil
+ *
+ * @return local ip v4 or nil
+ */
++ (NSString *) getLocalIPv4;
 
 /**
- * get the local ip address by IOS System
+ * get local ip v6 or nil
+ *
+ * @return local ip v6 or nil
+ */
++ (NSString *) getLocalIPv6;
+
+/**
+ * whether the ipAddr is v4
+ *
+ * @return whether the ipAddr is v4
+ */
++ (BOOL) isIPv4Addr:(NSString *)ipAddr;
+
+/**
+ * whether the ipAddr v4 is private
+ *
+ * @return whether the ipAddr v4 is private
+ */
++ (BOOL) isIPv4PrivateAddr:(NSString *)ipAddr;
+
+/**
+ * get the local ip address by local inetAddress ip4
+ *
+ * @param localInetAddr4 local inetAddress ip4
+ */
++ (NSData *) getLocalInetAddress4ByAddr:(NSString *) localInetAddr4;
+
+/**
+ * get the invented local ip address by local port
  *
  */
-+ (NSData *) getLocalInetAddress;
++ (NSData *) getLocalInetAddress6ByPort:(int) localPort;
 
 /**
  * parse InetAddress
@@ -22,9 +56,14 @@
 + (NSData *) parseInetAddrByData: (NSData *) inetAddrData andOffset: (int) offset andCount: (int) count;
 
 /**
- * descrpion inetAddrData for print pretty
+ * descrpion inetAddrData for print pretty IPv4
  */
-+ (NSString *) descriptionInetAddrByData: (NSData *) inetAddrData;
++ (NSString *) descriptionInetAddr4ByData: (NSData *) inetAddrData;
+
+/**
+ * descrpion inetAddrData for print pretty IPv6
+ */
++ (NSString *) descriptionInetAddr6ByData: (NSData *) inetAddrData;
 
 /**
  * parse bssid
@@ -33,5 +72,4 @@
  * @return byte converted from bssid
  */
 + (NSData *) parseBssid2bytes: (NSString *) bssid;
-
 @end
