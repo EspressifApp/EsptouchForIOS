@@ -17,6 +17,7 @@
 #import "ESPTouchTaskParameter.h"
 
 #define ONE_DATA_LEN    3
+#define ESPTOUCH_VERSION    @"v0.3.5.2"
 
 @interface ESPTouchTask ()
 
@@ -62,6 +63,7 @@
 
 - (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd andIsSsidHiden: (BOOL) isSsidHidden
 {
+    NSLog(@"Welcome Esptouch %@",ESPTOUCH_VERSION);
     if (apSsid==nil||[apSsid isEqualToString:@""])
     {
         perror("ESPTouchTask initWithApSsid() apSsid shouldn't be null or empty");

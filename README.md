@@ -20,6 +20,23 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 在软件和软件的所有副本中都必须包含以上的版权声明和授权声明。
 
 该软件按本来的样子提供，没有任何明确或暗含的担保，包括但不仅限于关于试销性、适合某一特定用途和非侵权的保证。作者和版权持有人在任何情况下均不就由软件或软件使用引起的以合同形式、民事侵权或其它方式提出的任何索赔、损害或其它责任负责。
+
+==================================v0.3.5.2==================================
+
+1.  Espressif's RTOS SDK Smart Config is updated to v2.5.5
+    <b>Only RTOS-v2.5.5 and above support IPv6 only environment</b> 
+    <b>Esptouch v0.3.5.1 only support Espressif's Smart Config v2.4 and above</b>
+    <b>IPv4 is preferred and the old version is compatible</b>
+
+2.  Usage:
+
+    The same as v0.3.5.1.(Support IPv6 only environment).
+
+3.  Fix a bug about check IPv4 address private
+
+4.  Try to open network permission when launch app after ios10.0
+    (Fix the bug some ios10.0 later can't use Esptouch)
+
 ==================================v0.3.5.1==================================
 
 1.  Espressif's RTOS SDK Smart Config is updated to v2.5.5

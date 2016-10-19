@@ -9,6 +9,7 @@
 #import "ESP_NetUtil.h"
 #import "ESP_WifiUtil.h"
 #import "ESP_ByteUtil.h"
+#import "ESPVersionMacro.h"
 
 #define IP4_LEN 4
 
@@ -53,7 +54,7 @@
     if (byte0==10) {
         //    10.0.0.0~10.255.255.255
         return YES;
-    } else if (byte0==172&&byte1<=31) {
+    } else if (byte0==172&&16<=byte1&&byte1<=31) {
         //    172.16.0.0~172.31.255.255
         return YES;
     } else if (byte0==192&&byte1==168) {
@@ -122,6 +123,31 @@
         bssidBytes[i] = strtoul([bssidStr UTF8String], 0, 16);
     }
     return [[NSData alloc]initWithBytes:bssidBytes length:size];
+}
+
++ (NSURLSessionConfiguration *) DEFAULT_SESSION_CONFIGURATION
+{
+    static dispatch_once_t predicate;
+    static NSURLSessionConfiguration *DEFAULT_SESSION_CONFIGURATION;
+    dispatch_once(&predicate, ^{
+        DEFAULT_SESSION_CONFIGURATION = [NSURLSessionConfiguration defaultSessionConfiguration];
+    });
+    return DEFAULT_SESSION_CONFIGURATION;
+}
+
+
++ (void) tryOpenNetworkPermission
+{
+    // only ios 10.0 later required to try open network permission
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10.0")) {
+        NSURL *url = [NSURL URLWithString:@"https://8.8.8.8"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:1000];
+        
+        
+        NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[self DEFAULT_SESSION_CONFIGURATION] delegate:nil delegateQueue:[NSOperationQueue currentQueue]];
+        [[urlSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
+        }] resume];
+    }
 }
 
 @end
