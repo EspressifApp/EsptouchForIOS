@@ -28,7 +28,12 @@
  * @param isSsidHidden
  *            whether the Ap's ssid is hidden
  */
-- (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd andIsSsidHiden: (BOOL) isSsidHidden;
+- (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd;
+
+/**
+ * Deprecated
+ */
+- (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd andIsSsidHiden: (BOOL) isSsidHidden __deprecated_msg("Use initWithApSsid:(NSString *) andApBssid:(NSString *) andApPwd:(NSString *) instead.");
 
 /**
  * Constructor of EsptouchTask
@@ -46,7 +51,25 @@
  * @param context
  *            the Context of the Application
  */
-- (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd andIsSsidHiden: (BOOL) isSsidHidden andTimeoutMillisecond: (int) timeoutMillisecond;
+- (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd andTimeoutMillisecond: (int) timeoutMillisecond;
+
+/**
+ * Constructor of EsptouchTask
+ *
+ * @param apSsid
+ *            the Ap's ssid
+ * @param apBssid
+ *            the Ap's bssid
+ * @param apPassword
+ *            the Ap's password
+ * @param isSsidHidden
+ *            whether the Ap's ssid is hidden
+ * @param timeoutMillisecond(it should be >= 15000+6000)
+ * 			  millisecond of total timeout
+ * @param context
+ *            the Context of the Application
+ */
+- (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd andIsSsidHiden: (BOOL) isSsidHidden andTimeoutMillisecond: (int) timeoutMillisecond  __deprecated_msg("Use initWithApSsid:(NSString *) andApBssid:(NSString *) andApPwd:(NSString *) andTimeoutMillisecond:(int) instead.");
 
 /**
  * Interrupt the Esptouch Task when User tap back or close the Application.

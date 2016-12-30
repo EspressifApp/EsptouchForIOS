@@ -57,7 +57,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *_pwdTextView;
 @property (weak, nonatomic) IBOutlet UITextField *_taskResultCountTextView;
 @property (weak, nonatomic) IBOutlet UIButton *_confirmCancelBtn;
-@property (weak, nonatomic) IBOutlet UISwitch *_isSsidHiddenSwitch;
 
 // to cancel ESPTouchTask when
 @property (atomic, strong) ESPTouchTask *_esptouchTask;
@@ -207,10 +206,9 @@
     NSString *apSsid = self.ssidLabel.text;
     NSString *apPwd = self._pwdTextView.text;
     NSString *apBssid = self.bssid;
-    BOOL isSsidHidden = [self._isSsidHiddenSwitch isOn];
     int taskCount = [self._taskResultCountTextView.text intValue];
     self._esptouchTask =
-    [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd andIsSsidHiden:isSsidHidden];
+    [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd];
     // set delegate
     [self._esptouchTask setEsptouchDelegate:self._esptouchDelegate];
     [self._condition unlock];
@@ -227,9 +225,8 @@
     NSString *apSsid = self.ssidLabel.text;
     NSString *apPwd = self._pwdTextView.text;
     NSString *apBssid = self.bssid;
-    BOOL isSsidHidden = [self._isSsidHiddenSwitch isOn];
     self._esptouchTask =
-    [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd andIsSsidHiden:isSsidHidden];
+    [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd];
     // set delegate
     [self._esptouchTask setEsptouchDelegate:self._esptouchDelegate];
     [self._condition unlock];

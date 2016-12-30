@@ -17,7 +17,7 @@
 #import "ESPTouchTaskParameter.h"
 
 #define ONE_DATA_LEN    3
-#define ESPTOUCH_VERSION    @"v0.3.5.2"
+#define ESPTOUCH_VERSION    @"v0.3.5.3"
 
 @interface ESPTouchTask ()
 
@@ -61,7 +61,7 @@
 
 @implementation ESPTouchTask
 
-- (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd andIsSsidHiden: (BOOL) isSsidHidden
+- (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd
 {
     NSLog(@"Welcome Esptouch %@",ESPTOUCH_VERSION);
     if (apSsid==nil||[apSsid isEqualToString:@""])
@@ -124,7 +124,7 @@
         self._isWakeUp = NO;
         self._isExecutedAlready = NO;
         self._condition = [[NSCondition alloc]init];
-        self._isSsidHidden = isSsidHidden;
+        self._isSsidHidden = YES;
         self._esptouchResultArray = [[NSMutableArray alloc]init];
         self._bssidTaskSucCountDict = [[NSMutableDictionary alloc]init];
         self._esptouchResultArrayCondition = [[NSCondition alloc]init];
@@ -132,14 +132,24 @@
     return self;
 }
 
-- (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd andIsSsidHiden: (BOOL) isSsidHidden andTimeoutMillisecond: (int) timeoutMillisecond
+- (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd andIsSsidHiden: (BOOL) isSsidHidden
 {
-    ESPTouchTask *_self = [self initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd andIsSsidHiden:isSsidHidden];
+    return [self initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd];
+}
+
+- (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd andTimeoutMillisecond: (int) timeoutMillisecond
+{
+    ESPTouchTask *_self = [self initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd];
     if (_self)
     {
         [_self._parameter setWaitUdpTotalMillisecond:timeoutMillisecond];
     }
     return _self;
+}
+
+- (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd andIsSsidHiden: (BOOL) isSsidHidden andTimeoutMillisecond: (int) timeoutMillisecond
+{
+    return [self initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd andTimeoutMillisecond:timeoutMillisecond];
 }
 
 - (void) __putEsptouchResultIsSuc: (BOOL) isSuc AndBssid: (NSString *)bssid AndInetAddr:(NSData *)inetAddr

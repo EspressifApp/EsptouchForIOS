@@ -41,8 +41,8 @@ static int _datagramCount = 0;
 {
     self = [super init];
     if (self) {
-        self.intervalGuideCodeMillisecond = 10;
-        self.intervalDataCodeMillisecond = 10;
+        self.intervalGuideCodeMillisecond = 8;
+        self.intervalDataCodeMillisecond = 8;
         self.timeoutGuideCodeMillisecond = 2000;
         self.timeoutDataCodeMillisecond = 4000;
         self.timeoutTotalCodeMillisecond = 2000 + 4000;
