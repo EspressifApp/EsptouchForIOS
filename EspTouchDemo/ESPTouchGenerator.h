@@ -29,7 +29,7 @@
  * @param isSsidHidden
  *            whether the Ap's ssid is hidden
  */
-- (id) initWithSsid: (NSString *) apSsid andApBssid: (NSString *) apBssid andApPassword: (NSString *) apPwd andInetAddrData: (NSData *) ipAddrData andIsSsidHidden: (BOOL) isSsidHidden;
+- (id) initWithSsid: (NSData *)apSsid andApBssid: (NSData *)apBssid andApPassword: (NSData *)apPwd andInetAddrData: (NSData *)ipAddrData andIsSsidHidden: (BOOL)isSsidHidden;
 
 /**
  * Get guide code by the format of byte[][]

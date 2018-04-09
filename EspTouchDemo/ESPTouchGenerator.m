@@ -14,7 +14,7 @@
 
 @implementation ESPTouchGenerator
 
-- (id) initWithSsid: (NSString *) apSsid andApBssid: (NSString *) apBssid andApPassword: (NSString *) apPwd andInetAddrData: (NSData *) ipAddrData andIsSsidHidden: (BOOL) isSsidHidden
+- (id) initWithSsid: (NSData *)apSsid andApBssid: (NSData *)apBssid andApPassword: (NSData *)apPwd andInetAddrData: (NSData *)ipAddrData andIsSsidHidden:(BOOL) isSsidHidden
 {
     self = [super init];
     if (self)

@@ -11,6 +11,7 @@
 #import "ESPTouchResult.h"
 #import "ESP_NetUtil.h"
 #import "ESPTouchDelegate.h"
+#import "ESPAES.h"
 
 #import <SystemConfiguration/CaptiveNetwork.h>
 
@@ -57,6 +58,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *_pwdTextView;
 @property (weak, nonatomic) IBOutlet UITextField *_taskResultCountTextView;
 @property (weak, nonatomic) IBOutlet UIButton *_confirmCancelBtn;
+@property (weak, nonatomic) IBOutlet UILabel *_versionLabel;
 
 // to cancel ESPTouchTask when
 @property (atomic, strong) ESPTouchTask *_esptouchTask;
@@ -152,41 +154,6 @@
     }
 }
 
-- (void) tapConfirmForResult
-{
-    // do confirm
-    if (self._isConfirmState)
-    {
-        [self._spinner startAnimating];
-        [self enableCancelBtn];
-        NSLog(@"ESPViewController do confirm action...");
-        dispatch_queue_t  queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_async(queue, ^{
-            NSLog(@"ESPViewController do the execute work...");
-            // execute the task
-            ESPTouchResult *esptouchResult = [self executeForResult];
-            // show the result to the user in UI Main Thread
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self._spinner stopAnimating];
-                [self enableConfirmBtn];
-                // when canceled by user, don't show the alert view again
-                if (!esptouchResult.isCancelled)
-                {
-                    [[[UIAlertView alloc] initWithTitle:@"Execute Result" message:[esptouchResult description] delegate:nil cancelButtonTitle:@"I know" otherButtonTitles: nil] show];
-                }
-            });
-        });
-    }
-    // do cancel
-    else
-    {
-        [self._spinner stopAnimating];
-        [self enableConfirmBtn];
-        NSLog(@"ESPViewController do cancel action...");
-        [self cancel];
-    }
-}
-
 #pragma mark - the example of how to cancel the executing task
 
 - (void) cancel
@@ -207,8 +174,15 @@
     NSString *apPwd = self._pwdTextView.text;
     NSString *apBssid = self.bssid;
     int taskCount = [self._taskResultCountTextView.text intValue];
-    self._esptouchTask =
-    [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd];
+    BOOL useAES = YES;
+    if (useAES) {
+        NSString *secretKey = @"1234567890123456"; // TODO modify your own key
+        ESPAES *aes = [[ESPAES alloc] initWithKey:secretKey];
+        self._esptouchTask = [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd andAES:aes];
+    } else {
+        self._esptouchTask = [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd];
+    }
+    
     // set delegate
     [self._esptouchTask setEsptouchDelegate:self._esptouchDelegate];
     [self._condition unlock];
@@ -216,25 +190,6 @@
     NSLog(@"ESPViewController executeForResult() result is: %@",esptouchResults);
     return esptouchResults;
 }
-
-#pragma mark - the example of how to use executeForResult
-
-- (ESPTouchResult *) executeForResult
-{
-    [self._condition lock];
-    NSString *apSsid = self.ssidLabel.text;
-    NSString *apPwd = self._pwdTextView.text;
-    NSString *apBssid = self.bssid;
-    self._esptouchTask =
-    [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd];
-    // set delegate
-    [self._esptouchTask setEsptouchDelegate:self._esptouchDelegate];
-    [self._condition unlock];
-    ESPTouchResult * esptouchResult = [self._esptouchTask executeForResult];
-    NSLog(@"ESPViewController executeForResult() result is: %@",esptouchResult);
-    return esptouchResult;
-}
-
 
 // enable confirm button
 - (void)enableConfirmBtn
@@ -261,6 +216,7 @@
     self._taskResultCountTextView.keyboardType = UIKeyboardTypeNumberPad;
     self._condition = [[NSCondition alloc]init];
     self._esptouchDelegate = [[EspTouchDelegateImpl alloc]init];
+    self._versionLabel.text = ESPTOUCH_VERSION;
     [self enableConfirmBtn];
 }
 

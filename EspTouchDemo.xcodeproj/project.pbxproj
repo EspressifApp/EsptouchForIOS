@@ -34,6 +34,7 @@
 		077B60461AC0395A000AC046 /* ESP_CRC8.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B60451AC0395A000AC046 /* ESP_CRC8.m */; };
 		07A433731ADCF33A001F99B0 /* ESPTouchTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A433721ADCF33A001F99B0 /* ESPTouchTask.m */; };
 		07A433761ADCF35A001F99B0 /* ESPTouchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A433751ADCF35A001F99B0 /* ESPTouchResult.m */; };
+		808A90C02076049500112914 /* ESPAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 808A90BF2076049500112914 /* ESPAES.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,8 @@
 		07A433721ADCF33A001F99B0 /* ESPTouchTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPTouchTask.m; sourceTree = "<group>"; };
 		07A433741ADCF35A001F99B0 /* ESPTouchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPTouchResult.h; sourceTree = "<group>"; };
 		07A433751ADCF35A001F99B0 /* ESPTouchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPTouchResult.m; sourceTree = "<group>"; };
+		808A90BE2076049500112914 /* ESPAES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESPAES.h; sourceTree = "<group>"; };
+		808A90BF2076049500112914 /* ESPAES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESPAES.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +250,8 @@
 				072DAA1A1DB74DE7004F6CD8 /* ESPVersionMacro.h */,
 				072878AC1D1127F000E88E12 /* ESP_WifiUtil.h */,
 				072878AD1D1127F000E88E12 /* ESP_WifiUtil.m */,
+				808A90BE2076049500112914 /* ESPAES.h */,
+				808A90BF2076049500112914 /* ESPAES.m */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -306,11 +311,12 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ESP;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "白 桦";
 				TargetAttributes = {
 					077B60071AC036C3000AC046 = {
-						DevelopmentTeam = QWXF6GB4AV;
+						DevelopmentTeam = QWY5DY832N;
+						ProvisioningStyle = Automatic;
 					};
 					077B60281AC036C3000AC046 = {
 						TestTargetID = 077B60071AC036C3000AC046;
@@ -369,6 +375,7 @@
 				0703C6F51AD653E9009A3841 /* ESPDatumCode.m in Sources */,
 				07A433731ADCF33A001F99B0 /* ESPTouchTask.m in Sources */,
 				071F6A141B05F8790015B482 /* ESP_NetUtil.m in Sources */,
+				808A90C02076049500112914 /* ESPAES.m in Sources */,
 				072878AE1D1127F000E88E12 /* ESP_WifiUtil.m in Sources */,
 				075A05C21AD3ABC100ECB5D6 /* ESP_ByteUtil.m in Sources */,
 				0703C6FB1AD65413009A3841 /* ESPGuideCode.m in Sources */,
@@ -435,18 +442,30 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -459,7 +478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -473,25 +492,36 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -502,15 +532,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QWXF6GB4AV;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QWY5DY832N;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
 				INFOPLIST_FILE = "EspTouchDemo/EspTouchDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = espressif.EspTouchDemo;
 				PRODUCT_NAME = EspTouchDemo;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -520,15 +553,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QWXF6GB4AV;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QWY5DY832N;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
 				INFOPLIST_FILE = "EspTouchDemo/EspTouchDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = espressif.EspTouchDemo;
 				PRODUCT_NAME = EspTouchDemo;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -549,6 +585,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "EspTouchDemoTests/EspTouchDemoTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.espressif.iot.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = EspTouchDemoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -567,6 +604,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
 				INFOPLIST_FILE = "EspTouchDemoTests/EspTouchDemoTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.espressif.iot.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = EspTouchDemoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
