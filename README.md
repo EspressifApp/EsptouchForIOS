@@ -28,7 +28,9 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 2.  Usage:
 
     NSString *secretKey = @"1234567890123456"; // TODO use your own key
+
     ESPAES *aes = [[ESPAES alloc] initWithKey:secretKey];
+
     ESPTouchTask *task = [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd andAES:aes];
 
 ==================================v0.3.5.3==================================
