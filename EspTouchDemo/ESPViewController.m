@@ -174,7 +174,7 @@
     NSString *apPwd = self._pwdTextView.text;
     NSString *apBssid = self.bssid;
     int taskCount = [self._taskResultCountTextView.text intValue];
-    BOOL useAES = YES;
+    BOOL useAES = NO;
     if (useAES) {
         NSString *secretKey = @"1234567890123456"; // TODO modify your own key
         ESPAES *aes = [[ESPAES alloc] initWithKey:secretKey];

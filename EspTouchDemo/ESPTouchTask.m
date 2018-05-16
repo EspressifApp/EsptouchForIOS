@@ -84,13 +84,11 @@
         if (aes == nil) {
             self._apSsid = [ESP_ByteUtil getBytesByNSString:apSsid];
             self._apPwd = [ESP_ByteUtil getBytesByNSString:apPwd];
-            self._apBssid = [ESP_ByteUtil getBytesByNSString:apBssid];
         } else {
             self._apSsid = [aes AES128EncryptData:[ESP_ByteUtil getBytesByNSString:apSsid]];
             self._apPwd = [aes AES128EncryptData:[ESP_ByteUtil getBytesByNSString:apPwd]];
-            self._apBssid = [aes AES128EncryptData:[ESP_ByteUtil getBytesByNSString:apBssid]];
         }
-        
+        self._apBssid = [ESP_ByteUtil getBytesByNSString:apBssid];
         self._parameter = [[ESPTaskParameter alloc]init];
         
         // check whether IPv4 and IPv6 is supported
