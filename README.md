@@ -2,7 +2,7 @@
 
 Copyright © 2015 <ESPRESSIF SYSTEMS (SHANGHAI) PTE LTD>
 
-Permission is hereby granted <b>for use on ESPRESSIF SYSTEMS ESP8266 only, in which case, it is free of charge,</b> to any person obtaining a copy of this software and
+Permission is hereby granted <b>for use on ESPRESSIF SYSTEMS ESP8266/ESP32 only, in which case, it is free of charge,</b> to any person obtaining a copy of this software and
 associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
 sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -20,6 +20,11 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 在软件和软件的所有副本中都必须包含以上的版权声明和授权声明。
 
 该软件按本来的样子提供，没有任何明确或暗含的担保，包括但不仅限于关于试销性、适合某一特定用途和非侵权的保证。作者和版权持有人在任何情况下均不就由软件或软件使用引起的以合同形式、民事侵权或其它方式提出的任何索赔、损害或其它责任负责。
+
+
+=================================v0.3.6.0==================================
+
+1.  Fix bug that cann't configure Chinese SSID
 
 ==================================v0.3.5.4==================================
 

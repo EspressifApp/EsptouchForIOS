@@ -109,7 +109,8 @@
         // add bssid
         for (int i = 0; i < apBssidDataLen; i++) {
             int index = totalLen + i;
-            ESPDataCode *dc = [[ESPDataCode alloc] initWithU8:apBssidBytes[i] andIndex:index];
+            Byte b = apBssidBytes[i];
+            ESPDataCode *dc = [[ESPDataCode alloc] initWithU8:b andIndex:index];
             [_dataCodes addObject:dc];
         }
     }
