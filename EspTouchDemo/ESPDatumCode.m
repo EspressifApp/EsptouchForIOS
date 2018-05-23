@@ -61,6 +61,7 @@
         
         // build data codes
         _dataCodes = [[NSMutableArray alloc]initWithCapacity:totalLen + apBssidDataLen];
+        
         ESPDataCode *dataCode = [[ESPDataCode alloc]initWithU8:_totalLen andIndex:0];
         [_dataCodes addObject:dataCode];
         totalXor ^= _totalLen;
@@ -107,11 +108,17 @@
         [_dataCodes insertObject:dataCode atIndex:4];
         
         // add bssid
+        NSUInteger bssidInsertIndex = EXTRA_HEAD_LEN;
         for (int i = 0; i < apBssidDataLen; i++) {
             int index = totalLen + i;
             Byte b = apBssidBytes[i];
             ESPDataCode *dc = [[ESPDataCode alloc] initWithU8:b andIndex:index];
-            [_dataCodes addObject:dc];
+            if (bssidInsertIndex >= _dataCodes.count) {
+                [_dataCodes addObject:dc];
+            } else {
+                [_dataCodes insertObject:dc atIndex:bssidInsertIndex];
+            }
+            bssidInsertIndex += 4;
         }
     }
     return self;
