@@ -20,6 +20,8 @@
 #define HEIGHT_TEXT_FIELD 30
 #define HEIGHT_SPACE (6+HEIGHT_TEXT_FIELD)
 
+static const BOOL AES_ENABLE = NO;
+static NSString * const AES_SECRET_KEY = @"1234567890123456"; // TODO modify your own key
 
 @interface EspTouchDelegateImpl : NSObject<ESPTouchDelegate>
 
@@ -76,6 +78,7 @@
 
 @property (nonatomic, strong) UIButton *_doneButton;
 @property (nonatomic, strong) EspTouchDelegateImpl *_esptouchDelegate;
+
 @end
 
 @implementation ESPViewController
@@ -172,12 +175,10 @@
     [self._condition lock];
     NSString *apSsid = self.ssidLabel.text;
     NSString *apPwd = self._pwdTextView.text;
-    NSString *apBssid = self.bssid;
+    NSString *apBssid = self.bssidLabel.text;
     int taskCount = [self._taskResultCountTextView.text intValue];
-    BOOL useAES = NO;
-    if (useAES) {
-        NSString *secretKey = @"1234567890123456"; // TODO modify your own key
-        ESPAES *aes = [[ESPAES alloc] initWithKey:secretKey];
+    if (AES_ENABLE) {
+        ESPAES *aes = [[ESPAES alloc] initWithKey:AES_SECRET_KEY];
         self._esptouchTask = [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd andAES:aes];
     } else {
         self._esptouchTask = [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd];

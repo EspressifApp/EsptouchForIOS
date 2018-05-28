@@ -49,7 +49,7 @@
     ESPViewController *vc = (ESPViewController *)self.window.rootViewController;
     NSDictionary *netInfo = [self fetchNetInfo];
     vc.ssidLabel.text = [netInfo objectForKey:@"SSID"];
-    vc.bssid = [netInfo objectForKey:@"BSSID"];
+    vc.bssidLabel.text = [netInfo objectForKey:@"BSSID"];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
