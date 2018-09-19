@@ -1,5 +1,8 @@
 # Update Log
 
+## v0.3.7.0
+- Add option to select Broadcast or Multicast
+
 ## v0.3.6.1
 - Modify bssid post sequence
 

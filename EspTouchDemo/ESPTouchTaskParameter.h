@@ -165,4 +165,9 @@
  */
 - (void) setListeningPort6:(int) listeningPort6;
 
+/**
+ * Set broadcast or multicast
+ */
+- (void) setBroadcast:(BOOL) broadcast;
+
 @end

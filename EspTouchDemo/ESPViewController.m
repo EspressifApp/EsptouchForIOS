@@ -20,9 +20,6 @@
 #define HEIGHT_TEXT_FIELD 30
 #define HEIGHT_SPACE (6+HEIGHT_TEXT_FIELD)
 
-static const BOOL AES_ENABLE = NO;
-static NSString * const AES_SECRET_KEY = @"1234567890123456"; // TODO modify your own key
-
 @interface EspTouchDelegateImpl : NSObject<ESPTouchDelegate>
 
 @end
@@ -94,6 +91,12 @@ static NSString * const AES_SECRET_KEY = @"1234567890123456"; // TODO modify you
     // do confirm
     if (self._isConfirmState)
     {
+        NSString *apSsid = self.ssidLabel.text;
+        NSString *apPwd = self._pwdTextView.text;
+        NSString *apBssid = self.bssidLabel.text;
+        int taskCount = [self._taskResultCountTextView.text intValue];
+        BOOL broadcast = self.broadcastSC.selectedSegmentIndex == 0 ? YES : NO;
+        
         [self._spinner startAnimating];
         [self enableCancelBtn];
         NSLog(@"ESPViewController do confirm action...");
@@ -101,7 +104,7 @@ static NSString * const AES_SECRET_KEY = @"1234567890123456"; // TODO modify you
         dispatch_async(queue, ^{
             NSLog(@"ESPViewController do the execute work...");
             // execute the task
-            NSArray *esptouchResultArray = [self executeForResults];
+            NSArray *esptouchResultArray = [self executeForResultsWithSsid:apSsid bssid:apBssid password:apPwd taskCount:taskCount broadcast:broadcast];
             // show the result to the user in UI Main Thread
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self._spinner stopAnimating];
@@ -170,22 +173,13 @@ static NSString * const AES_SECRET_KEY = @"1234567890123456"; // TODO modify you
 }
 
 #pragma mark - the example of how to use executeForResults
-- (NSArray *) executeForResults
+- (NSArray *) executeForResultsWithSsid:(NSString *)apSsid bssid:(NSString *)apBssid password:(NSString *)apPwd taskCount:(int)taskCount broadcast:(BOOL)broadcast
 {
     [self._condition lock];
-    NSString *apSsid = self.ssidLabel.text;
-    NSString *apPwd = self._pwdTextView.text;
-    NSString *apBssid = self.bssidLabel.text;
-    int taskCount = [self._taskResultCountTextView.text intValue];
-    if (AES_ENABLE) {
-        ESPAES *aes = [[ESPAES alloc] initWithKey:AES_SECRET_KEY];
-        self._esptouchTask = [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd andAES:aes];
-    } else {
-        self._esptouchTask = [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd];
-    }
-    
+    self._esptouchTask = [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd];
     // set delegate
     [self._esptouchTask setEsptouchDelegate:self._esptouchDelegate];
+    [self._esptouchTask setPackageBroadcast:broadcast];
     [self._condition unlock];
     NSArray * esptouchResults = [self._esptouchTask executeForResults:taskCount];
     NSLog(@"ESPViewController executeForResult() result is: %@",esptouchResults);

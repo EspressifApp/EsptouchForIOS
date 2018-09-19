@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *ssidLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bssidLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *broadcastSC;
 
 @end

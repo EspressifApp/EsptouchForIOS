@@ -31,6 +31,7 @@
 @property (nonatomic,assign) int expectTaskResultCount;
 @property (nonatomic,assign) BOOL isIPv4Supported0;
 @property (nonatomic,assign) BOOL isIPv6Supported0;
+@property (nonatomic,assign) BOOL broadcast;
 @end
 
 @implementation ESPTaskParameter
@@ -145,8 +146,12 @@ static int _datagramCount = 0;
 - (NSString *) getTargetHostname
 {
     if (_isIPv4Supported0) {
-        int count = [self __getNextDatagramCount];
-        return [NSString stringWithFormat: @"234.%d.%d.%d", count, count, count];
+        if (self.broadcast) {
+            return @"255.255.255.255";
+        } else {
+            int count = [self __getNextDatagramCount];
+            return [NSString stringWithFormat: @"234.%d.%d.%d", count, count, count];
+        }
     } else {
         return @"ff02::1%en0";
     }
@@ -225,6 +230,10 @@ static int _datagramCount = 0;
 - (void) setListeningPort6:(int) listeningPort6
 {
     _portListening6 = listeningPort6;
+}
+
+- (void)setBroadcast:(BOOL)broadcast {
+    _broadcast = broadcast;
 }
 
 @end

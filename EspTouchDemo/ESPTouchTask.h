@@ -11,7 +11,7 @@
 #import "ESPTouchDelegate.h"
 #import "ESPAES.h"
 
-#define ESPTOUCH_VERSION    @"v0.3.6.1"
+#define ESPTOUCH_VERSION    @"v0.3.7.0"
 
 #define DEBUG_ON   YES
 
@@ -115,4 +115,9 @@
  */
 - (void) setEsptouchDelegate: (NSObject<ESPTouchDelegate> *) esptouchDelegate;
 
+/**
+ * Set boradcast or multicast when post config info
+ * @param broadcast YES is boradcast, NO is multicast
+ */
+- (void) setPackageBroadcast: (BOOL) broadcast;
 @end

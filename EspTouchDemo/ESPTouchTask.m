@@ -512,4 +512,8 @@
     self._esptouchDelegate = esptouchDelegate;
 }
 
+- (void)setPackageBroadcast:(BOOL)broadcast {
+    [self._parameter setBroadcast:broadcast];
+}
+
 @end
