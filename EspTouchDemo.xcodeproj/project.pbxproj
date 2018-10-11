@@ -95,6 +95,7 @@
 		07A433721ADCF33A001F99B0 /* ESPTouchTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPTouchTask.m; sourceTree = "<group>"; };
 		07A433741ADCF35A001F99B0 /* ESPTouchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPTouchResult.h; sourceTree = "<group>"; };
 		07A433751ADCF35A001F99B0 /* ESPTouchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPTouchResult.m; sourceTree = "<group>"; };
+		80501D1D216F43C200D32EDC /* EspTouchDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EspTouchDemo.entitlements; sourceTree = "<group>"; };
 		808A90BE2076049500112914 /* ESPAES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESPAES.h; sourceTree = "<group>"; };
 		808A90BF2076049500112914 /* ESPAES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESPAES.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -171,6 +172,7 @@
 		077B60111AC036C3000AC046 /* EspTouchDemo */ = {
 			isa = PBXGroup;
 			children = (
+				80501D1D216F43C200D32EDC /* EspTouchDemo.entitlements */,
 				07A4336A1ADCF2CD001F99B0 /* esptouch */,
 				0703C6EE1AD653A9009A3841 /* protocol */,
 				077B60431AC038A1000AC046 /* util */,
@@ -312,11 +314,16 @@
 			attributes = {
 				CLASSPREFIX = ESP;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = "Espressif";
+				ORGANIZATIONNAME = Espressif;
 				TargetAttributes = {
 					077B60071AC036C3000AC046 = {
 						DevelopmentTeam = QWY5DY832N;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 1;
+							};
+						};
 					};
 					077B60281AC036C3000AC046 = {
 						TestTargetID = 077B60071AC036C3000AC046;
@@ -536,6 +543,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = EspTouchDemo/EspTouchDemo.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -557,6 +565,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = EspTouchDemo/EspTouchDemo.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
