@@ -7,11 +7,7 @@
 //
 
 #import "ESPViewController.h"
-#import "ESPTouchTask.h"
-#import "ESPTouchResult.h"
-#import "ESP_NetUtil.h"
-#import "ESPTouchDelegate.h"
-#import "ESPAES.h"
+#import "EspTouch/ESPTouch.h"
 
 #import <SystemConfiguration/CaptiveNetwork.h>
 
