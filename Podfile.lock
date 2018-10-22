@@ -1,12 +1,18 @@
 PODS:
+  - KVNProgress (2.3.1)
   - SimulatorStatusMagic (2.2)
+  - XLForm (3.3.0)
 
 DEPENDENCIES:
+  - KVNProgress
   - SimulatorStatusMagic
+  - XLForm
 
 SPEC CHECKSUMS:
+  KVNProgress: 8167b1f19e2758290c0b6143020ed9dcbb0477a1
   SimulatorStatusMagic: 0389a805fa8bd001e2977c4046730bdbd6642861
+  XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: 5dab66073dbc0f857af231e5941715e65f775727
+PODFILE CHECKSUM: 43a34d6a69ca22abeba5298c98ec2fce230f3895
 
 COCOAPODS: 1.4.0

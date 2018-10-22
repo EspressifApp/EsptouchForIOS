@@ -20,6 +20,7 @@
 		0CB14C502175E12D00F5A7BF /* libEspTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB14C4F2175E12D00F5A7BF /* libEspTouch.a */; };
 		0CD949B0217DC70900E6D3B0 /* Screenshots.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD949AF217DC70900E6D3B0 /* Screenshots.m */; };
 		0CD949B9217DC75200E6D3B0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD949B8217DC75200E6D3B0 /* SnapshotHelper.swift */; };
+		E8438015EB8D93F5993587CB /* Pods_EspTouchDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6A25288D2CBA5E2B47B9D /* Pods_EspTouchDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +57,10 @@
 		0CD949B8217DC75200E6D3B0 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		80501D1D216F43C200D32EDC /* EspTouchDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EspTouchDemo.entitlements; sourceTree = "<group>"; };
 		902B2624CB2EBF882EE9796B /* libPods-EspTouchDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EspTouchDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9ED1959F4152BE7D85EEDFD9 /* Pods-EspTouchDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EspTouchDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-EspTouchDemo/Pods-EspTouchDemo.release.xcconfig"; sourceTree = "<group>"; };
+		AAA6A25288D2CBA5E2B47B9D /* Pods_EspTouchDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EspTouchDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58B90117BD82777E549CBAE /* Pods-EspTouchDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EspTouchDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EspTouchDemoUITests/Pods-EspTouchDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D50D836E6C6BEF27291E215D /* Pods-EspTouchDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EspTouchDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EspTouchDemo/Pods-EspTouchDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		E9EEC4A1735E07C63EC6C2B6 /* Pods-EspTouchDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EspTouchDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EspTouchDemoUITests/Pods-EspTouchDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +73,7 @@
 				077B600E1AC036C3000AC046 /* CoreGraphics.framework in Frameworks */,
 				077B60101AC036C3000AC046 /* UIKit.framework in Frameworks */,
 				077B600C1AC036C3000AC046 /* Foundation.framework in Frameworks */,
+				E8438015EB8D93F5993587CB /* Pods_EspTouchDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 				077B600F1AC036C3000AC046 /* UIKit.framework */,
 				077B602A1AC036C3000AC046 /* XCTest.framework */,
 				902B2624CB2EBF882EE9796B /* libPods-EspTouchDemoUITests.a */,
+				AAA6A25288D2CBA5E2B47B9D /* Pods_EspTouchDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -158,6 +164,8 @@
 			children = (
 				C58B90117BD82777E549CBAE /* Pods-EspTouchDemoUITests.debug.xcconfig */,
 				E9EEC4A1735E07C63EC6C2B6 /* Pods-EspTouchDemoUITests.release.xcconfig */,
+				D50D836E6C6BEF27291E215D /* Pods-EspTouchDemo.debug.xcconfig */,
+				9ED1959F4152BE7D85EEDFD9 /* Pods-EspTouchDemo.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -169,9 +177,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 077B603A1AC036C4000AC046 /* Build configuration list for PBXNativeTarget "EspTouchDemo" */;
 			buildPhases = (
+				5809477B3C7F81F692F4FEA2 /* [CP] Check Pods Manifest.lock */,
 				077B60041AC036C3000AC046 /* Sources */,
 				077B60051AC036C3000AC046 /* Frameworks */,
 				077B60061AC036C3000AC046 /* Resources */,
+				435B2B2790B19F0095A65D66 /* [CP] Embed Pods Frameworks */,
+				13685FB99429169176F6595D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,6 +225,7 @@
 				ORGANIZATIONNAME = Espressif;
 				TargetAttributes = {
 					077B60071AC036C3000AC046 = {
+						DevelopmentTeam = KTW7W3K4FU;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.AccessWiFi = {
@@ -269,6 +281,71 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		13685FB99429169176F6595D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EspTouchDemo/Pods-EspTouchDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		435B2B2790B19F0095A65D66 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-EspTouchDemo/Pods-EspTouchDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/KVNProgress/KVNProgress.framework",
+				"${BUILT_PRODUCTS_DIR}/XLForm/XLForm.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KVNProgress.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLForm.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EspTouchDemo/Pods-EspTouchDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5809477B3C7F81F692F4FEA2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EspTouchDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5DCBE8257620CAF19957F319 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -468,6 +545,7 @@
 		};
 		077B603B1AC036C4000AC046 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D50D836E6C6BEF27291E215D /* Pods-EspTouchDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -475,23 +553,24 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KTW7W3K4FU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
-				HEADER_SEARCH_PATHS = $SOURCE_ROOT/include;
+				HEADER_SEARCH_PATHS = "$SOURCE_ROOT/include";
 				INFOPLIST_FILE = "EspTouchDemo/EspTouchDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = espressif.EspTouchDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = net.f10.esp32SmartConfig;
 				PRODUCT_NAME = EspTouchDemo;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = ESPTouchDemo;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		077B603C1AC036C4000AC046 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9ED1959F4152BE7D85EEDFD9 /* Pods-EspTouchDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -499,17 +578,17 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KTW7W3K4FU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
-				HEADER_SEARCH_PATHS = $SOURCE_ROOT/include;
+				HEADER_SEARCH_PATHS = "$SOURCE_ROOT/include";
 				INFOPLIST_FILE = "EspTouchDemo/EspTouchDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = espressif.EspTouchDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = net.f10.esp32SmartConfig;
 				PRODUCT_NAME = EspTouchDemo;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = ESPTouchDemo;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -46,10 +46,9 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    ESPViewController *vc = (ESPViewController *)self.window.rootViewController;
-    NSDictionary *netInfo = [self fetchNetInfo];
-    vc.ssidLabel.text = [netInfo objectForKey:@"SSID"];
-    vc.bssidLabel.text = [netInfo objectForKey:@"BSSID"];
+    ESPViewController *vc = (id) [(UINavigationController *)self.window.rootViewController topViewController];
+    
+    [vc updateDictionnary:[self fetchNetInfo]];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

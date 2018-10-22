@@ -6,12 +6,10 @@
 //  Copyright (c) 2015 白 桦. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <XLForm/XLForm.h>
 
-@interface ESPViewController : UIViewController<UITextFieldDelegate>
+@interface ESPViewController : XLFormViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *ssidLabel;
-@property (weak, nonatomic) IBOutlet UILabel *bssidLabel;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *broadcastSC;
-
+- (void) updateDictionnary:(NSDictionary *)netInfos;
+    
 @end
