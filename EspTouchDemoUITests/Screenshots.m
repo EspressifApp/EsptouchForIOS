@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "EspTouchDemoUITests-Swift.h"
+#import <SimulatorStatusMagic/SDStatusBarManager.h>
 
 @interface EspTouchDemoUITests : XCTestCase
 
@@ -27,6 +28,9 @@
      // Setup fastlane snapshot
     [Snapshot setupSnapshot:app];
     
+    // Set up the status bar to be beautifull for screenshots (full baterie, 09:42)
+    [[SDStatusBarManager sharedInstance] enableOverrides];
+    
     // warn the app that she should run in screenshot mode
     app.launchArguments = [app.launchArguments arrayByAddingObject:@"Screenshots"];
     
@@ -36,6 +40,8 @@
 
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
+    // Put the status bar back to normal
+    [[SDStatusBarManager sharedInstance] disableOverrides];
 }
 
 - (void) test_01 {

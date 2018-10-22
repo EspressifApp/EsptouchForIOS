@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000B2F40C73ED097333722B6 /* libPods-EspTouchDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 902B2624CB2EBF882EE9796B /* libPods-EspTouchDemoUITests.a */; };
 		077B600C1AC036C3000AC046 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077B600B1AC036C3000AC046 /* Foundation.framework */; };
 		077B600E1AC036C3000AC046 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077B600D1AC036C3000AC046 /* CoreGraphics.framework */; };
 		077B60101AC036C3000AC046 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077B600F1AC036C3000AC046 /* UIKit.framework */; };
@@ -54,6 +55,9 @@
 		0CD949B7217DC75100E6D3B0 /* EspTouchDemoUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EspTouchDemoUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		0CD949B8217DC75200E6D3B0 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		80501D1D216F43C200D32EDC /* EspTouchDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EspTouchDemo.entitlements; sourceTree = "<group>"; };
+		902B2624CB2EBF882EE9796B /* libPods-EspTouchDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EspTouchDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C58B90117BD82777E549CBAE /* Pods-EspTouchDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EspTouchDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EspTouchDemoUITests/Pods-EspTouchDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E9EEC4A1735E07C63EC6C2B6 /* Pods-EspTouchDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EspTouchDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EspTouchDemoUITests/Pods-EspTouchDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000B2F40C73ED097333722B6 /* libPods-EspTouchDemoUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +90,7 @@
 				0CD949AE217DC70900E6D3B0 /* EspTouchDemoUITests */,
 				077B600A1AC036C3000AC046 /* Frameworks */,
 				077B60091AC036C3000AC046 /* Products */,
+				F6E113577F9B84FBA8D516F1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +111,7 @@
 				077B600D1AC036C3000AC046 /* CoreGraphics.framework */,
 				077B600F1AC036C3000AC046 /* UIKit.framework */,
 				077B602A1AC036C3000AC046 /* XCTest.framework */,
+				902B2624CB2EBF882EE9796B /* libPods-EspTouchDemoUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -146,6 +153,15 @@
 			path = EspTouchDemoUITests;
 			sourceTree = "<group>";
 		};
+		F6E113577F9B84FBA8D516F1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C58B90117BD82777E549CBAE /* Pods-EspTouchDemoUITests.debug.xcconfig */,
+				E9EEC4A1735E07C63EC6C2B6 /* Pods-EspTouchDemoUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -170,9 +186,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CD949B4217DC70900E6D3B0 /* Build configuration list for PBXNativeTarget "EspTouchDemoUITests" */;
 			buildPhases = (
+				5DCBE8257620CAF19957F319 /* [CP] Check Pods Manifest.lock */,
 				0CD949A9217DC70900E6D3B0 /* Sources */,
 				0CD949AA217DC70900E6D3B0 /* Frameworks */,
 				0CD949AB217DC70900E6D3B0 /* Resources */,
+				7D2F36E890BECA8EE5EA86D9 /* [CP] Embed Pods Frameworks */,
+				D6A09E27A237471C0A6C57B6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -250,6 +269,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5DCBE8257620CAF19957F319 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EspTouchDemoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D2F36E890BECA8EE5EA86D9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EspTouchDemoUITests/Pods-EspTouchDemoUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6A09E27A237471C0A6C57B6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EspTouchDemoUITests/Pods-EspTouchDemoUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		077B60041AC036C3000AC046 /* Sources */ = {
@@ -410,7 +480,7 @@
 				DEVELOPMENT_TEAM = QWY5DY832N;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
-				HEADER_SEARCH_PATHS = $SOURCE_ROOT/include;
+				HEADER_SEARCH_PATHS = "$SOURCE_ROOT/include";
 				INFOPLIST_FILE = "EspTouchDemo/EspTouchDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
@@ -434,7 +504,7 @@
 				DEVELOPMENT_TEAM = QWY5DY832N;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
-				HEADER_SEARCH_PATHS = $SOURCE_ROOT/include;
+				HEADER_SEARCH_PATHS = "$SOURCE_ROOT/include";
 				INFOPLIST_FILE = "EspTouchDemo/EspTouchDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
@@ -448,6 +518,7 @@
 		};
 		0CD949B5217DC70900E6D3B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C58B90117BD82777E549CBAE /* Pods-EspTouchDemoUITests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -478,6 +549,7 @@
 		};
 		0CD949B6217DC70900E6D3B0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9EEC4A1735E07C63EC6C2B6 /* Pods-EspTouchDemoUITests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
