@@ -16,23 +16,8 @@
 		077B601F1AC036C3000AC046 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 077B601D1AC036C3000AC046 /* Main.storyboard */; };
 		077B60221AC036C3000AC046 /* ESPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B60211AC036C3000AC046 /* ESPViewController.m */; };
 		077B60241AC036C3000AC046 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 077B60231AC036C3000AC046 /* Images.xcassets */; };
-		077B602B1AC036C3000AC046 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077B602A1AC036C3000AC046 /* XCTest.framework */; };
-		077B602C1AC036C3000AC046 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077B600B1AC036C3000AC046 /* Foundation.framework */; };
-		077B602D1AC036C4000AC046 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077B600F1AC036C3000AC046 /* UIKit.framework */; };
-		077B60351AC036C4000AC046 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 077B60331AC036C4000AC046 /* InfoPlist.strings */; };
-		077B60371AC036C4000AC046 /* EspTouchDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B60361AC036C4000AC046 /* EspTouchDemoTests.m */; };
 		0CB14C502175E12D00F5A7BF /* libEspTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB14C4F2175E12D00F5A7BF /* libEspTouch.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		077B602E1AC036C4000AC046 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 077B60001AC036C3000AC046 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 077B60071AC036C3000AC046;
-			remoteInfo = EspTouchDemo;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		077B60081AC036C3000AC046 /* EspTouchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EspTouchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,11 +34,7 @@
 		077B60201AC036C3000AC046 /* ESPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESPViewController.h; sourceTree = "<group>"; };
 		077B60211AC036C3000AC046 /* ESPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESPViewController.m; sourceTree = "<group>"; };
 		077B60231AC036C3000AC046 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		077B60291AC036C3000AC046 /* EspTouchDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EspTouchDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		077B602A1AC036C3000AC046 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		077B60321AC036C4000AC046 /* EspTouchDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EspTouchDemoTests-Info.plist"; sourceTree = "<group>"; };
-		077B60341AC036C4000AC046 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		077B60361AC036C4000AC046 /* EspTouchDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EspTouchDemoTests.m; sourceTree = "<group>"; };
 		0CB14C4F2175E12D00F5A7BF /* libEspTouch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEspTouch.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		80501D1D216F43C200D32EDC /* EspTouchDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EspTouchDemo.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,16 +51,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		077B60261AC036C3000AC046 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				077B602B1AC036C3000AC046 /* XCTest.framework in Frameworks */,
-				077B602D1AC036C4000AC046 /* UIKit.framework in Frameworks */,
-				077B602C1AC036C3000AC046 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -87,7 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				077B60111AC036C3000AC046 /* EspTouchDemo */,
-				077B60301AC036C4000AC046 /* EspTouchDemoTests */,
 				077B600A1AC036C3000AC046 /* Frameworks */,
 				077B60091AC036C3000AC046 /* Products */,
 			);
@@ -97,7 +67,6 @@
 			isa = PBXGroup;
 			children = (
 				077B60081AC036C3000AC046 /* EspTouchDemo.app */,
-				077B60291AC036C3000AC046 /* EspTouchDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,24 +109,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		077B60301AC036C4000AC046 /* EspTouchDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				077B60361AC036C4000AC046 /* EspTouchDemoTests.m */,
-				077B60311AC036C4000AC046 /* Supporting Files */,
-			);
-			path = EspTouchDemoTests;
-			sourceTree = "<group>";
-		};
-		077B60311AC036C4000AC046 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				077B60321AC036C4000AC046 /* EspTouchDemoTests-Info.plist */,
-				077B60331AC036C4000AC046 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -178,24 +129,6 @@
 			productReference = 077B60081AC036C3000AC046 /* EspTouchDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		077B60281AC036C3000AC046 /* EspTouchDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 077B603D1AC036C4000AC046 /* Build configuration list for PBXNativeTarget "EspTouchDemoTests" */;
-			buildPhases = (
-				077B60251AC036C3000AC046 /* Sources */,
-				077B60261AC036C3000AC046 /* Frameworks */,
-				077B60271AC036C3000AC046 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				077B602F1AC036C4000AC046 /* PBXTargetDependency */,
-			);
-			name = EspTouchDemoTests;
-			productName = EspTouchDemoTests;
-			productReference = 077B60291AC036C3000AC046 /* EspTouchDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -215,9 +148,6 @@
 							};
 						};
 					};
-					077B60281AC036C3000AC046 = {
-						TestTargetID = 077B60071AC036C3000AC046;
-					};
 				};
 			};
 			buildConfigurationList = 077B60031AC036C3000AC046 /* Build configuration list for PBXProject "EspTouchDemo" */;
@@ -234,7 +164,6 @@
 			projectRoot = "";
 			targets = (
 				077B60071AC036C3000AC046 /* EspTouchDemo */,
-				077B60281AC036C3000AC046 /* EspTouchDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -247,14 +176,6 @@
 				077B60241AC036C3000AC046 /* Images.xcassets in Resources */,
 				077B60161AC036C3000AC046 /* InfoPlist.strings in Resources */,
 				077B601F1AC036C3000AC046 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		077B60271AC036C3000AC046 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				077B60351AC036C4000AC046 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,23 +192,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		077B60251AC036C3000AC046 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				077B60371AC036C4000AC046 /* EspTouchDemoTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		077B602F1AC036C4000AC046 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 077B60071AC036C3000AC046 /* EspTouchDemo */;
-			targetProxy = 077B602E1AC036C4000AC046 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		077B60141AC036C3000AC046 /* InfoPlist.strings */ = {
@@ -304,14 +209,6 @@
 				077B601E1AC036C3000AC046 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		077B60331AC036C4000AC046 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				077B60341AC036C4000AC046 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -462,48 +359,6 @@
 			};
 			name = Release;
 		};
-		077B603E1AC036C4000AC046 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EspTouchDemo.app/EspTouchDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "EspTouchDemoTests/EspTouchDemoTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.espressif.iot.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = EspTouchDemoTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		077B603F1AC036C4000AC046 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EspTouchDemo.app/EspTouchDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
-				INFOPLIST_FILE = "EspTouchDemoTests/EspTouchDemoTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.espressif.iot.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = EspTouchDemoTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -521,15 +376,6 @@
 			buildConfigurations = (
 				077B603B1AC036C4000AC046 /* Debug */,
 				077B603C1AC036C4000AC046 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		077B603D1AC036C4000AC046 /* Build configuration list for PBXNativeTarget "EspTouchDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				077B603E1AC036C4000AC046 /* Debug */,
-				077B603F1AC036C4000AC046 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
