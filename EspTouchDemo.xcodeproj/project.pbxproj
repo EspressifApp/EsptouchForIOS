@@ -17,7 +17,18 @@
 		077B60221AC036C3000AC046 /* ESPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B60211AC036C3000AC046 /* ESPViewController.m */; };
 		077B60241AC036C3000AC046 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 077B60231AC036C3000AC046 /* Images.xcassets */; };
 		0CB14C502175E12D00F5A7BF /* libEspTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB14C4F2175E12D00F5A7BF /* libEspTouch.a */; };
+		0CD949B0217DC70900E6D3B0 /* EspTouchDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD949AF217DC70900E6D3B0 /* EspTouchDemoUITests.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0CD949B2217DC70900E6D3B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 077B60001AC036C3000AC046 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 077B60071AC036C3000AC046;
+			remoteInfo = EspTouchDemo;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		077B60081AC036C3000AC046 /* EspTouchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EspTouchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,6 +47,9 @@
 		077B60231AC036C3000AC046 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		077B602A1AC036C3000AC046 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0CB14C4F2175E12D00F5A7BF /* libEspTouch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEspTouch.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CD949AD217DC70900E6D3B0 /* EspTouchDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EspTouchDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CD949AF217DC70900E6D3B0 /* EspTouchDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EspTouchDemoUITests.m; sourceTree = "<group>"; };
+		0CD949B1217DC70900E6D3B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80501D1D216F43C200D32EDC /* EspTouchDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EspTouchDemo.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,6 +65,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0CD949AA217DC70900E6D3B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -58,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				077B60111AC036C3000AC046 /* EspTouchDemo */,
+				0CD949AE217DC70900E6D3B0 /* EspTouchDemoUITests */,
 				077B600A1AC036C3000AC046 /* Frameworks */,
 				077B60091AC036C3000AC046 /* Products */,
 			);
@@ -67,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				077B60081AC036C3000AC046 /* EspTouchDemo.app */,
+				0CD949AD217DC70900E6D3B0 /* EspTouchDemoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,6 +132,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0CD949AE217DC70900E6D3B0 /* EspTouchDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0CD949AF217DC70900E6D3B0 /* EspTouchDemoUITests.m */,
+				0CD949B1217DC70900E6D3B0 /* Info.plist */,
+			);
+			path = EspTouchDemoUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,6 +161,24 @@
 			productReference = 077B60081AC036C3000AC046 /* EspTouchDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0CD949AC217DC70900E6D3B0 /* EspTouchDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0CD949B4217DC70900E6D3B0 /* Build configuration list for PBXNativeTarget "EspTouchDemoUITests" */;
+			buildPhases = (
+				0CD949A9217DC70900E6D3B0 /* Sources */,
+				0CD949AA217DC70900E6D3B0 /* Frameworks */,
+				0CD949AB217DC70900E6D3B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0CD949B3217DC70900E6D3B0 /* PBXTargetDependency */,
+			);
+			name = EspTouchDemoUITests;
+			productName = EspTouchDemoUITests;
+			productReference = 0CD949AD217DC70900E6D3B0 /* EspTouchDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -148,6 +198,12 @@
 							};
 						};
 					};
+					0CD949AC217DC70900E6D3B0 = {
+						CreatedOnToolsVersion = 10.0;
+						DevelopmentTeam = KTW7W3K4FU;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 077B60071AC036C3000AC046;
+					};
 				};
 			};
 			buildConfigurationList = 077B60031AC036C3000AC046 /* Build configuration list for PBXProject "EspTouchDemo" */;
@@ -164,6 +220,7 @@
 			projectRoot = "";
 			targets = (
 				077B60071AC036C3000AC046 /* EspTouchDemo */,
+				0CD949AC217DC70900E6D3B0 /* EspTouchDemoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -176,6 +233,13 @@
 				077B60241AC036C3000AC046 /* Images.xcassets in Resources */,
 				077B60161AC036C3000AC046 /* InfoPlist.strings in Resources */,
 				077B601F1AC036C3000AC046 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0CD949AB217DC70900E6D3B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,7 +256,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0CD949A9217DC70900E6D3B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CD949B0217DC70900E6D3B0 /* EspTouchDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0CD949B3217DC70900E6D3B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 077B60071AC036C3000AC046 /* EspTouchDemo */;
+			targetProxy = 0CD949B2217DC70900E6D3B0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		077B60141AC036C3000AC046 /* InfoPlist.strings */ = {
@@ -359,6 +439,59 @@
 			};
 			name = Release;
 		};
+		0CD949B5217DC70900E6D3B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = KTW7W3K4FU;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = EspTouchDemoUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.f10.EspTouchDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = EspTouchDemo;
+			};
+			name = Debug;
+		};
+		0CD949B6217DC70900E6D3B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = KTW7W3K4FU;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = EspTouchDemoUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.f10.EspTouchDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = EspTouchDemo;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -376,6 +509,15 @@
 			buildConfigurations = (
 				077B603B1AC036C4000AC046 /* Debug */,
 				077B603C1AC036C4000AC046 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0CD949B4217DC70900E6D3B0 /* Build configuration list for PBXNativeTarget "EspTouchDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0CD949B5217DC70900E6D3B0 /* Debug */,
+				0CD949B6217DC70900E6D3B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
