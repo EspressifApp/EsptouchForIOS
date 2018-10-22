@@ -74,21 +74,32 @@
 // refer to http://stackoverflow.com/questions/5198716/iphone-get-ssid-without-private-library
 - (NSDictionary *)fetchNetInfo
 {
-    NSArray *interfaceNames = CFBridgingRelease(CNCopySupportedInterfaces());
-//    NSLog(@"%s: Supported interfaces: %@", __func__, interfaceNames);
-    
-    NSDictionary *SSIDInfo;
-    for (NSString *interfaceName in interfaceNames) {
-        SSIDInfo = CFBridgingRelease(
-                                     CNCopyCurrentNetworkInfo((__bridge CFStringRef)interfaceName));
-//        NSLog(@"%s: %@ => %@", __func__, interfaceName, SSIDInfo);
-        
-        BOOL isNotEmpty = (SSIDInfo.count > 0);
-        if (isNotEmpty) {
-            break;
-        }
+    BOOL isTesting = [[NSProcessInfo processInfo].arguments containsObject:@"Screenshots"];
+    if(isTesting)
+    {
+        return @{
+                 @"SSID" : @"MyWifiSSID",
+                 @"BSSID" : @"12345678"
+                 };
     }
-    return SSIDInfo;
+    else
+    {
+        NSArray *interfaceNames = CFBridgingRelease(CNCopySupportedInterfaces());
+        //    NSLog(@"%s: Supported interfaces: %@", __func__, interfaceNames);
+        
+        NSDictionary *SSIDInfo;
+        for (NSString *interfaceName in interfaceNames) {
+            SSIDInfo = CFBridgingRelease(
+                                         CNCopyCurrentNetworkInfo((__bridge CFStringRef)interfaceName));
+            //        NSLog(@"%s: %@ => %@", __func__, interfaceName, SSIDInfo);
+            
+            BOOL isNotEmpty = (SSIDInfo.count > 0);
+            if (isNotEmpty) {
+                break;
+            }
+        }
+        return SSIDInfo;
+    }
 }
 
 @end
