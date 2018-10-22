@@ -6,6 +6,21 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		0CD949BA217DD3C700E6D3B0 /* EspTouchUniversal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 0CD949BD217DD3C700E6D3B0 /* Build configuration list for PBXAggregateTarget "EspTouchUniversal" */;
+			buildPhases = (
+				0CD949C0217DD40000E6D3B0 /* ShellScript */,
+				0CD949C1217DE49800E6D3B0 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = EspTouchUniversal;
+			productName = EspTouchUniversal;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		0CB14C0F2175DAF700F5A7BF /* ESPUDPSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB14C0D2175DAF700F5A7BF /* ESPUDPSocketClient.m */; };
 		0CB14C102175DAF700F5A7BF /* ESPUDPSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB14C0E2175DAF700F5A7BF /* ESPUDPSocketServer.m */; };
@@ -179,6 +194,9 @@
 					0CB14BFE2175DA1500F5A7BF = {
 						CreatedOnToolsVersion = 10.0;
 					};
+					0CD949BA217DD3C700E6D3B0 = {
+						CreatedOnToolsVersion = 10.0;
+					};
 				};
 			};
 			buildConfigurationList = 0CB14BFA2175DA1500F5A7BF /* Build configuration list for PBXProject "EspTouch" */;
@@ -194,9 +212,47 @@
 			projectRoot = "";
 			targets = (
 				0CB14BFE2175DA1500F5A7BF /* EspTouch */,
+				0CD949BA217DD3C700E6D3B0 /* EspTouchUniversal */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0CD949C0217DD40000E6D3B0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\nxcodebuild -target \"${PROJECT_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\nxcodebuild -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} -sdk iphonesimulator -arch i386 BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 2. Create universal binary file using lipo\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\"\n\n# copy the header files. Just for convenience and make a single folder for the lib.a + header file\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/include\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\nmv \"${UNIVERSAL_OUTPUTFOLDER}/lib${PROJECT_NAME}.a\" \"${UNIVERSAL_OUTPUTFOLDER}/include/${PROJECT_NAME}/\"\n\n#make the library folder\nrm -rf \"../Library\"\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/include\" \"../Library\"\n\n";
+		};
+		0CD949C1217DE49800E6D3B0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0CB14BFB2175DA1500F5A7BF /* Sources */ = {
@@ -357,6 +413,24 @@
 			};
 			name = Release;
 		};
+		0CD949BB217DD3C700E6D3B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KTW7W3K4FU;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0CD949BC217DD3C700E6D3B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KTW7W3K4FU;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -374,6 +448,15 @@
 			buildConfigurations = (
 				0CB14C092175DA1500F5A7BF /* Debug */,
 				0CB14C0A2175DA1500F5A7BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0CD949BD217DD3C700E6D3B0 /* Build configuration list for PBXAggregateTarget "EspTouchUniversal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0CD949BB217DD3C700E6D3B0 /* Debug */,
+				0CD949BC217DD3C700E6D3B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

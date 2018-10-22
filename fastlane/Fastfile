@@ -16,8 +16,22 @@
 default_platform(:ios)
 
 platform :ios do
+  
   desc "Generate new localized screenshots"
   lane :screenshots do
     capture_screenshots(workspace: "EspTouch.xcworkspace", scheme: "EspTouchDemo")
+  end
+  
+  desc "Generate EspTouch lib"
+  lane :makelib do
+    clear_derived_data
+    xcodebuild(
+      workspace: "Esptouch.xcworkspace",
+      scheme: "EspTouchUniversal",
+      configuration: "Release",
+      clean: true,
+      build: true,
+      derivedDataPath: "../build"
+    )
   end
 end

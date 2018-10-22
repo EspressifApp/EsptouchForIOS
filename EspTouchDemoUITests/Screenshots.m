@@ -19,6 +19,9 @@
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
 
+    // Set up the status bar to be beautifull for screenshots (full baterie, 9:41 )
+    [[SDStatusBarManager sharedInstance] enableOverrides];
+    
     // In UI tests it is usually best to stop immediately when a failure occurs.
     self.continueAfterFailure = NO;
 
@@ -28,8 +31,7 @@
      // Setup fastlane snapshot
     [Snapshot setupSnapshot:app];
     
-    // Set up the status bar to be beautifull for screenshots (full baterie, 09:42)
-    [[SDStatusBarManager sharedInstance] enableOverrides];
+
     
     // warn the app that she should run in screenshot mode
     app.launchArguments = [app.launchArguments arrayByAddingObject:@"Screenshots"];
