@@ -7,63 +7,25 @@
 //
 
 #import "ESPViewController.h"
-#import "ESPTouchTask.h"
-#import "ESPTouchResult.h"
-#import "ESP_NetUtil.h"
-#import "ESPTouchDelegate.h"
-#import "ESPAES.h"
+#import "EspTouch/ESPTouch.h"
+#import <KVNProgress/KVNProgress.h>
 
-#import <SystemConfiguration/CaptiveNetwork.h>
+#define FIELD_SSID @"SSID"
+#define FIELD_BSSID @"BSSID"
+#define FIELD_PASSWORD @"PASSWORD"
+#define FIELD_COUNT @"COUNT"
+#define FIELD_MODE @"MODE"
 
-// the three constants are used to hide soft-keyboard when user tap Enter or Return
-#define HEIGHT_KEYBOARD 216
-#define HEIGHT_TEXT_FIELD 30
-#define HEIGHT_SPACE (6+HEIGHT_TEXT_FIELD)
+#define ACTION_BTN @"MODE"
 
-@interface EspTouchDelegateImpl : NSObject<ESPTouchDelegate>
+#define MODES @[@"BroadCast", @"MultiCast"]
 
-@end
-
-@implementation EspTouchDelegateImpl
-
--(void) dismissAlert:(UIAlertView *)alertView
-{
-    [alertView dismissWithClickedButtonIndex:[alertView cancelButtonIndex] animated:YES];
-}
-
--(void) showAlertWithResult: (ESPTouchResult *) result
-{
-    NSString *title = nil;
-    NSString *message = [NSString stringWithFormat:@"%@ is connected to the wifi" , result.bssid];
-    NSTimeInterval dismissSeconds = 3.5;
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:title message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-    [alertView show];
-    [self performSelector:@selector(dismissAlert:) withObject:alertView afterDelay:dismissSeconds];
-}
-
--(void) onEsptouchResultAddedWithResult: (ESPTouchResult *) result
-{
-    NSLog(@"EspTouchDelegateImpl onEsptouchResultAddedWithResult bssid: %@", result.bssid);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self showAlertWithResult:result];
-    });
-}
-
-@end
 
 @interface ESPViewController ()
-
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *_spinner;
-@property (weak, nonatomic) IBOutlet UITextField *_pwdTextView;
-@property (weak, nonatomic) IBOutlet UITextField *_taskResultCountTextView;
-@property (weak, nonatomic) IBOutlet UIButton *_confirmCancelBtn;
-@property (weak, nonatomic) IBOutlet UILabel *_versionLabel;
+<ESPTouchDelegate>
 
 // to cancel ESPTouchTask when
 @property (atomic, strong) ESPTouchTask *_esptouchTask;
-
-// the state of the confirm/cancel button
-@property (nonatomic, assign) BOOL _isConfirmState;
 
 // without the condition, if the user tap confirm/cancel quickly enough,
 // the bug will arise. the reason is follows:
@@ -73,97 +35,191 @@
 // 3. Oops, the task should be cancelled, but it is running
 @property (nonatomic, strong) NSCondition *_condition;
 
-@property (nonatomic, strong) UIButton *_doneButton;
-@property (nonatomic, strong) EspTouchDelegateImpl *_esptouchDelegate;
+/// A dictionnary that will store the form values for us
+@property (strong, nonatomic) NSMutableDictionary * valueHolder;
 
 @end
 
 @implementation ESPViewController
 
-- (IBAction)tapConfirmCancelBtn:(UIButton *)sender
+@synthesize valueHolder = _valueHolder;
+
+// lazy getter for an empty value dictionnary
+- (NSMutableDictionary *)valueHolder
 {
-    [self tapConfirmForResults];
+    if(!_valueHolder)
+    {
+        _valueHolder = [@{
+                         FIELD_SSID : @"",
+                         FIELD_BSSID : @"",
+                         FIELD_PASSWORD : @"",
+                         FIELD_COUNT : @1,
+                         FIELD_MODE : MODES[0]
+                         } mutableCopy];
+    }
+    return _valueHolder;
 }
 
-
-- (void) tapConfirmForResults
+/// Set the base UI
+- (void)viewDidLoad
 {
-    // do confirm
-    if (self._isConfirmState)
+    [super viewDidLoad];
+    
+    // initialise the form
+    
+    XLFormDescriptor * form;
+    XLFormSectionDescriptor * section;
+    XLFormRowDescriptor * row;
+    
+    form = [XLFormDescriptor formDescriptorWithTitle:@"EspTouch"];
+    
+    // First section
+    section = [XLFormSectionDescriptor formSection];
+    [form addFormSection:section];
+    
+    // SSID
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:FIELD_SSID rowType:XLFormRowDescriptorTypeInfo title:@"Wifi"];
+    row.value = self.valueHolder[FIELD_SSID];
+    [section addFormRow:row];
+    
+    // BSSID
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:FIELD_BSSID rowType:XLFormRowDescriptorTypeInfo title:@"Wifi BSSID"];
+    row.value = self.valueHolder[FIELD_BSSID];
+    [section addFormRow:row];
+    
+    // PASSWORD
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:FIELD_PASSWORD rowType:XLFormRowDescriptorTypePassword];
+    [row.cellConfigAtConfigure setObject:@"Password" forKey:@"textField.placeholder"];
+    row.value = self.valueHolder[FIELD_PASSWORD];
+    [section addFormRow:row];
+    
+    // Second Section
+    section = [XLFormSectionDescriptor formSection];
+    [section setTitle:@"more options"];
+    [form addFormSection:section];
+    
+    // NB DEVICE
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:FIELD_COUNT rowType:XLFormRowDescriptorTypeStepCounter title:@"Number of device"];
+    row.value = self.valueHolder[FIELD_COUNT];
+    [row.cellConfigAtConfigure setObject:@0 forKey:@"stepControl.minimumValue"];
+    [section addFormRow:row];
+    
+    // MODE {BROADCAST|MULTICAST}
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:FIELD_MODE rowType:XLFormRowDescriptorTypeSelectorActionSheet title:@"mode"];
+    row.value = self.valueHolder[FIELD_MODE];
+    row.selectorOptions = MODES;
+    [section addFormRow:row];
+    
+    section = [XLFormSectionDescriptor formSection];
+    [form addFormSection:section];
+    
+    // START BTN
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:ACTION_BTN rowType:XLFormRowDescriptorTypeButton title:@"Start"];
+    row.action.formSelector = @selector(start);
+    [section addFormRow:row];
+    
+    // big jump
+    section = [XLFormSectionDescriptor formSection];
+    [form addFormSection:section];
+    
+    // VERSION
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"version" rowType:XLFormRowDescriptorTypeInfo title:@"Version"];
+    row.value = ESPTOUCH_VERSION;
+    [section addFormRow:row];
+    
+    self.form = form;
+    
+    //
+    self.title = @"ESP Touch";
+    self._condition = [[NSCondition alloc]init];
+    [self setModeConfirm:YES];
+}
+
+// update the SSID / BSSID field when received from the AppDelegate
+- (void)updateDictionnary:(NSDictionary *)netInfos
+{
+    self.valueHolder[FIELD_SSID] = netInfos[@"SSID"];
+    self.valueHolder[FIELD_BSSID] = netInfos[@"BSSID"];
+    [[self.form formRowWithTag:FIELD_SSID] setValue:self.valueHolder[FIELD_SSID]];
+    [[self.form formRowWithTag:FIELD_BSSID] setValue:self.valueHolder[FIELD_BSSID]];
+    [self.tableView reloadData];
+}
+
+// Called when the user changed a value of the form, we will just update our dicitonnary with the new value
+- (void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue
+{
+    self.valueHolder[formRow.tag] = newValue;
+}
+
+- (void) start
+{
+    [self setModeConfirm:false];
+    
+    [KVNProgress showWithStatus:@"please wait"];
+    
+     NSLog(@"ESPViewController do confirm action...");
+    
+    NSLog(@"ESPViewController do the execute work...");
+    
+    [self executeForResultsWithSsid:self.valueHolder[FIELD_SSID]
+                              bssid:self.valueHolder[FIELD_BSSID]
+                           password:self.valueHolder[FIELD_PASSWORD]
+                          taskCount:[self.valueHolder[FIELD_COUNT] intValue]
+                          broadcast:[self.valueHolder[FIELD_MODE] isEqualToString:MODES[0]]
+                         completion:^(NSArray * esptouchResultArray)
     {
-        NSString *apSsid = self.ssidLabel.text;
-        NSString *apPwd = self._pwdTextView.text;
-        NSString *apBssid = self.bssidLabel.text;
-        int taskCount = [self._taskResultCountTextView.text intValue];
-        BOOL broadcast = self.broadcastSC.selectedSegmentIndex == 0 ? YES : NO;
+        [KVNProgress dismiss];
         
-        [self._spinner startAnimating];
-        [self enableCancelBtn];
-        NSLog(@"ESPViewController do confirm action...");
-        dispatch_queue_t  queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_async(queue, ^{
-            NSLog(@"ESPViewController do the execute work...");
-            // execute the task
-            NSArray *esptouchResultArray = [self executeForResultsWithSsid:apSsid bssid:apBssid password:apPwd taskCount:taskCount broadcast:broadcast];
-            // show the result to the user in UI Main Thread
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self._spinner stopAnimating];
-                [self enableConfirmBtn];
+        [self setModeConfirm:YES];
+        
+        ESPTouchResult *firstResult = [esptouchResultArray objectAtIndex:0];
+        // check whether the task is cancelled and no results received
+        if (!firstResult.isCancelled)
+        {
+            NSMutableString *mutableStr = [[NSMutableString alloc]init];
+            NSUInteger count = 0;
+            // max results to be displayed, if it is more than maxDisplayCount,
+            // just show the count of redundant ones
+            const int maxDisplayCount = 5;
+            if ([firstResult isSuc])
+            {
                 
-                ESPTouchResult *firstResult = [esptouchResultArray objectAtIndex:0];
-                // check whether the task is cancelled and no results received
-                if (!firstResult.isCancelled)
+                for (int i = 0; i < [esptouchResultArray count]; ++i)
                 {
-                    NSMutableString *mutableStr = [[NSMutableString alloc]init];
-                    NSUInteger count = 0;
-                    // max results to be displayed, if it is more than maxDisplayCount,
-                    // just show the count of redundant ones
-                    const int maxDisplayCount = 5;
-                    if ([firstResult isSuc])
+                    ESPTouchResult *resultInArray = [esptouchResultArray objectAtIndex:i];
+                    [mutableStr appendString:[resultInArray description]];
+                    [mutableStr appendString:@"\n"];
+                    count++;
+                    if (count >= maxDisplayCount)
                     {
-                        
-                        for (int i = 0; i < [esptouchResultArray count]; ++i)
-                        {
-                            ESPTouchResult *resultInArray = [esptouchResultArray objectAtIndex:i];
-                            [mutableStr appendString:[resultInArray description]];
-                            [mutableStr appendString:@"\n"];
-                            count++;
-                            if (count >= maxDisplayCount)
-                            {
-                                break;
-                            }
-                        }
-                        
-                        if (count < [esptouchResultArray count])
-                        {
-                            [mutableStr appendString:[NSString stringWithFormat:@"\nthere's %lu more result(s) without showing\n",(unsigned long)([esptouchResultArray count] - count)]];
-                        }
-                        [[[UIAlertView alloc]initWithTitle:@"Execute Result" message:mutableStr delegate:nil cancelButtonTitle:@"I know" otherButtonTitles:nil]show];
-                    }
-                    
-                    else
-                    {
-                        [[[UIAlertView alloc]initWithTitle:@"Execute Result" message:@"Esptouch fail" delegate:nil cancelButtonTitle:@"I know" otherButtonTitles:nil]show];
+                        break;
                     }
                 }
                 
-            });
-        });
-    }
-    // do cancel
-    else
-    {
-        [self._spinner stopAnimating];
-        [self enableConfirmBtn];
-        NSLog(@"ESPViewController do cancel action...");
-        [self cancel];
-    }
+                if (count < [esptouchResultArray count])
+                {
+                    [mutableStr appendString:[NSString stringWithFormat:@"\nthere's %lu more result(s) without showing\n",(unsigned long)([esptouchResultArray count] - count)]];
+                }
+                
+                [KVNProgress showSuccessWithStatus:mutableStr];
+            }
+            
+            else
+            {
+                [KVNProgress showErrorWithStatus:@"Esptouch fail"];
+            }
+        }
+    }];
 }
-
-#pragma mark - the example of how to cancel the executing task
 
 - (void) cancel
 {
+    [KVNProgress dismiss];
+    
+    [self setModeConfirm:YES];
+    
+    NSLog(@"ESPViewController do cancel action...");
+    
     [self._condition lock];
     if (self._esptouchTask != nil)
     {
@@ -172,129 +228,57 @@
     [self._condition unlock];
 }
 
-#pragma mark - the example of how to use executeForResults
-- (NSArray *) executeForResultsWithSsid:(NSString *)apSsid bssid:(NSString *)apBssid password:(NSString *)apPwd taskCount:(int)taskCount broadcast:(BOOL)broadcast
+// The async version of executeForResultsWithSsid . Will perform smartconfig in a separate thread and call completion in the main thread (UI safe)
+- (void) executeForResultsWithSsid:(NSString *)apSsid bssid:(NSString *)apBssid password:(NSString *)apPwd taskCount:(int)taskCount broadcast:(BOOL)broadcast completion:(void(^)(NSArray * results))completion
 {
-    [self._condition lock];
-    self._esptouchTask = [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd];
-    // set delegate
-    [self._esptouchTask setEsptouchDelegate:self._esptouchDelegate];
-    [self._esptouchTask setPackageBroadcast:broadcast];
-    [self._condition unlock];
-    NSArray * esptouchResults = [self._esptouchTask executeForResults:taskCount];
-    NSLog(@"ESPViewController executeForResult() result is: %@",esptouchResults);
-    return esptouchResults;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        [self._condition lock];
+        self._esptouchTask = [[ESPTouchTask alloc]initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd];
+        [self._esptouchTask setEsptouchDelegate:self];
+        [self._esptouchTask setPackageBroadcast:broadcast];
+        [self._condition unlock];
+        NSArray * esptouchResults = [self._esptouchTask executeForResults:taskCount];
+        NSLog(@"ESPViewController executeForResult() result is: %@",esptouchResults);
+        
+        if(completion)
+        {
+            [self._condition unlock];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(esptouchResults);
+            });
+        };
+    });
 }
 
-// enable confirm button
-- (void)enableConfirmBtn
+// switch button from Confirm to Cancel
+- (void)setModeConfirm:(BOOL)isInconfirmMode
 {
-    self._isConfirmState = YES;
-    [self._confirmCancelBtn setTitle:@"Confirm" forState:UIControlStateNormal];
-}
-
-// enable cancel button
-- (void)enableCancelBtn
-{
-    self._isConfirmState = NO;
-    [self._confirmCancelBtn setTitle:@"Cancel" forState:UIControlStateNormal];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    self._isConfirmState = NO;
-    self._pwdTextView.delegate = self;
-    self._pwdTextView.keyboardType = UIKeyboardTypeASCIICapable;
-    self._taskResultCountTextView.delegate = self;
-    self._taskResultCountTextView.keyboardType = UIKeyboardTypeNumberPad;
-    self._condition = [[NSCondition alloc]init];
-    self._esptouchDelegate = [[EspTouchDelegateImpl alloc]init];
-    self._versionLabel.text = ESPTOUCH_VERSION;
-    [self enableConfirmBtn];
-}
-
-#pragma mark - the follow codes are just to make soft-keyboard disappear at necessary time
-
-// when out of pwd textview, resign the keyboard
-- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    if (![self._pwdTextView isExclusiveTouch])
+    XLFormRowDescriptor * btn = [self.form formRowWithTag:ACTION_BTN];
+    if(isInconfirmMode)
     {
-        [self._pwdTextView resignFirstResponder];
+        [btn setTitle:@"Confirm"];
+        btn.action.formSelector = @selector(start);
+        [self.tableView reloadData];
     }
-    if (![self._taskResultCountTextView isExclusiveTouch]) {
-        [self._taskResultCountTextView resignFirstResponder];
-    }
-}
-
-#pragma mark -  the follow three methods are used to make soft-keyboard disappear when user finishing editing
-
-// when textField begin editing, soft-keyboard apeear, do the callback
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    CGRect frame = textField.frame;
-    int offset = frame.origin.y - (self.view.frame.size.height - (HEIGHT_KEYBOARD+HEIGHT_SPACE));
-    
-    NSTimeInterval animationDuration = 0.30f;
-    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    
-    if(offset > 0)
+    else
     {
-        self.view.frame = CGRectMake(0.0f, -offset, self.view.frame.size.width, self.view.frame.size.height);
+        [btn setTitle:@"Cancel"];
+        btn.action.formSelector = @selector(cancel);
+        [self.tableView reloadData];
     }
-    
-    [UIView commitAnimations];
 }
 
-// when user tap Enter or Return, disappear the keyboard
--(BOOL)textFieldShouldReturn:(UITextField *)textField
+#pragma mark - ESPTouchTaskDelegate
+-(void) onEsptouchResultAddedWithResult: (ESPTouchResult *) result;
 {
-    [textField resignFirstResponder];
-    return YES;
-}
+    NSLog(@"EspTouchDelegateImpl onEsptouchResultAddedWithResult bssid: %@", result.bssid);
+    NSString *message = [NSString stringWithFormat:@"%@ is connected to the wifi" , result.bssid];
 
-// when finish editing, make view restore origin state
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    self.view.frame =CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-}
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [KVNProgress showSuccessWithStatus:message];
+    });
 
-- (void) addButtonToKeyboard {
-    // create custom button
-    if (self._doneButton == nil) {
-        self._doneButton  = [[UIButton alloc] initWithFrame:CGRectMake(0, 163, 106, 53)];
-    }
-    else {
-        [self._doneButton setHidden:NO];
-    }
-    
-    [self._doneButton addTarget:self action:@selector(doneButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    // locate keyboard view
-    UIWindow* tempWindow = [[[UIApplication sharedApplication] windows] objectAtIndex:1];
-    UIView* keyboard = nil;
-    for(int i=0; i<[tempWindow.subviews count]; i++) {
-        keyboard = [tempWindow.subviews objectAtIndex:i];
-        // keyboard found, add the button
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 3.2) {
-            if([[keyboard description] hasPrefix:@"<UIPeripheralHost"] == YES)
-                [keyboard addSubview:self._doneButton];
-        } else {
-            if([[keyboard description] hasPrefix:@"<UIKeyboard"] == YES)
-                [keyboard addSubview:self._doneButton];
-        }
-    }
 }
-
-- (void) doneButtonClicked:(id)Sender {
-    //Write your code whatever you want to do on done button tap
-    //Removing keyboard or something else
-    if (![self._taskResultCountTextView isExclusiveTouch]) {
-        [self._taskResultCountTextView resignFirstResponder];
-    }
-}
-
 @end
 

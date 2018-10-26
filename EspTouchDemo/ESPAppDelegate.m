@@ -8,7 +8,7 @@
 
 #import "ESPAppDelegate.h"
 #import "ESPViewController.h"
-#import "ESP_NetUtil.h"
+#import "EspTouch/ESPTouch.h"
 
 #import <SystemConfiguration/CaptiveNetwork.h>
 
@@ -46,10 +46,9 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    ESPViewController *vc = (ESPViewController *)self.window.rootViewController;
-    NSDictionary *netInfo = [self fetchNetInfo];
-    vc.ssidLabel.text = [netInfo objectForKey:@"SSID"];
-    vc.bssidLabel.text = [netInfo objectForKey:@"BSSID"];
+    ESPViewController *vc = (id) [(UINavigationController *)self.window.rootViewController topViewController];
+    
+    [vc updateDictionnary:[self fetchNetInfo]];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -74,21 +73,32 @@
 // refer to http://stackoverflow.com/questions/5198716/iphone-get-ssid-without-private-library
 - (NSDictionary *)fetchNetInfo
 {
-    NSArray *interfaceNames = CFBridgingRelease(CNCopySupportedInterfaces());
-//    NSLog(@"%s: Supported interfaces: %@", __func__, interfaceNames);
-    
-    NSDictionary *SSIDInfo;
-    for (NSString *interfaceName in interfaceNames) {
-        SSIDInfo = CFBridgingRelease(
-                                     CNCopyCurrentNetworkInfo((__bridge CFStringRef)interfaceName));
-//        NSLog(@"%s: %@ => %@", __func__, interfaceName, SSIDInfo);
-        
-        BOOL isNotEmpty = (SSIDInfo.count > 0);
-        if (isNotEmpty) {
-            break;
-        }
+    BOOL isTesting = [[NSProcessInfo processInfo].arguments containsObject:@"Screenshots"];
+    if(isTesting)
+    {
+        return @{
+                 @"SSID" : @"MyWifiSSID",
+                 @"BSSID" : @"12345678"
+                 };
     }
-    return SSIDInfo;
+    else
+    {
+        NSArray *interfaceNames = CFBridgingRelease(CNCopySupportedInterfaces());
+        //    NSLog(@"%s: Supported interfaces: %@", __func__, interfaceNames);
+        
+        NSDictionary *SSIDInfo;
+        for (NSString *interfaceName in interfaceNames) {
+            SSIDInfo = CFBridgingRelease(
+                                         CNCopyCurrentNetworkInfo((__bridge CFStringRef)interfaceName));
+            //        NSLog(@"%s: %@ => %@", __func__, interfaceName, SSIDInfo);
+            
+            BOOL isNotEmpty = (SSIDInfo.count > 0);
+            if (isNotEmpty) {
+                break;
+            }
+        }
+        return SSIDInfo;
+    }
 }
 
 @end

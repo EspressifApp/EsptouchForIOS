@@ -7,16 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0703C6F21AD653D9009A3841 /* ESPDataCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0703C6F11AD653D9009A3841 /* ESPDataCode.m */; };
-		0703C6F51AD653E9009A3841 /* ESPDatumCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0703C6F41AD653E9009A3841 /* ESPDatumCode.m */; };
-		0703C6F81AD65404009A3841 /* ESPTouchGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0703C6F71AD65404009A3841 /* ESPTouchGenerator.m */; };
-		0703C6FB1AD65413009A3841 /* ESPGuideCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0703C6FA1AD65413009A3841 /* ESPGuideCode.m */; };
-		071F6A141B05F8790015B482 /* ESP_NetUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 071F6A131B05F8790015B482 /* ESP_NetUtil.m */; };
-		072878AE1D1127F000E88E12 /* ESP_WifiUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 072878AD1D1127F000E88E12 /* ESP_WifiUtil.m */; };
-		073FD2131ADBB6350080A2CF /* ESPUDPSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 073FD2121ADBB6350080A2CF /* ESPUDPSocketClient.m */; };
-		073FD2161ADBB6440080A2CF /* ESPUDPSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 073FD2151ADBB6440080A2CF /* ESPUDPSocketServer.m */; };
-		075911561B0C2A090043C45D /* ESPTouchTaskParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 075911551B0C2A090043C45D /* ESPTouchTaskParameter.m */; };
-		075A05C21AD3ABC100ECB5D6 /* ESP_ByteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 075A05C11AD3ABC100ECB5D6 /* ESP_ByteUtil.m */; };
+		000B2F40C73ED097333722B6 /* libPods-EspTouchDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 902B2624CB2EBF882EE9796B /* libPods-EspTouchDemoUITests.a */; };
 		077B600C1AC036C3000AC046 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077B600B1AC036C3000AC046 /* Foundation.framework */; };
 		077B600E1AC036C3000AC046 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077B600D1AC036C3000AC046 /* CoreGraphics.framework */; };
 		077B60101AC036C3000AC046 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077B600F1AC036C3000AC046 /* UIKit.framework */; };
@@ -26,19 +17,14 @@
 		077B601F1AC036C3000AC046 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 077B601D1AC036C3000AC046 /* Main.storyboard */; };
 		077B60221AC036C3000AC046 /* ESPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B60211AC036C3000AC046 /* ESPViewController.m */; };
 		077B60241AC036C3000AC046 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 077B60231AC036C3000AC046 /* Images.xcassets */; };
-		077B602B1AC036C3000AC046 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077B602A1AC036C3000AC046 /* XCTest.framework */; };
-		077B602C1AC036C3000AC046 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077B600B1AC036C3000AC046 /* Foundation.framework */; };
-		077B602D1AC036C4000AC046 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077B600F1AC036C3000AC046 /* UIKit.framework */; };
-		077B60351AC036C4000AC046 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 077B60331AC036C4000AC046 /* InfoPlist.strings */; };
-		077B60371AC036C4000AC046 /* EspTouchDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B60361AC036C4000AC046 /* EspTouchDemoTests.m */; };
-		077B60461AC0395A000AC046 /* ESP_CRC8.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B60451AC0395A000AC046 /* ESP_CRC8.m */; };
-		07A433731ADCF33A001F99B0 /* ESPTouchTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A433721ADCF33A001F99B0 /* ESPTouchTask.m */; };
-		07A433761ADCF35A001F99B0 /* ESPTouchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A433751ADCF35A001F99B0 /* ESPTouchResult.m */; };
-		808A90C02076049500112914 /* ESPAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 808A90BF2076049500112914 /* ESPAES.m */; };
+		0CB14C502175E12D00F5A7BF /* libEspTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB14C4F2175E12D00F5A7BF /* libEspTouch.a */; };
+		0CD949B0217DC70900E6D3B0 /* Screenshots.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD949AF217DC70900E6D3B0 /* Screenshots.m */; };
+		0CD949B9217DC75200E6D3B0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD949B8217DC75200E6D3B0 /* SnapshotHelper.swift */; };
+		E8438015EB8D93F5993587CB /* Pods_EspTouchDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6A25288D2CBA5E2B47B9D /* Pods_EspTouchDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		077B602E1AC036C4000AC046 /* PBXContainerItemProxy */ = {
+		0CD949B2217DC70900E6D3B0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 077B60001AC036C3000AC046 /* Project object */;
 			proxyType = 1;
@@ -48,28 +34,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0703C6F01AD653D9009A3841 /* ESPDataCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPDataCode.h; sourceTree = "<group>"; };
-		0703C6F11AD653D9009A3841 /* ESPDataCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPDataCode.m; sourceTree = "<group>"; };
-		0703C6F31AD653E9009A3841 /* ESPDatumCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPDatumCode.h; sourceTree = "<group>"; };
-		0703C6F41AD653E9009A3841 /* ESPDatumCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPDatumCode.m; sourceTree = "<group>"; };
-		0703C6F61AD65404009A3841 /* ESPTouchGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPTouchGenerator.h; sourceTree = "<group>"; };
-		0703C6F71AD65404009A3841 /* ESPTouchGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPTouchGenerator.m; sourceTree = "<group>"; };
-		0703C6F91AD65413009A3841 /* ESPGuideCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPGuideCode.h; sourceTree = "<group>"; };
-		0703C6FA1AD65413009A3841 /* ESPGuideCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPGuideCode.m; sourceTree = "<group>"; };
-		071F6A121B05F8790015B482 /* ESP_NetUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_NetUtil.h; sourceTree = "<group>"; };
-		071F6A131B05F8790015B482 /* ESP_NetUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_NetUtil.m; sourceTree = "<group>"; };
-		072878AC1D1127F000E88E12 /* ESP_WifiUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_WifiUtil.h; sourceTree = "<group>"; };
-		072878AD1D1127F000E88E12 /* ESP_WifiUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_WifiUtil.m; sourceTree = "<group>"; };
-		072DAA1A1DB74DE7004F6CD8 /* ESPVersionMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPVersionMacro.h; sourceTree = "<group>"; };
-		073FD2111ADBB6350080A2CF /* ESPUDPSocketClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPUDPSocketClient.h; sourceTree = "<group>"; };
-		073FD2121ADBB6350080A2CF /* ESPUDPSocketClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPUDPSocketClient.m; sourceTree = "<group>"; };
-		073FD2141ADBB6440080A2CF /* ESPUDPSocketServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPUDPSocketServer.h; sourceTree = "<group>"; };
-		073FD2151ADBB6440080A2CF /* ESPUDPSocketServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPUDPSocketServer.m; sourceTree = "<group>"; };
-		07504B591B7D99B500B8517E /* ESPTouchDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPTouchDelegate.h; sourceTree = "<group>"; };
-		075911541B0C2A090043C45D /* ESPTouchTaskParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPTouchTaskParameter.h; sourceTree = "<group>"; };
-		075911551B0C2A090043C45D /* ESPTouchTaskParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPTouchTaskParameter.m; sourceTree = "<group>"; };
-		075A05C01AD3ABC100ECB5D6 /* ESP_ByteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_ByteUtil.h; sourceTree = "<group>"; };
-		075A05C11AD3ABC100ECB5D6 /* ESP_ByteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_ByteUtil.m; sourceTree = "<group>"; };
 		077B60081AC036C3000AC046 /* EspTouchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EspTouchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		077B600B1AC036C3000AC046 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		077B600D1AC036C3000AC046 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -84,20 +48,20 @@
 		077B60201AC036C3000AC046 /* ESPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESPViewController.h; sourceTree = "<group>"; };
 		077B60211AC036C3000AC046 /* ESPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESPViewController.m; sourceTree = "<group>"; };
 		077B60231AC036C3000AC046 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		077B60291AC036C3000AC046 /* EspTouchDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EspTouchDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		077B602A1AC036C3000AC046 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		077B60321AC036C4000AC046 /* EspTouchDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EspTouchDemoTests-Info.plist"; sourceTree = "<group>"; };
-		077B60341AC036C4000AC046 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		077B60361AC036C4000AC046 /* EspTouchDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EspTouchDemoTests.m; sourceTree = "<group>"; };
-		077B60441AC0395A000AC046 /* ESP_CRC8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_CRC8.h; sourceTree = "<group>"; };
-		077B60451AC0395A000AC046 /* ESP_CRC8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_CRC8.m; sourceTree = "<group>"; };
-		07A433711ADCF33A001F99B0 /* ESPTouchTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPTouchTask.h; sourceTree = "<group>"; };
-		07A433721ADCF33A001F99B0 /* ESPTouchTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPTouchTask.m; sourceTree = "<group>"; };
-		07A433741ADCF35A001F99B0 /* ESPTouchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPTouchResult.h; sourceTree = "<group>"; };
-		07A433751ADCF35A001F99B0 /* ESPTouchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPTouchResult.m; sourceTree = "<group>"; };
+		0CB14C4F2175E12D00F5A7BF /* libEspTouch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEspTouch.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CD949AD217DC70900E6D3B0 /* EspTouchDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EspTouchDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CD949AF217DC70900E6D3B0 /* Screenshots.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Screenshots.m; sourceTree = "<group>"; };
+		0CD949B1217DC70900E6D3B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0CD949B7217DC75100E6D3B0 /* EspTouchDemoUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EspTouchDemoUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		0CD949B8217DC75200E6D3B0 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		80501D1D216F43C200D32EDC /* EspTouchDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EspTouchDemo.entitlements; sourceTree = "<group>"; };
-		808A90BE2076049500112914 /* ESPAES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESPAES.h; sourceTree = "<group>"; };
-		808A90BF2076049500112914 /* ESPAES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESPAES.m; sourceTree = "<group>"; };
+		902B2624CB2EBF882EE9796B /* libPods-EspTouchDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EspTouchDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9ED1959F4152BE7D85EEDFD9 /* Pods-EspTouchDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EspTouchDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-EspTouchDemo/Pods-EspTouchDemo.release.xcconfig"; sourceTree = "<group>"; };
+		AAA6A25288D2CBA5E2B47B9D /* Pods_EspTouchDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EspTouchDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C58B90117BD82777E549CBAE /* Pods-EspTouchDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EspTouchDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EspTouchDemoUITests/Pods-EspTouchDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D50D836E6C6BEF27291E215D /* Pods-EspTouchDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EspTouchDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EspTouchDemo/Pods-EspTouchDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		E9EEC4A1735E07C63EC6C2B6 /* Pods-EspTouchDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EspTouchDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EspTouchDemoUITests/Pods-EspTouchDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,47 +69,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CB14C502175E12D00F5A7BF /* libEspTouch.a in Frameworks */,
 				077B600E1AC036C3000AC046 /* CoreGraphics.framework in Frameworks */,
 				077B60101AC036C3000AC046 /* UIKit.framework in Frameworks */,
 				077B600C1AC036C3000AC046 /* Foundation.framework in Frameworks */,
+				E8438015EB8D93F5993587CB /* Pods_EspTouchDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		077B60261AC036C3000AC046 /* Frameworks */ = {
+		0CD949AA217DC70900E6D3B0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077B602B1AC036C3000AC046 /* XCTest.framework in Frameworks */,
-				077B602D1AC036C4000AC046 /* UIKit.framework in Frameworks */,
-				077B602C1AC036C3000AC046 /* Foundation.framework in Frameworks */,
+				000B2F40C73ED097333722B6 /* libPods-EspTouchDemoUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0703C6EE1AD653A9009A3841 /* protocol */ = {
-			isa = PBXGroup;
-			children = (
-				0703C6F01AD653D9009A3841 /* ESPDataCode.h */,
-				0703C6F11AD653D9009A3841 /* ESPDataCode.m */,
-				0703C6F31AD653E9009A3841 /* ESPDatumCode.h */,
-				0703C6F41AD653E9009A3841 /* ESPDatumCode.m */,
-				0703C6F61AD65404009A3841 /* ESPTouchGenerator.h */,
-				0703C6F71AD65404009A3841 /* ESPTouchGenerator.m */,
-				0703C6F91AD65413009A3841 /* ESPGuideCode.h */,
-				0703C6FA1AD65413009A3841 /* ESPGuideCode.m */,
-			);
-			name = protocol;
-			sourceTree = "<group>";
-		};
 		077B5FFF1AC036C3000AC046 = {
 			isa = PBXGroup;
 			children = (
 				077B60111AC036C3000AC046 /* EspTouchDemo */,
-				077B60301AC036C4000AC046 /* EspTouchDemoTests */,
+				0CD949AE217DC70900E6D3B0 /* EspTouchDemoUITests */,
 				077B600A1AC036C3000AC046 /* Frameworks */,
 				077B60091AC036C3000AC046 /* Products */,
+				F6E113577F9B84FBA8D516F1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -153,7 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				077B60081AC036C3000AC046 /* EspTouchDemo.app */,
-				077B60291AC036C3000AC046 /* EspTouchDemoTests.xctest */,
+				0CD949AD217DC70900E6D3B0 /* EspTouchDemoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,10 +111,13 @@
 		077B600A1AC036C3000AC046 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0CB14C4F2175E12D00F5A7BF /* libEspTouch.a */,
 				077B600B1AC036C3000AC046 /* Foundation.framework */,
 				077B600D1AC036C3000AC046 /* CoreGraphics.framework */,
 				077B600F1AC036C3000AC046 /* UIKit.framework */,
 				077B602A1AC036C3000AC046 /* XCTest.framework */,
+				902B2624CB2EBF882EE9796B /* libPods-EspTouchDemoUITests.a */,
+				AAA6A25288D2CBA5E2B47B9D /* Pods_EspTouchDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -173,11 +126,6 @@
 			isa = PBXGroup;
 			children = (
 				80501D1D216F43C200D32EDC /* EspTouchDemo.entitlements */,
-				07A4336A1ADCF2CD001F99B0 /* esptouch */,
-				0703C6EE1AD653A9009A3841 /* protocol */,
-				077B60431AC038A1000AC046 /* util */,
-				077B60421AC03893000AC046 /* udp */,
-				077B60411AC0388A000AC046 /* task */,
 				077B601A1AC036C3000AC046 /* ESPAppDelegate.h */,
 				077B601B1AC036C3000AC046 /* ESPAppDelegate.m */,
 				077B601D1AC036C3000AC046 /* Main.storyboard */,
@@ -200,72 +148,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		077B60301AC036C4000AC046 /* EspTouchDemoTests */ = {
+		0CD949AE217DC70900E6D3B0 /* EspTouchDemoUITests */ = {
 			isa = PBXGroup;
 			children = (
-				077B60361AC036C4000AC046 /* EspTouchDemoTests.m */,
-				077B60311AC036C4000AC046 /* Supporting Files */,
+				0CD949B8217DC75200E6D3B0 /* SnapshotHelper.swift */,
+				0CD949AF217DC70900E6D3B0 /* Screenshots.m */,
+				0CD949B1217DC70900E6D3B0 /* Info.plist */,
+				0CD949B7217DC75100E6D3B0 /* EspTouchDemoUITests-Bridging-Header.h */,
 			);
-			path = EspTouchDemoTests;
+			path = EspTouchDemoUITests;
 			sourceTree = "<group>";
 		};
-		077B60311AC036C4000AC046 /* Supporting Files */ = {
+		F6E113577F9B84FBA8D516F1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				077B60321AC036C4000AC046 /* EspTouchDemoTests-Info.plist */,
-				077B60331AC036C4000AC046 /* InfoPlist.strings */,
+				C58B90117BD82777E549CBAE /* Pods-EspTouchDemoUITests.debug.xcconfig */,
+				E9EEC4A1735E07C63EC6C2B6 /* Pods-EspTouchDemoUITests.release.xcconfig */,
+				D50D836E6C6BEF27291E215D /* Pods-EspTouchDemo.debug.xcconfig */,
+				9ED1959F4152BE7D85EEDFD9 /* Pods-EspTouchDemo.release.xcconfig */,
 			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		077B60411AC0388A000AC046 /* task */ = {
-			isa = PBXGroup;
-			children = (
-				07A433721ADCF33A001F99B0 /* ESPTouchTask.m */,
-				07A433751ADCF35A001F99B0 /* ESPTouchResult.m */,
-				075911541B0C2A090043C45D /* ESPTouchTaskParameter.h */,
-				075911551B0C2A090043C45D /* ESPTouchTaskParameter.m */,
-			);
-			name = task;
-			sourceTree = "<group>";
-		};
-		077B60421AC03893000AC046 /* udp */ = {
-			isa = PBXGroup;
-			children = (
-				073FD2111ADBB6350080A2CF /* ESPUDPSocketClient.h */,
-				073FD2121ADBB6350080A2CF /* ESPUDPSocketClient.m */,
-				073FD2141ADBB6440080A2CF /* ESPUDPSocketServer.h */,
-				073FD2151ADBB6440080A2CF /* ESPUDPSocketServer.m */,
-			);
-			name = udp;
-			sourceTree = "<group>";
-		};
-		077B60431AC038A1000AC046 /* util */ = {
-			isa = PBXGroup;
-			children = (
-				077B60441AC0395A000AC046 /* ESP_CRC8.h */,
-				077B60451AC0395A000AC046 /* ESP_CRC8.m */,
-				075A05C01AD3ABC100ECB5D6 /* ESP_ByteUtil.h */,
-				075A05C11AD3ABC100ECB5D6 /* ESP_ByteUtil.m */,
-				071F6A121B05F8790015B482 /* ESP_NetUtil.h */,
-				071F6A131B05F8790015B482 /* ESP_NetUtil.m */,
-				072DAA1A1DB74DE7004F6CD8 /* ESPVersionMacro.h */,
-				072878AC1D1127F000E88E12 /* ESP_WifiUtil.h */,
-				072878AD1D1127F000E88E12 /* ESP_WifiUtil.m */,
-				808A90BE2076049500112914 /* ESPAES.h */,
-				808A90BF2076049500112914 /* ESPAES.m */,
-			);
-			name = util;
-			sourceTree = "<group>";
-		};
-		07A4336A1ADCF2CD001F99B0 /* esptouch */ = {
-			isa = PBXGroup;
-			children = (
-				07A433711ADCF33A001F99B0 /* ESPTouchTask.h */,
-				07A433741ADCF35A001F99B0 /* ESPTouchResult.h */,
-				07504B591B7D99B500B8517E /* ESPTouchDelegate.h */,
-			);
-			name = esptouch;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,9 +177,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 077B603A1AC036C4000AC046 /* Build configuration list for PBXNativeTarget "EspTouchDemo" */;
 			buildPhases = (
+				5809477B3C7F81F692F4FEA2 /* [CP] Check Pods Manifest.lock */,
 				077B60041AC036C3000AC046 /* Sources */,
 				077B60051AC036C3000AC046 /* Frameworks */,
 				077B60061AC036C3000AC046 /* Resources */,
+				435B2B2790B19F0095A65D66 /* [CP] Embed Pods Frameworks */,
+				13685FB99429169176F6595D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -288,23 +193,26 @@
 			productReference = 077B60081AC036C3000AC046 /* EspTouchDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		077B60281AC036C3000AC046 /* EspTouchDemoTests */ = {
+		0CD949AC217DC70900E6D3B0 /* EspTouchDemoUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 077B603D1AC036C4000AC046 /* Build configuration list for PBXNativeTarget "EspTouchDemoTests" */;
+			buildConfigurationList = 0CD949B4217DC70900E6D3B0 /* Build configuration list for PBXNativeTarget "EspTouchDemoUITests" */;
 			buildPhases = (
-				077B60251AC036C3000AC046 /* Sources */,
-				077B60261AC036C3000AC046 /* Frameworks */,
-				077B60271AC036C3000AC046 /* Resources */,
+				5DCBE8257620CAF19957F319 /* [CP] Check Pods Manifest.lock */,
+				0CD949A9217DC70900E6D3B0 /* Sources */,
+				0CD949AA217DC70900E6D3B0 /* Frameworks */,
+				0CD949AB217DC70900E6D3B0 /* Resources */,
+				7D2F36E890BECA8EE5EA86D9 /* [CP] Embed Pods Frameworks */,
+				D6A09E27A237471C0A6C57B6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				077B602F1AC036C4000AC046 /* PBXTargetDependency */,
+				0CD949B3217DC70900E6D3B0 /* PBXTargetDependency */,
 			);
-			name = EspTouchDemoTests;
-			productName = EspTouchDemoTests;
-			productReference = 077B60291AC036C3000AC046 /* EspTouchDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			name = EspTouchDemoUITests;
+			productName = EspTouchDemoUITests;
+			productReference = 0CD949AD217DC70900E6D3B0 /* EspTouchDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -317,15 +225,18 @@
 				ORGANIZATIONNAME = Espressif;
 				TargetAttributes = {
 					077B60071AC036C3000AC046 = {
-						DevelopmentTeam = QWY5DY832N;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = KTW7W3K4FU;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.AccessWiFi = {
 								enabled = 1;
 							};
 						};
 					};
-					077B60281AC036C3000AC046 = {
+					0CD949AC217DC70900E6D3B0 = {
+						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
+						ProvisioningStyle = Manual;
 						TestTargetID = 077B60071AC036C3000AC046;
 					};
 				};
@@ -344,7 +255,7 @@
 			projectRoot = "";
 			targets = (
 				077B60071AC036C3000AC046 /* EspTouchDemo */,
-				077B60281AC036C3000AC046 /* EspTouchDemoTests */,
+				0CD949AC217DC70900E6D3B0 /* EspTouchDemoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -360,56 +271,158 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		077B60271AC036C3000AC046 /* Resources */ = {
+		0CD949AB217DC70900E6D3B0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077B60351AC036C4000AC046 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		13685FB99429169176F6595D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EspTouchDemo/Pods-EspTouchDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		435B2B2790B19F0095A65D66 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-EspTouchDemo/Pods-EspTouchDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/KVNProgress/KVNProgress.framework",
+				"${BUILT_PRODUCTS_DIR}/XLForm/XLForm.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KVNProgress.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLForm.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EspTouchDemo/Pods-EspTouchDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5809477B3C7F81F692F4FEA2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EspTouchDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5DCBE8257620CAF19957F319 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EspTouchDemoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D2F36E890BECA8EE5EA86D9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EspTouchDemoUITests/Pods-EspTouchDemoUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6A09E27A237471C0A6C57B6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EspTouchDemoUITests/Pods-EspTouchDemoUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		077B60041AC036C3000AC046 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0703C6F81AD65404009A3841 /* ESPTouchGenerator.m in Sources */,
-				073FD2161ADBB6440080A2CF /* ESPUDPSocketServer.m in Sources */,
-				077B60461AC0395A000AC046 /* ESP_CRC8.m in Sources */,
-				0703C6F21AD653D9009A3841 /* ESPDataCode.m in Sources */,
-				0703C6F51AD653E9009A3841 /* ESPDatumCode.m in Sources */,
-				07A433731ADCF33A001F99B0 /* ESPTouchTask.m in Sources */,
-				071F6A141B05F8790015B482 /* ESP_NetUtil.m in Sources */,
-				808A90C02076049500112914 /* ESPAES.m in Sources */,
-				072878AE1D1127F000E88E12 /* ESP_WifiUtil.m in Sources */,
-				075A05C21AD3ABC100ECB5D6 /* ESP_ByteUtil.m in Sources */,
-				0703C6FB1AD65413009A3841 /* ESPGuideCode.m in Sources */,
-				075911561B0C2A090043C45D /* ESPTouchTaskParameter.m in Sources */,
-				073FD2131ADBB6350080A2CF /* ESPUDPSocketClient.m in Sources */,
 				077B60181AC036C3000AC046 /* main.m in Sources */,
 				077B601C1AC036C3000AC046 /* ESPAppDelegate.m in Sources */,
 				077B60221AC036C3000AC046 /* ESPViewController.m in Sources */,
-				07A433761ADCF35A001F99B0 /* ESPTouchResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		077B60251AC036C3000AC046 /* Sources */ = {
+		0CD949A9217DC70900E6D3B0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077B60371AC036C4000AC046 /* EspTouchDemoTests.m in Sources */,
+				0CD949B0217DC70900E6D3B0 /* Screenshots.m in Sources */,
+				0CD949B9217DC75200E6D3B0 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		077B602F1AC036C4000AC046 /* PBXTargetDependency */ = {
+		0CD949B3217DC70900E6D3B0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 077B60071AC036C3000AC046 /* EspTouchDemo */;
-			targetProxy = 077B602E1AC036C4000AC046 /* PBXContainerItemProxy */;
+			targetProxy = 0CD949B2217DC70900E6D3B0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -428,14 +441,6 @@
 				077B601E1AC036C3000AC046 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		077B60331AC036C4000AC046 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				077B60341AC036C4000AC046 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -540,87 +545,115 @@
 		};
 		077B603B1AC036C4000AC046 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D50D836E6C6BEF27291E215D /* Pods-EspTouchDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = EspTouchDemo/EspTouchDemo.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QWY5DY832N;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = KTW7W3K4FU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$SOURCE_ROOT/include";
 				INFOPLIST_FILE = "EspTouchDemo/EspTouchDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_BUNDLE_IDENTIFIER = espressif.EspTouchDemo;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = net.f10.esp32SmartConfig;
 				PRODUCT_NAME = EspTouchDemo;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = ESPTouchDemo;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		077B603C1AC036C4000AC046 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9ED1959F4152BE7D85EEDFD9 /* Pods-EspTouchDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = EspTouchDemo/EspTouchDemo.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QWY5DY832N;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = KTW7W3K4FU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$SOURCE_ROOT/include";
 				INFOPLIST_FILE = "EspTouchDemo/EspTouchDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_BUNDLE_IDENTIFIER = espressif.EspTouchDemo;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = net.f10.esp32SmartConfig;
 				PRODUCT_NAME = EspTouchDemo;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = ESPTouchDemo;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
-		077B603E1AC036C4000AC046 /* Debug */ = {
+		0CD949B5217DC70900E6D3B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C58B90117BD82777E549CBAE /* Pods-EspTouchDemoUITests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EspTouchDemo.app/EspTouchDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "EspTouchDemoTests/EspTouchDemoTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.espressif.iot.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = EspTouchDemoTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = EspTouchDemoUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.f10.EspTouchDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "EspTouchDemoUITests/EspTouchDemoUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = EspTouchDemo;
 			};
 			name = Debug;
 		};
-		077B603F1AC036C4000AC046 /* Release */ = {
+		0CD949B6217DC70900E6D3B0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9EEC4A1735E07C63EC6C2B6 /* Pods-EspTouchDemoUITests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EspTouchDemo.app/EspTouchDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
-				INFOPLIST_FILE = "EspTouchDemoTests/EspTouchDemoTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.espressif.iot.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = EspTouchDemoTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = EspTouchDemoUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.f10.EspTouchDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "EspTouchDemoUITests/EspTouchDemoUITests-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = EspTouchDemo;
 			};
 			name = Release;
 		};
@@ -645,11 +678,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		077B603D1AC036C4000AC046 /* Build configuration list for PBXNativeTarget "EspTouchDemoTests" */ = {
+		0CD949B4217DC70900E6D3B0 /* Build configuration list for PBXNativeTarget "EspTouchDemoUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				077B603E1AC036C4000AC046 /* Debug */,
-				077B603F1AC036C4000AC046 /* Release */,
+				0CD949B5217DC70900E6D3B0 /* Debug */,
+				0CD949B6217DC70900E6D3B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
