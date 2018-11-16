@@ -317,7 +317,7 @@
 				ORGANIZATIONNAME = Espressif;
 				TargetAttributes = {
 					077B60071AC036C3000AC046 = {
-						DevelopmentTeam = QWY5DY832N;
+						DevelopmentTeam = QWXF6GB4AV;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.AccessWiFi = {
@@ -547,12 +547,12 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QWY5DY832N;
+				DEVELOPMENT_TEAM = QWXF6GB4AV;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
 				INFOPLIST_FILE = "EspTouchDemo/EspTouchDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_BUNDLE_IDENTIFIER = espressif.EspTouchDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.espressif.app.esptouch;
 				PRODUCT_NAME = EspTouchDemo;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -569,12 +569,12 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QWY5DY832N;
+				DEVELOPMENT_TEAM = QWXF6GB4AV;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
 				INFOPLIST_FILE = "EspTouchDemo/EspTouchDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_BUNDLE_IDENTIFIER = espressif.EspTouchDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.espressif.app.esptouch;
 				PRODUCT_NAME = EspTouchDemo;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
