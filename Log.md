@@ -1,5 +1,9 @@
 # Update Log
 
+## v0.3.7.1
+- Remove deprecated constructor of EsptouchTask
+- Remove EsptouchTask's aes constructor, device doesn't support currently
+
 ## v0.3.7.0
 - Add option to select Broadcast or Multicast
 
