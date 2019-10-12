@@ -155,6 +155,11 @@
     return _self;
 }
 
+- (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd andIsSsidHiden: (BOOL) isSsidHidden andTimeoutMillisecond: (int) timeoutMillisecond
+{
+    return [self initWithApSsid:apSsid andApBssid:apBssid andApPwd:apPwd andTimeoutMillisecond:timeoutMillisecond];
+}
+
 - (void) __putEsptouchResultIsSuc: (BOOL) isSuc AndBssid: (NSString *)bssid AndInetAddr:(NSData *)inetAddr
 {
     [self._esptouchResultArrayCondition lock];

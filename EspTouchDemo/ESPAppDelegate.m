@@ -10,8 +10,6 @@
 #import "ESPViewController.h"
 #import "ESP_NetUtil.h"
 
-#import <SystemConfiguration/CaptiveNetwork.h>
-
 @implementation ESPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -46,10 +44,10 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    ESPViewController *vc = (ESPViewController *)self.window.rootViewController;
-    NSDictionary *netInfo = [self fetchNetInfo];
-    vc.ssidLabel.text = [netInfo objectForKey:@"SSID"];
-    vc.bssidLabel.text = [netInfo objectForKey:@"BSSID"];
+//    ESPViewController *vc = (ESPViewController *)self.window.rootViewController;
+//    NSDictionary *netInfo = [self fetchNetInfo];
+//    vc.ssidLabel.text = [netInfo objectForKey:@"SSID"];
+//    vc.bssidLabel.text = [netInfo objectForKey:@"BSSID"];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -57,38 +55,66 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (NSString *)fetchSsid
-{
-    NSDictionary *ssidInfo = [self fetchNetInfo];
-    
-    return [ssidInfo objectForKey:@"SSID"];
-}
-
-- (NSString *)fetchBssid
-{
-    NSDictionary *bssidInfo = [self fetchNetInfo];
-    
-    return [bssidInfo objectForKey:@"BSSID"];
-}
+//- (NSString *)fetchSsid
+//{
+//    NSDictionary *ssidInfo = [self fetchNetInfo];
+//
+//    return [ssidInfo objectForKey:@"SSID"];
+//}
+//
+//- (NSString *)fetchBssid
+//{
+//    NSDictionary *bssidInfo = [self fetchNetInfo];
+//
+//    return [bssidInfo objectForKey:@"BSSID"];
+//}
 
 // refer to http://stackoverflow.com/questions/5198716/iphone-get-ssid-without-private-library
-- (NSDictionary *)fetchNetInfo
-{
-    NSArray *interfaceNames = CFBridgingRelease(CNCopySupportedInterfaces());
-//    NSLog(@"%s: Supported interfaces: %@", __func__, interfaceNames);
-    
-    NSDictionary *SSIDInfo;
-    for (NSString *interfaceName in interfaceNames) {
-        SSIDInfo = CFBridgingRelease(
-                                     CNCopyCurrentNetworkInfo((__bridge CFStringRef)interfaceName));
+//- (NSDictionary *)fetchNetInfo
+//{
+//
+//    if (![self getUserLocationAuth]) {
+//        _locationManagerSystem = [[CLLocationManager alloc]init];
+//        [_locationManagerSystem requestWhenInUseAuthorization];
+//    }
+//
+//    NSArray *interfaceNames = CFBridgingRelease(CNCopySupportedInterfaces());
+////    NSLog(@"%s: Supported interfaces: %@", __func__, interfaceNames);
+//
+//    NSDictionary *SSIDInfo;
+//    for (NSString *interfaceName in interfaceNames) {
+//        SSIDInfo = CFBridgingRelease(
+//                                     CNCopyCurrentNetworkInfo((__bridge CFStringRef)interfaceName));
 //        NSLog(@"%s: %@ => %@", __func__, interfaceName, SSIDInfo);
-        
-        BOOL isNotEmpty = (SSIDInfo.count > 0);
-        if (isNotEmpty) {
-            break;
-        }
-    }
-    return SSIDInfo;
-}
+//
+//        BOOL isNotEmpty = (SSIDInfo.count > 0);
+//        if (isNotEmpty) {
+//            break;
+//        }
+//    }
+//    return SSIDInfo;
+//}
+//
+//- (BOOL)getUserLocationAuth {
+//    BOOL result = NO;
+//    switch ([CLLocationManager authorizationStatus]) {
+//        case kCLAuthorizationStatusNotDetermined:
+//            break;
+//        case kCLAuthorizationStatusRestricted:
+//            break;
+//        case kCLAuthorizationStatusDenied:
+//            break;
+//        case kCLAuthorizationStatusAuthorizedAlways:
+//            result = YES;
+//            break;
+//        case kCLAuthorizationStatusAuthorizedWhenInUse:
+//            result = YES;
+//            break;
+//
+//        default:
+//            break;
+//    }
+//    return result;
+//}
 
 @end

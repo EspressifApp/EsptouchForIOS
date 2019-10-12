@@ -36,5 +36,18 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>请允许APP始终访问位置</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>请允许APP在使用期间访问位置</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>请允许APP访问位置</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

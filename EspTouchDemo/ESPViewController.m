@@ -13,7 +13,8 @@
 #import "ESPTouchDelegate.h"
 #import "ESPAES.h"
 
-#import <SystemConfiguration/CaptiveNetwork.h>
+#import "ESPTools.h"
+#import <CoreLocation/CoreLocation.h>
 
 // the three constants are used to hide soft-keyboard when user tap Enter or Return
 #define HEIGHT_KEYBOARD 216
@@ -78,7 +79,9 @@
 
 @end
 
-@implementation ESPViewController
+@implementation ESPViewController{
+    CLLocationManager *_locationManagerSystem;
+}
 
 - (IBAction)tapConfirmCancelBtn:(UIButton *)sender
 {
@@ -138,12 +141,29 @@
                         {
                             [mutableStr appendString:[NSString stringWithFormat:@"\nthere's %lu more result(s) without showing\n",(unsigned long)([esptouchResultArray count] - count)]];
                         }
-                        [[[UIAlertView alloc]initWithTitle:@"Execute Result" message:mutableStr delegate:nil cancelButtonTitle:@"I know" otherButtonTitles:nil]show];
+                        
+//                       [[[UIAlertView alloc]initWithTitle:@"Execute Result" message:mutableStr delegate:nil cancelButtonTitle:@"I know" otherButtonTitles:nil]show];
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Execute Result" message:mutableStr preferredStyle:UIAlertControllerStyleAlert];
+                        alert.accessibilityLabel = @"executeResult";
+                        
+                        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"I know" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                            
+                        }];
+                        [alert addAction:action1];
+                        [self presentViewController:alert animated:YES completion:nil];
                     }
                     
                     else
                     {
-                        [[[UIAlertView alloc]initWithTitle:@"Execute Result" message:@"Esptouch fail" delegate:nil cancelButtonTitle:@"I know" otherButtonTitles:nil]show];
+//                        [[[UIAlertView alloc]initWithTitle:@"Execute Result" message:@"Esptouch did not find the device" delegate:nil cancelButtonTitle:@"I know" otherButtonTitles:nil]show];
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Execute Result" message:@"Esptouch did not find the device" preferredStyle:UIAlertControllerStyleAlert];
+                        alert.accessibilityLabel = @"executeResult";
+                        
+                        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"I know" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                            
+                        }];
+                        [alert addAction:action1];
+                        [self presentViewController:alert animated:YES completion:nil];
                     }
                 }
                 
@@ -204,6 +224,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    NSDictionary *netInfo = [self fetchNetInfo];
+    self.ssidLabel.text = [netInfo objectForKey:@"ssid"];
+    self.bssidLabel.text = [netInfo objectForKey:@"bssid"];
+    
     self._isConfirmState = NO;
     self._pwdTextView.delegate = self;
     self._pwdTextView.keyboardType = UIKeyboardTypeASCIICapable;
@@ -213,6 +238,41 @@
     self._esptouchDelegate = [[EspTouchDelegateImpl alloc]init];
     self._versionLabel.text = ESPTOUCH_VERSION;
     [self enableConfirmBtn];
+}
+
+- (NSDictionary *)fetchNetInfo
+{
+    
+    if (![self getUserLocationAuth]) {
+        _locationManagerSystem = [[CLLocationManager alloc]init];
+        [_locationManagerSystem requestWhenInUseAuthorization];
+    }
+    NSMutableDictionary *wifiDic = [NSMutableDictionary dictionaryWithCapacity:0];
+    wifiDic[@"ssid"] = ESPTools.getCurrentWiFiSsid;
+    wifiDic[@"bssid"] = ESPTools.getCurrentBSSID;
+    return wifiDic;
+}
+
+- (BOOL)getUserLocationAuth {
+    BOOL result = NO;
+    switch ([CLLocationManager authorizationStatus]) {
+        case kCLAuthorizationStatusNotDetermined:
+            break;
+        case kCLAuthorizationStatusRestricted:
+            break;
+        case kCLAuthorizationStatusDenied:
+            break;
+        case kCLAuthorizationStatusAuthorizedAlways:
+            result = YES;
+            break;
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+            result = YES;
+            break;
+            
+        default:
+            break;
+    }
+    return result;
 }
 
 #pragma mark - the follow codes are just to make soft-keyboard disappear at necessary time
