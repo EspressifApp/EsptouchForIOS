@@ -69,13 +69,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A8F-Mr-UBB">
-                                <rect key="frame" x="99.5" y="145" width="259.5" height="34"/>
+                                <rect key="frame" x="99.5" y="144" width="259.5" height="34"/>
                                 <accessibility key="accessibilityConfiguration" hint="wifipsd" identifier="wifiPassword"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device count:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3AB-B6-TWx">
-                                <rect key="frame" x="16" y="199" width="105" height="20.5"/>
+                                <rect key="frame" x="16" y="198" width="105" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -91,7 +91,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EDz-Bq-CfG">
-                                <rect key="frame" x="129" y="194" width="71" height="34"/>
+                                <rect key="frame" x="129" y="192" width="71" height="34"/>
                                 <accessibility key="accessibilityConfiguration" hint="deviceCountHint" identifier="deviceCountId"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="71" id="jRx-eF-pbv"/>
@@ -109,14 +109,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2rZ-fr-WAb">
-                                <rect key="frame" x="16" y="243" width="181.5" height="32"/>
+                                <rect key="frame" x="16" y="241" width="181.5" height="32"/>
                                 <segments>
                                     <segment title="Broadcast"/>
                                     <segment title="Multicast"/>
                                 </segments>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Yu-ZJ-GZE">
-                                <rect key="frame" x="10" y="374" width="355" height="61"/>
+                                <rect key="frame" x="10" y="385" width="355" height="61"/>
                                 <string key="text">The device is connected after startup
 Please make sure the network is 2.4G
 The device only supports 2.4G</string>
@@ -128,10 +128,9 @@ The device only supports 2.4G</string>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2rZ-fr-WAb" firstAttribute="leading" secondItem="xMk-gg-OoE" secondAttribute="leading" id="02z-Ye-lbl"/>
-                            <constraint firstItem="A8F-Mr-UBB" firstAttribute="top" secondItem="go3-nv-ztj" secondAttribute="bottom" constant="28" id="2re-bu-Q6V"/>
+                            <constraint firstItem="A8F-Mr-UBB" firstAttribute="top" secondItem="go3-nv-ztj" secondAttribute="bottom" constant="27" id="2re-bu-Q6V"/>
                             <constraint firstItem="3AB-B6-TWx" firstAttribute="top" secondItem="A8F-Mr-UBB" secondAttribute="bottom" constant="20" id="6Fd-FV-F3G"/>
                             <constraint firstItem="EDz-Bq-CfG" firstAttribute="leading" secondItem="3AB-B6-TWx" secondAttribute="trailing" constant="8" symbolic="YES" id="6aP-KB-mWQ"/>
-                            <constraint firstItem="3Yu-ZJ-GZE" firstAttribute="top" secondItem="2rZ-fr-WAb" secondAttribute="bottom" constant="100" id="7FB-Ym-3Hl"/>
                             <constraint firstItem="2rZ-fr-WAb" firstAttribute="leading" secondItem="Ogm-Hs-Eb3" secondAttribute="leading" id="7Xp-k2-dwX"/>
                             <constraint firstItem="Ogm-Hs-Eb3" firstAttribute="top" secondItem="MoY-lA-hPe" secondAttribute="bottom" constant="15" id="8hm-4W-bXR"/>
                             <constraint firstItem="go3-nv-ztj" firstAttribute="trailing" secondItem="tTX-Fj-plv" secondAttribute="trailing" id="9ft-0A-7K7"/>
@@ -140,8 +139,9 @@ The device only supports 2.4G</string>
                             <constraint firstItem="MoY-lA-hPe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="IML-zd-DhA"/>
                             <constraint firstItem="tTX-Fj-plv" firstAttribute="leading" secondItem="MoY-lA-hPe" secondAttribute="trailing" constant="5" id="JD2-7g-21J"/>
                             <constraint firstItem="2rZ-fr-WAb" firstAttribute="leading" secondItem="uFO-uG-8Th" secondAttribute="leading" id="JLS-fb-ZGY"/>
-                            <constraint firstItem="EDz-Bq-CfG" firstAttribute="top" secondItem="A8F-Mr-UBB" secondAttribute="bottom" constant="15" id="KmR-Kv-LKh"/>
+                            <constraint firstItem="EDz-Bq-CfG" firstAttribute="top" secondItem="A8F-Mr-UBB" secondAttribute="bottom" constant="14" id="KmR-Kv-LKh"/>
                             <constraint firstItem="A8F-Mr-UBB" firstAttribute="leading" secondItem="xMk-gg-OoE" secondAttribute="trailing" constant="5" id="LJB-n9-cZ6"/>
+                            <constraint firstItem="uFO-uG-8Th" firstAttribute="top" secondItem="3Yu-ZJ-GZE" secondAttribute="bottom" constant="150" id="Ovc-MV-r9k"/>
                             <constraint firstItem="1FY-lk-6mW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" symbolic="YES" id="Wn7-jI-VGJ"/>
                             <constraint firstItem="xMk-gg-OoE" firstAttribute="top" secondItem="go3-nv-ztj" secondAttribute="bottom" constant="32" id="aIh-zv-9DH"/>
                             <constraint firstItem="go3-nv-ztj" firstAttribute="top" secondItem="tTX-Fj-plv" secondAttribute="bottom" constant="15" id="arn-1a-32f"/>

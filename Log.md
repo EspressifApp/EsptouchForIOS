@@ -3,7 +3,7 @@
 ## v1.3.1
 
 - Optimization of iOS 13.1.2 version wi-fi information acquisition failure problem
-- add location permissions, wi-fi information acquisition needs
+- Add location permissions, wi-fi information acquisition needs
 - Optimize the page, support iPhone X, iPhone 11 and other models page adaptive
 
 ## v1.3.0
