@@ -77,6 +77,8 @@
 @property (nonatomic, strong) UIButton *_doneButton;
 @property (nonatomic, strong) EspTouchDelegateImpl *_esptouchDelegate;
 
+@property (nonatomic, strong)NSDictionary *netInfo;
+
 @end
 
 @implementation ESPViewController{
@@ -91,6 +93,10 @@
 
 - (void) tapConfirmForResults
 {
+    self.netInfo = [self fetchNetInfo];
+    self.ssidLabel.text = [_netInfo objectForKey:@"ssid"];
+    self.bssidLabel.text = [_netInfo objectForKey:@"bssid"];
+    
     // do confirm
     if (self._isConfirmState)
     {
@@ -201,6 +207,7 @@
     [self._esptouchTask setEsptouchDelegate:self._esptouchDelegate];
     [self._esptouchTask setPackageBroadcast:broadcast];
     [self._condition unlock];
+//    ESPTouchResult *ESPTR = self._esptouchTask.executeForResult;
     NSArray * esptouchResults = [self._esptouchTask executeForResults:taskCount];
     NSLog(@"ESPViewController executeForResult() result is: %@",esptouchResults);
     return esptouchResults;
@@ -225,9 +232,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    NSDictionary *netInfo = [self fetchNetInfo];
-    self.ssidLabel.text = [netInfo objectForKey:@"ssid"];
-    self.bssidLabel.text = [netInfo objectForKey:@"bssid"];
+    self.navigationItem.title = @"EspTouch";
+    
+    self.netInfo = [self fetchNetInfo];
+    self.ssidLabel.text = [_netInfo objectForKey:@"ssid"];
+    self.bssidLabel.text = [_netInfo objectForKey:@"bssid"];
     
     self._isConfirmState = NO;
     self._pwdTextView.delegate = self;
@@ -236,9 +245,20 @@
     self._taskResultCountTextView.keyboardType = UIKeyboardTypeNumberPad;
     self._condition = [[NSCondition alloc]init];
     self._esptouchDelegate = [[EspTouchDelegateImpl alloc]init];
-    self._versionLabel.text = ESPTOUCH_VERSION;
+    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    self._versionLabel.text = [NSString stringWithFormat:@"APP-v%@ / %@",currentVersion, ESPTOUCH_VERSION];
     [self enableConfirmBtn];
+    
+    NSTimer *viewTime = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(wifiViewUpdates) userInfo:nil repeats:true];
+    [[NSRunLoop mainRunLoop] addTimer:viewTime forMode:NSDefaultRunLoopMode];
 }
+
+- (void)wifiViewUpdates {
+    self.netInfo = [self fetchNetInfo];
+    self.ssidLabel.text = [_netInfo objectForKey:@"ssid"];
+    self.bssidLabel.text = [_netInfo objectForKey:@"bssid"];
+}
+
 
 - (NSDictionary *)fetchNetInfo
 {
