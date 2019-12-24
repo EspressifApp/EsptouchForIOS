@@ -128,7 +128,7 @@ The device only supports 2.4G</string>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="2rZ-fr-WAb" firstAttribute="leading" secondItem="xMk-gg-OoE" secondAttribute="leading" id="02z-Ye-lbl"/>
                             <constraint firstItem="A8F-Mr-UBB" firstAttribute="top" secondItem="go3-nv-ztj" secondAttribute="bottom" constant="28" id="2re-bu-Q6V"/>
@@ -175,7 +175,12 @@ The device only supports 2.4G</string>
                         <outlet property="_versionLabel" destination="Vw4-bg-GBt" id="Vpv-mT-xvs"/>
                         <outlet property="broadcastSC" destination="2rZ-fr-WAb" id="zj7-TO-bcs"/>
                         <outlet property="bssidLabel" destination="go3-nv-ztj" id="vIJ-RR-1mU"/>
+                        <outlet property="bssidTitle" destination="Ogm-Hs-Eb3" id="sTo-KT-gnd"/>
+                        <outlet property="deviceCountTitle" destination="3AB-B6-TWx" id="S4e-D4-Ws2"/>
+                        <outlet property="pwdTitle" destination="xMk-gg-OoE" id="oQU-pj-Men"/>
+                        <outlet property="reminderContent" destination="3Yu-ZJ-GZE" id="xlZ-w4-Bnw"/>
                         <outlet property="ssidLabel" destination="tTX-Fj-plv" id="zoU-ng-se5"/>
+                        <outlet property="ssidTitle" destination="MoY-lA-hPe" id="xpK-dR-88y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

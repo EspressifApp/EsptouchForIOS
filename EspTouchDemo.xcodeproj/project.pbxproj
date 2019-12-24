@@ -35,6 +35,12 @@
 		07A433731ADCF33A001F99B0 /* ESPTouchTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A433721ADCF33A001F99B0 /* ESPTouchTask.m */; };
 		07A433761ADCF35A001F99B0 /* ESPTouchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A433751ADCF35A001F99B0 /* ESPTouchResult.m */; };
 		264E417722DC77FD0069139E /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 264E417622DC77FD0069139E /* NetworkExtension.framework */; };
+		266CEF4323B1F13D00D8ED13 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 266CEF3923B1F13D00D8ED13 /* AFURLResponseSerialization.m */; };
+		266CEF4423B1F13D00D8ED13 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 266CEF3A23B1F13D00D8ED13 /* AFHTTPSessionManager.m */; };
+		266CEF4523B1F13D00D8ED13 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 266CEF3C23B1F13D00D8ED13 /* AFURLSessionManager.m */; };
+		266CEF4623B1F13D00D8ED13 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 266CEF3D23B1F13D00D8ED13 /* AFURLRequestSerialization.m */; };
+		266CEF4723B1F13D00D8ED13 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 266CEF3F23B1F13D00D8ED13 /* AFNetworkReachabilityManager.m */; };
+		266CEF4823B1F13D00D8ED13 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 266CEF4023B1F13D00D8ED13 /* AFSecurityPolicy.m */; };
 		26B0B9512351872600B2CF2D /* ESPTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0B94F2351872600B2CF2D /* ESPTools.m */; };
 		808A90C02076049500112914 /* ESPAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 808A90BF2076049500112914 /* ESPAES.m */; };
 /* End PBXBuildFile section */
@@ -98,6 +104,20 @@
 		07A433741ADCF35A001F99B0 /* ESPTouchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPTouchResult.h; sourceTree = "<group>"; };
 		07A433751ADCF35A001F99B0 /* ESPTouchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPTouchResult.m; sourceTree = "<group>"; };
 		264E417622DC77FD0069139E /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		266CEF3523B1F13D00D8ED13 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		266CEF3623B1F13D00D8ED13 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		266CEF3723B1F13D00D8ED13 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		266CEF3823B1F13D00D8ED13 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		266CEF3923B1F13D00D8ED13 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		266CEF3A23B1F13D00D8ED13 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		266CEF3B23B1F13D00D8ED13 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		266CEF3C23B1F13D00D8ED13 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		266CEF3D23B1F13D00D8ED13 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		266CEF3E23B1F13D00D8ED13 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		266CEF3F23B1F13D00D8ED13 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		266CEF4023B1F13D00D8ED13 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		266CEF4123B1F13D00D8ED13 /* AFCompatibilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFCompatibilityMacros.h; sourceTree = "<group>"; };
+		266CEF4223B1F13D00D8ED13 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		26B0B94F2351872600B2CF2D /* ESPTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPTools.m; sourceTree = "<group>"; };
 		26B0B9502351872600B2CF2D /* ESPTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPTools.h; sourceTree = "<group>"; };
 		80501D1D216F43C200D32EDC /* EspTouchDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EspTouchDemo.entitlements; sourceTree = "<group>"; };
@@ -179,6 +199,7 @@
 		077B60111AC036C3000AC046 /* EspTouchDemo */ = {
 			isa = PBXGroup;
 			children = (
+				266CEF3323B1F13300D8ED13 /* ESPThirdGit */,
 				80501D1D216F43C200D32EDC /* EspTouchDemo.entitlements */,
 				07A4336A1ADCF2CD001F99B0 /* esptouch */,
 				0703C6EE1AD653A9009A3841 /* protocol */,
@@ -275,6 +296,35 @@
 				07504B591B7D99B500B8517E /* ESPTouchDelegate.h */,
 			);
 			name = esptouch;
+			sourceTree = "<group>";
+		};
+		266CEF3323B1F13300D8ED13 /* ESPThirdGit */ = {
+			isa = PBXGroup;
+			children = (
+				266CEF3423B1F13D00D8ED13 /* AFNetworking */,
+			);
+			path = ESPThirdGit;
+			sourceTree = "<group>";
+		};
+		266CEF3423B1F13D00D8ED13 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				266CEF3523B1F13D00D8ED13 /* AFSecurityPolicy.h */,
+				266CEF3623B1F13D00D8ED13 /* AFNetworkReachabilityManager.h */,
+				266CEF3723B1F13D00D8ED13 /* AFURLSessionManager.h */,
+				266CEF3823B1F13D00D8ED13 /* AFURLRequestSerialization.h */,
+				266CEF3923B1F13D00D8ED13 /* AFURLResponseSerialization.m */,
+				266CEF3A23B1F13D00D8ED13 /* AFHTTPSessionManager.m */,
+				266CEF3B23B1F13D00D8ED13 /* AFURLResponseSerialization.h */,
+				266CEF3C23B1F13D00D8ED13 /* AFURLSessionManager.m */,
+				266CEF3D23B1F13D00D8ED13 /* AFURLRequestSerialization.m */,
+				266CEF3E23B1F13D00D8ED13 /* AFNetworking.h */,
+				266CEF3F23B1F13D00D8ED13 /* AFNetworkReachabilityManager.m */,
+				266CEF4023B1F13D00D8ED13 /* AFSecurityPolicy.m */,
+				266CEF4123B1F13D00D8ED13 /* AFCompatibilityMacros.h */,
+				266CEF4223B1F13D00D8ED13 /* AFHTTPSessionManager.h */,
+			);
+			path = AFNetworking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,15 +438,21 @@
 				0703C6F81AD65404009A3841 /* ESPTouchGenerator.m in Sources */,
 				073FD2161ADBB6440080A2CF /* ESPUDPSocketServer.m in Sources */,
 				077B60461AC0395A000AC046 /* ESP_CRC8.m in Sources */,
+				266CEF4523B1F13D00D8ED13 /* AFURLSessionManager.m in Sources */,
+				266CEF4823B1F13D00D8ED13 /* AFSecurityPolicy.m in Sources */,
 				0703C6F21AD653D9009A3841 /* ESPDataCode.m in Sources */,
 				0703C6F51AD653E9009A3841 /* ESPDatumCode.m in Sources */,
 				07A433731ADCF33A001F99B0 /* ESPTouchTask.m in Sources */,
+				266CEF4623B1F13D00D8ED13 /* AFURLRequestSerialization.m in Sources */,
 				071F6A141B05F8790015B482 /* ESP_NetUtil.m in Sources */,
+				266CEF4423B1F13D00D8ED13 /* AFHTTPSessionManager.m in Sources */,
 				808A90C02076049500112914 /* ESPAES.m in Sources */,
 				072878AE1D1127F000E88E12 /* ESP_WifiUtil.m in Sources */,
+				266CEF4323B1F13D00D8ED13 /* AFURLResponseSerialization.m in Sources */,
 				075A05C21AD3ABC100ECB5D6 /* ESP_ByteUtil.m in Sources */,
 				26B0B9512351872600B2CF2D /* ESPTools.m in Sources */,
 				0703C6FB1AD65413009A3841 /* ESPGuideCode.m in Sources */,
+				266CEF4723B1F13D00D8ED13 /* AFNetworkReachabilityManager.m in Sources */,
 				075911561B0C2A090043C45D /* ESPTouchTaskParameter.m in Sources */,
 				073FD2131ADBB6350080A2CF /* ESPUDPSocketClient.m in Sources */,
 				077B60181AC036C3000AC046 /* main.m in Sources */,

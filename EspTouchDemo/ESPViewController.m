@@ -12,6 +12,7 @@
 #import "ESP_NetUtil.h"
 #import "ESPTouchDelegate.h"
 #import "ESPAES.h"
+#import "AFNetworking.h"
 
 #import "ESPTools.h"
 #import <CoreLocation/CoreLocation.h>
@@ -59,6 +60,13 @@
 @property (weak, nonatomic) IBOutlet UITextField *_taskResultCountTextView;
 @property (weak, nonatomic) IBOutlet UIButton *_confirmCancelBtn;
 @property (weak, nonatomic) IBOutlet UILabel *_versionLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *ssidTitle;
+@property (weak, nonatomic) IBOutlet UILabel *bssidTitle;
+@property (weak, nonatomic) IBOutlet UILabel *pwdTitle;
+@property (weak, nonatomic) IBOutlet UILabel *deviceCountTitle;
+@property (weak, nonatomic) IBOutlet UILabel *reminderContent;
+
 
 // to cancel ESPTouchTask when
 @property (atomic, strong) ESPTouchTask *_esptouchTask;
@@ -231,7 +239,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
     self.navigationItem.title = @"EspTouch";
     
     self.netInfo = [self fetchNetInfo];
@@ -249,11 +256,60 @@
     self._versionLabel.text = [NSString stringWithFormat:@"APP-v%@ / %@",currentVersion, ESPTOUCH_VERSION];
     [self enableConfirmBtn];
     
-    NSTimer *viewTime = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(wifiViewUpdates) userInfo:nil repeats:true];
-    [[NSRunLoop mainRunLoop] addTimer:viewTime forMode:NSDefaultRunLoopMode];
+    //程序进入前台并处于活动状态调用
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wifiViewUpdates) name:UIApplicationDidBecomeActiveNotification object:nil];
+    //注册Wi-Fi变化通知
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager startMonitoring];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        [self wifiViewUpdates];
+    }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self systemLightAndDark];
+}
+
+- (void)systemLightAndDark {
+    if (@available(iOS 13.0, *)) {
+        if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+            [self systemDark];
+        }else {
+            [self systemLight];
+        }
+    } else {
+        [self systemLight];
+    }
+}
+
+- (void)systemLight {
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.ssidLabel.textColor = [UIColor blackColor];
+    self.ssidTitle.textColor = [UIColor blackColor];
+    self.bssidLabel.textColor = [UIColor blackColor];
+    self.bssidTitle.textColor = [UIColor blackColor];
+    self.pwdTitle.textColor = [UIColor blackColor];
+    self.deviceCountTitle.textColor = [UIColor blackColor];
+    self.reminderContent.textColor = [UIColor blackColor];
+    self._versionLabel.textColor = [UIColor blackColor];
+    self._spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+}
+
+- (void)systemDark {
+    self.view.backgroundColor = [UIColor blackColor];
+    self.ssidLabel.textColor = [UIColor whiteColor];
+    self.ssidTitle.textColor = [UIColor whiteColor];
+    self.bssidLabel.textColor = [UIColor whiteColor];
+    self.bssidTitle.textColor = [UIColor whiteColor];
+    self.pwdTitle.textColor = [UIColor whiteColor];
+    self.deviceCountTitle.textColor = [UIColor whiteColor];
+    self.reminderContent.textColor = [UIColor whiteColor];
+    self._versionLabel.textColor = [UIColor whiteColor];
+    self._spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
 }
 
 - (void)wifiViewUpdates {
+    [self systemLightAndDark];
     self.netInfo = [self fetchNetInfo];
     self.ssidLabel.text = [_netInfo objectForKey:@"ssid"];
     self.bssidLabel.text = [_netInfo objectForKey:@"bssid"];
