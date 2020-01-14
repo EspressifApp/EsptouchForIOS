@@ -1,5 +1,9 @@
 # Update Log
 
+## v1.3.2
+
+- Fix content display problem in Dark mode
+
 ## v1.3.1
 
 - Optimization of iOS 13.1.2 version wi-fi information acquisition failure problem
