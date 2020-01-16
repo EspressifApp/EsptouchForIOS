@@ -241,10 +241,6 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.title = @"EspTouch";
     
-    self.netInfo = [self fetchNetInfo];
-    self.ssidLabel.text = [_netInfo objectForKey:@"ssid"];
-    self.bssidLabel.text = [_netInfo objectForKey:@"bssid"];
-    
     self._isConfirmState = NO;
     self._pwdTextView.delegate = self;
     self._pwdTextView.keyboardType = UIKeyboardTypeASCIICapable;
@@ -256,6 +252,7 @@
     self._versionLabel.text = [NSString stringWithFormat:@"APP-v%@ / %@",currentVersion, ESPTOUCH_VERSION];
     [self enableConfirmBtn];
     
+    [self userLocationAuth];
     //程序进入前台并处于活动状态调用
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wifiViewUpdates) name:UIApplicationDidBecomeActiveNotification object:nil];
     //注册Wi-Fi变化通知
@@ -315,14 +312,15 @@
     self.bssidLabel.text = [_netInfo objectForKey:@"bssid"];
 }
 
-
-- (NSDictionary *)fetchNetInfo
-{
-    
+- (void)userLocationAuth {
     if (![self getUserLocationAuth]) {
         _locationManagerSystem = [[CLLocationManager alloc]init];
         [_locationManagerSystem requestWhenInUseAuthorization];
     }
+}
+
+- (NSDictionary *)fetchNetInfo
+{
     NSMutableDictionary *wifiDic = [NSMutableDictionary dictionaryWithCapacity:0];
     wifiDic[@"ssid"] = ESPTools.getCurrentWiFiSsid;
     wifiDic[@"bssid"] = ESPTools.getCurrentBSSID;

@@ -376,7 +376,8 @@
 				ORGANIZATIONNAME = Espressif;
 				TargetAttributes = {
 					077B60071AC036C3000AC046 = {
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = QWXF6GB4AV;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.AccessWiFi = {
 								enabled = 1;
@@ -610,16 +611,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = EspTouchDemo/EspTouchDemo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.1.3;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QWXF6GB4AV;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
 				INFOPLIST_FILE = "EspTouchDemo/EspTouchDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.3.2;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.espressif.app.esptouch;
 				PRODUCT_NAME = EspTouchDemo;
 				PROVISIONING_PROFILE = "";
@@ -634,16 +635,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = EspTouchDemo/EspTouchDemo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.1.3;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QWXF6GB4AV;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
 				INFOPLIST_FILE = "EspTouchDemo/EspTouchDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.3.2;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.espressif.app.esptouch;
 				PRODUCT_NAME = EspTouchDemo;
 				PROVISIONING_PROFILE = "";
