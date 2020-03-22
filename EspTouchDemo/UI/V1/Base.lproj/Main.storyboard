@@ -39,14 +39,14 @@
                                     <action selector="tapConfirmCancelBtn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qS3-lL-9mE"/>
                                 </connections>
                             </button>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1FY-lk-6mW">
+                            <navigationBar hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1FY-lk-6mW">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="EspTouch" id="Sve-tL-ea7"/>
                                 </items>
                             </navigationBar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="BSSID: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ogm-Hs-Eb3" userLabel="BSSID:">
-                                <rect key="frame" x="20" y="132" width="57" height="21"/>
+                                <rect key="frame" x="20" y="96" width="57" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="1" constant="63" id="zUa-jp-Jqs"/>
                                 </constraints>
@@ -55,7 +55,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="bssid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go3-nv-ztj">
-                                <rect key="frame" x="82" y="132" width="41" height="21"/>
+                                <rect key="frame" x="82" y="96" width="41" height="21"/>
                                 <accessibility key="accessibilityConfiguration" hint="bssidHint" identifier="bssidIdentifier"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="1" constant="233" id="QMu-Iu-VXR"/>
@@ -65,25 +65,27 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMk-gg-OoE">
-                                <rect key="frame" x="20" y="185" width="78.666666666666671" height="20.666666666666657"/>
+                                <rect key="frame" x="20" y="149" width="78.666666666666671" height="20.666666666666657"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A8F-Mr-UBB">
-                                <rect key="frame" x="103.66666666666666" y="181" width="290.33333333333337" height="34"/>
-                                <accessibility key="accessibilityConfiguration" hint="wifipsd" identifier="wifiPassword"/>
+                                <rect key="frame" x="103.66666666666666" y="145" width="290.33333333333337" height="34"/>
+                                <accessibility key="accessibilityConfiguration" hint="wifipsd" identifier="wifiPassword">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device count:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3AB-B6-TWx">
-                                <rect key="frame" x="20" y="235" width="105" height="20.666666666666657"/>
+                                <rect key="frame" x="20" y="199" width="105" height="20.666666666666657"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="ssid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTX-Fj-plv">
-                                <rect key="frame" x="71.666666666666671" y="96" width="51.333333333333329" height="21"/>
+                                <rect key="frame" x="71.666666666666671" y="60" width="51.333333333333329" height="21"/>
                                 <accessibility key="accessibilityConfiguration" hint="ssidHint" identifier="ssidIdentifier"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ZLU-9j-hKF"/>
@@ -94,7 +96,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EDz-Bq-CfG">
-                                <rect key="frame" x="133" y="230" width="71" height="34"/>
+                                <rect key="frame" x="133" y="194" width="71" height="34"/>
                                 <accessibility key="accessibilityConfiguration" hint="deviceCountHint" identifier="deviceCountId"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="71" id="jRx-eF-pbv"/>
@@ -103,7 +105,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="SSID: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoY-lA-hPe" userLabel="SSID:">
-                                <rect key="frame" x="19.999999999999996" y="96" width="46.666666666666657" height="21"/>
+                                <rect key="frame" x="19.999999999999996" y="60" width="46.666666666666657" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="1" constant="40" id="y0L-Nb-HoN"/>
                                 </constraints>
@@ -112,7 +114,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2rZ-fr-WAb">
-                                <rect key="frame" x="20" y="279" width="197" height="32"/>
+                                <rect key="frame" x="20" y="243" width="197" height="32"/>
                                 <segments>
                                     <segment title="Broadcast"/>
                                     <segment title="Multicast"/>
@@ -128,7 +130,7 @@ The device only supports 2.4G</string>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2rZ-fr-WAb" firstAttribute="leading" secondItem="xMk-gg-OoE" secondAttribute="leading" id="02z-Ye-lbl"/>
                             <constraint firstItem="A8F-Mr-UBB" firstAttribute="top" secondItem="go3-nv-ztj" secondAttribute="bottom" constant="28" id="2re-bu-Q6V"/>
@@ -145,18 +147,17 @@ The device only supports 2.4G</string>
                             <constraint firstItem="A8F-Mr-UBB" firstAttribute="leading" secondItem="xMk-gg-OoE" secondAttribute="trailing" constant="5" id="LJB-n9-cZ6"/>
                             <constraint firstItem="1FY-lk-6mW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" symbolic="YES" id="Wn7-jI-VGJ"/>
                             <constraint firstItem="uFO-uG-8Th" firstAttribute="firstBaseline" secondItem="3Yu-ZJ-GZE" secondAttribute="baseline" constant="50" id="XBJ-OZ-c8S"/>
+                            <constraint firstItem="tTX-Fj-plv" firstAttribute="top" secondItem="Gqw-gK-P3L" secondAttribute="bottom" constant="16" id="XXc-hm-lsC"/>
                             <constraint firstItem="xMk-gg-OoE" firstAttribute="top" secondItem="go3-nv-ztj" secondAttribute="bottom" constant="32" id="aIh-zv-9DH"/>
                             <constraint firstItem="go3-nv-ztj" firstAttribute="top" secondItem="tTX-Fj-plv" secondAttribute="bottom" constant="15" id="arn-1a-32f"/>
                             <constraint firstItem="2rZ-fr-WAb" firstAttribute="leading" secondItem="MoY-lA-hPe" secondAttribute="leading" id="axd-tD-rcK"/>
                             <constraint firstItem="4HN-HJ-Yoc" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="bhF-hI-8HA"/>
                             <constraint firstItem="vFV-5v-aBj" firstAttribute="top" secondItem="Vw4-bg-GBt" secondAttribute="bottom" constant="8" id="bw1-Ai-IHh"/>
-                            <constraint firstItem="MoY-lA-hPe" firstAttribute="top" secondItem="1FY-lk-6mW" secondAttribute="bottom" constant="8" id="cKs-9b-rfX"/>
                             <constraint firstItem="2rZ-fr-WAb" firstAttribute="leading" secondItem="3AB-B6-TWx" secondAttribute="leading" id="cxR-bF-cVI"/>
                             <constraint firstItem="3Yu-ZJ-GZE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="e7j-lM-77T"/>
                             <constraint firstItem="Vw4-bg-GBt" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="gFd-GB-8ey"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uFO-uG-8Th" secondAttribute="trailing" id="ghC-Er-N2M"/>
                             <constraint firstItem="go3-nv-ztj" firstAttribute="leading" secondItem="Ogm-Hs-Eb3" secondAttribute="trailing" constant="5" id="jAN-mZ-a84"/>
-                            <constraint firstItem="tTX-Fj-plv" firstAttribute="top" secondItem="1FY-lk-6mW" secondAttribute="bottom" constant="8" id="k5J-I6-YiU"/>
                             <constraint firstItem="A8F-Mr-UBB" firstAttribute="trailing" secondItem="uFO-uG-8Th" secondAttribute="trailing" id="kfr-8B-XF4"/>
                             <constraint firstItem="1FY-lk-6mW" firstAttribute="top" secondItem="Gqw-gK-P3L" secondAttribute="bottom" symbolic="YES" id="mxd-q1-484"/>
                             <constraint firstItem="4HN-HJ-Yoc" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="n9j-KE-UIH"/>
@@ -165,6 +166,7 @@ The device only supports 2.4G</string>
                             <constraint firstItem="uFO-uG-8Th" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="q7M-dK-e9D"/>
                             <constraint firstItem="2rZ-fr-WAb" firstAttribute="top" secondItem="EDz-Bq-CfG" secondAttribute="bottom" constant="15" id="qhI-h7-Lyp"/>
                             <constraint firstItem="1FY-lk-6mW" firstAttribute="centerX" secondItem="4HN-HJ-Yoc" secondAttribute="centerX" id="xN5-Sj-xb1"/>
+                            <constraint firstItem="MoY-lA-hPe" firstAttribute="top" secondItem="Gqw-gK-P3L" secondAttribute="bottom" constant="16" id="ySP-vh-qCz"/>
                         </constraints>
                     </view>
                     <connections>
@@ -175,12 +177,12 @@ The device only supports 2.4G</string>
                         <outlet property="_versionLabel" destination="Vw4-bg-GBt" id="Vpv-mT-xvs"/>
                         <outlet property="broadcastSC" destination="2rZ-fr-WAb" id="zj7-TO-bcs"/>
                         <outlet property="bssidLabel" destination="go3-nv-ztj" id="vIJ-RR-1mU"/>
-                        <outlet property="bssidTitle" destination="Ogm-Hs-Eb3" id="sTo-KT-gnd"/>
-                        <outlet property="deviceCountTitle" destination="3AB-B6-TWx" id="S4e-D4-Ws2"/>
-                        <outlet property="pwdTitle" destination="xMk-gg-OoE" id="oQU-pj-Men"/>
-                        <outlet property="reminderContent" destination="3Yu-ZJ-GZE" id="xlZ-w4-Bnw"/>
+                        <outlet property="bssidTitle" destination="Ogm-Hs-Eb3" id="4La-Po-eBX"/>
+                        <outlet property="deviceCountTitle" destination="3AB-B6-TWx" id="wa5-ua-pA4"/>
+                        <outlet property="pwdTitle" destination="xMk-gg-OoE" id="es5-w9-6ow"/>
+                        <outlet property="reminderContent" destination="3Yu-ZJ-GZE" id="oNt-A0-01H"/>
                         <outlet property="ssidLabel" destination="tTX-Fj-plv" id="zoU-ng-se5"/>
-                        <outlet property="ssidTitle" destination="MoY-lA-hPe" id="xpK-dR-88y"/>
+                        <outlet property="ssidTitle" destination="MoY-lA-hPe" id="zGh-aP-lmV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

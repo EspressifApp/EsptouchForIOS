@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface ESPViewController : UIViewController<UITextFieldDelegate>
+@interface ESPViewController : UIViewController<UITextFieldDelegate,CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *ssidLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bssidLabel;

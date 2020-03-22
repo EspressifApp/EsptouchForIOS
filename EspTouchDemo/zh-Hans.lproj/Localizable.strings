@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  EspTouchDemo
+
+  Created by AE on 2020/3/21.
+  Copyright © 2020 Espressif. All rights reserved.
+*/
+
+"EspTouch-Title" = "EspTouch";
+"EspTouch-confirm" = "确认";
+"EspTouch-cancel" = "取消";
+"EspTouch-result-one" = "已经连上 Wi-Fi";
+"EspTouch-result-title" = "执行结果";
+"EspTouch-more-results-message" = "\n有更多结果未显示\n";
+"EspTouch-no-results-message" = "没有找到设备";
+"EspTouch-ok" = "确认";
+
+"EspTouchV2-Title" = "EspTouch V2";
+"EspTouchV2-SSID" = "SSID:";
+"EspTouchV2-BSSID" = "BSSID:";
+"EspTouchV2-Password" = "密码：";
+"EspTouchV2-AES-Key" = "AES 键：";
+"EspTouchV2-Custom-Data" = "自定义数据：";
+"EspTouchV2-confirm" = "确认";
+"EspTouchV2-no-wifi-message" = "没有连上 Wi-Fi";
+"EspTouchV2-custom-data-length-message" = "自定义数据不能超过 127 个字节";
+
+"EspProvision-Titile" = "EspProvision";
+"EspProvision-stop" = "停止";
+"EspProvision-exception-message" = "发生了一些错误";
+"EspProvision-no-result-message" = "没有发现设备";

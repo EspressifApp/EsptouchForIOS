@@ -15,7 +15,6 @@
 #import "AFNetworking.h"
 
 #import "ESPTools.h"
-#import <CoreLocation/CoreLocation.h>
 
 // the three constants are used to hide soft-keyboard when user tap Enter or Return
 #define HEIGHT_KEYBOARD 216
@@ -36,7 +35,7 @@
 -(void) showAlertWithResult: (ESPTouchResult *) result
 {
     NSString *title = nil;
-    NSString *message = [NSString stringWithFormat:@"%@ is connected to the wifi" , result.bssid];
+    NSString *message = [NSString stringWithFormat:@"%@ %@" , result.bssid, NSLocalizedString(@"EspTouch-result-one", nil)];
     NSTimeInterval dismissSeconds = 3.5;
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:title message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
     [alertView show];
@@ -136,46 +135,34 @@
                     // max results to be displayed, if it is more than maxDisplayCount,
                     // just show the count of redundant ones
                     const int maxDisplayCount = 5;
-                    if ([firstResult isSuc])
-                    {
-                        
-                        for (int i = 0; i < [esptouchResultArray count]; ++i)
-                        {
+                    if ([firstResult isSuc]) {
+                        for (int i = 0; i < [esptouchResultArray count]; ++i) {
                             ESPTouchResult *resultInArray = [esptouchResultArray objectAtIndex:i];
-                            [mutableStr appendString:[resultInArray description]];
-                            [mutableStr appendString:@"\n"];
-                            count++;
-                            if (count >= maxDisplayCount)
-                            {
+                            NSString *resultStr = [NSString stringWithFormat:@"Bssid: %@, Address: %@\n", resultInArray.bssid, resultInArray.getAddressString];
+                            [mutableStr appendString:resultStr];
+                            if (++count >= maxDisplayCount) {
                                 break;
                             }
                         }
                         
-                        if (count < [esptouchResultArray count])
-                        {
-                            [mutableStr appendString:[NSString stringWithFormat:@"\nthere's %lu more result(s) without showing\n",(unsigned long)([esptouchResultArray count] - count)]];
+                        if (count < [esptouchResultArray count]) {
+                            [mutableStr appendString:NSLocalizedString(@"EspTouch-more-results-message", nil)];
                         }
                         
-//                       [[[UIAlertView alloc]initWithTitle:@"Execute Result" message:mutableStr delegate:nil cancelButtonTitle:@"I know" otherButtonTitles:nil]show];
-                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Execute Result" message:mutableStr preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"EspTouch-result-title", nil) message:mutableStr preferredStyle:UIAlertControllerStyleAlert];
                         alert.accessibilityLabel = @"executeResult";
                         
-                        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"I know" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                            
+                        UIAlertAction *action1 = [UIAlertAction actionWithTitle:NSLocalizedString(@"EspTouch-ok", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         }];
                         [alert addAction:action1];
                         [self presentViewController:alert animated:YES completion:nil];
                     }
                     
-                    else
-                    {
-//                        [[[UIAlertView alloc]initWithTitle:@"Execute Result" message:@"Esptouch did not find the device" delegate:nil cancelButtonTitle:@"I know" otherButtonTitles:nil]show];
-                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Execute Result" message:@"Esptouch did not find the device" preferredStyle:UIAlertControllerStyleAlert];
+                    else {
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"EspTouch-result-title", nil) message:NSLocalizedString(@"EspTouch-no-results-message", nil) preferredStyle:UIAlertControllerStyleAlert];
                         alert.accessibilityLabel = @"executeResult";
                         
-                        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"I know" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                            
-                        }];
+                        UIAlertAction *action1 = [UIAlertAction actionWithTitle:NSLocalizedString(@"EspTouch-ok", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
                         [alert addAction:action1];
                         [self presentViewController:alert animated:YES completion:nil];
                     }
@@ -225,21 +212,22 @@
 - (void)enableConfirmBtn
 {
     self._isConfirmState = YES;
-    [self._confirmCancelBtn setTitle:@"Confirm" forState:UIControlStateNormal];
+    [self._confirmCancelBtn setTitle:NSLocalizedString(@"EspTouch-confirm", nil) forState:UIControlStateNormal];
 }
 
 // enable cancel button
 - (void)enableCancelBtn
 {
     self._isConfirmState = NO;
-    [self._confirmCancelBtn setTitle:@"Cancel" forState:UIControlStateNormal];
+    [self._confirmCancelBtn setTitle:NSLocalizedString(@"EspTouch-cancel", nil) forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.title = @"EspTouch";
+    
+    self.navigationItem.title = NSLocalizedString(@"EspTouch-Title", nil);
     
     self._isConfirmState = NO;
     self._pwdTextView.delegate = self;
@@ -262,11 +250,9 @@
         [self wifiViewUpdates];
     }];
 }
-
 - (void)viewWillAppear:(BOOL)animated {
     [self systemLightAndDark];
 }
-
 - (void)systemLightAndDark {
     if (@available(iOS 13.0, *)) {
         if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
@@ -315,6 +301,7 @@
 - (void)userLocationAuth {
     if (![self getUserLocationAuth]) {
         _locationManagerSystem = [[CLLocationManager alloc]init];
+        _locationManagerSystem.delegate = self;
         [_locationManagerSystem requestWhenInUseAuthorization];
     }
 }
@@ -324,6 +311,7 @@
     NSMutableDictionary *wifiDic = [NSMutableDictionary dictionaryWithCapacity:0];
     wifiDic[@"ssid"] = ESPTools.getCurrentWiFiSsid;
     wifiDic[@"bssid"] = ESPTools.getCurrentBSSID;
+    NSLog(@"%@", wifiDic);
     return wifiDic;
 }
 
@@ -331,10 +319,13 @@
     BOOL result = NO;
     switch ([CLLocationManager authorizationStatus]) {
         case kCLAuthorizationStatusNotDetermined:
+            NSLog(@"123");
             break;
         case kCLAuthorizationStatusRestricted:
+            NSLog(@"123");
             break;
         case kCLAuthorizationStatusDenied:
+            NSLog(@"123");
             break;
         case kCLAuthorizationStatusAuthorizedAlways:
             result = YES;

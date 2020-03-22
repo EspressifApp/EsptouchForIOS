@@ -32,6 +32,7 @@
     // Key: BSSID, SSID, SSIDDATA
     return [(NSDictionary*)info objectForKey:@"SSID"];
 }
+
 + (nullable NSString *)getCurrentBSSID {
     NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
     id info = nil;
@@ -44,8 +45,8 @@
     // Key: BSSID, SSID, SSIDDATA
     return [(NSDictionary*)info objectForKey:@"BSSID"];
 }
-+ (NSString *)getIPAddress:(BOOL)preferIPv4
-{
+
++ (NSString *)getIPAddress:(BOOL)preferIPv4 {
     NSArray *searchArray = preferIPv4 ?
     @[ IOS_VPN @"/" IP_ADDR_IPv4, IOS_VPN @"/" IP_ADDR_IPv6, IOS_WIFI @"/" IP_ADDR_IPv4, IOS_WIFI @"/" IP_ADDR_IPv6, IOS_CELLULAR @"/" IP_ADDR_IPv4, IOS_CELLULAR @"/" IP_ADDR_IPv6 ] :
     @[ IOS_VPN @"/" IP_ADDR_IPv6, IOS_VPN @"/" IP_ADDR_IPv4, IOS_WIFI @"/" IP_ADDR_IPv6, IOS_WIFI @"/" IP_ADDR_IPv4, IOS_CELLULAR @"/" IP_ADDR_IPv6, IOS_CELLULAR @"/" IP_ADDR_IPv4 ] ;
@@ -81,15 +82,14 @@
             NSRange resultRange = [firstMatch rangeAtIndex:0];
             NSString *result=[ipAddress substringWithRange:resultRange];
             //输出结果
-            NSLog(@"%@",result);
+            NSLog(@"ESPTools 输出结果：%@",result);
             return YES;
         }
     }
     return NO;
 }
 
-+ (NSDictionary *)getIPAddresses
-{
++ (NSDictionary *)getIPAddresses {
     NSMutableDictionary *addresses = [NSMutableDictionary dictionaryWithCapacity:8];
     
     // retrieve the current interfaces - returns 0 on success
@@ -127,8 +127,6 @@
     }
     return [addresses count] ? addresses : nil;
 }
-
-
 
 @end
 

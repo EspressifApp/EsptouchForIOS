@@ -31,4 +31,6 @@
  */
 - (id) initWithIsSuc: (BOOL) isSuc andBssid: (NSString *) bssid andInetAddrData: (NSData *) ipAddrData;
 
+- (NSString *) getAddressString;
+
 @end

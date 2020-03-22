@@ -1,0 +1,54 @@
+
+/* Class = "UISegmentedControl"; 2rZ-fr-WAb.segmentTitles[0] = "Broadcast"; ObjectID = "2rZ-fr-WAb"; */
+"2rZ-fr-WAb.segmentTitles[0]" = "广播";
+
+/* Class = "UISegmentedControl"; 2rZ-fr-WAb.segmentTitles[1] = "Multicast"; ObjectID = "2rZ-fr-WAb"; */
+"2rZ-fr-WAb.segmentTitles[1]" = "组播";
+
+/* Class = "UILabel"; text = "Device count:"; ObjectID = "3AB-B6-TWx"; */
+"3AB-B6-TWx.text" = "设备数量：";
+
+/* Class = "UILabel"; text = "The device is connected after startup\nPlease make sure the network is 2.4G\nThe device only supports 2.4G"; ObjectID = "3Yu-ZJ-GZE"; */
+"3Yu-ZJ-GZE.text" = "设备仅支持 2.4G Wi-Fi\n请确保当前连接的 Wi-Fi 是 2.4G";
+
+/* Class = "UITextField"; accessibilityHint = "wifipsd"; ObjectID = "A8F-Mr-UBB"; */
+"A8F-Mr-UBB.accessibilityHint" = "wifipsd";
+
+/* Class = "UITextField"; accessibilityHint = "deviceCountHint"; ObjectID = "EDz-Bq-CfG"; */
+"EDz-Bq-CfG.accessibilityHint" = "deviceCountHint";
+
+/* Class = "UITextField"; text = "1"; ObjectID = "EDz-Bq-CfG"; */
+"EDz-Bq-CfG.text" = "1";
+
+/* Class = "UILabel"; text = "SSID: "; ObjectID = "MoY-lA-hPe"; */
+"MoY-lA-hPe.text" = "SSID: ";
+
+/* Class = "UILabel"; text = "BSSID: "; ObjectID = "Ogm-Hs-Eb3"; */
+"Ogm-Hs-Eb3.text" = "BSSID: ";
+
+/* Class = "UINavigationItem"; title = "EspTouch"; ObjectID = "Sve-tL-ea7"; */
+"Sve-tL-ea7.title" = "EspTouch";
+
+/* Class = "UILabel"; text = "version"; ObjectID = "Vw4-bg-GBt"; */
+"Vw4-bg-GBt.text" = "版本";
+
+/* Class = "UILabel"; accessibilityHint = "bssidHint"; ObjectID = "go3-nv-ztj"; */
+"go3-nv-ztj.accessibilityHint" = "bssidHint";
+
+/* Class = "UILabel"; text = "bssid"; ObjectID = "go3-nv-ztj"; */
+"go3-nv-ztj.text" = "bssid";
+
+/* Class = "UILabel"; accessibilityHint = "ssidHint"; ObjectID = "tTX-Fj-plv"; */
+"tTX-Fj-plv.accessibilityHint" = "ssidHint";
+
+/* Class = "UILabel"; text = "ssid"; ObjectID = "tTX-Fj-plv"; */
+"tTX-Fj-plv.text" = "ssid";
+
+/* Class = "UIButton"; accessibilityHint = "confirmCancelBtnHint"; ObjectID = "uFO-uG-8Th"; */
+"uFO-uG-8Th.accessibilityHint" = "confirmCancelBtnHint";
+
+/* Class = "UIButton"; normalTitle = "confirm/cancel"; ObjectID = "uFO-uG-8Th"; */
+"uFO-uG-8Th.normalTitle" = "确认/取消";
+
+/* Class = "UILabel"; text = "Password:"; ObjectID = "xMk-gg-OoE"; */
+"xMk-gg-OoE.text" = "密码：";
