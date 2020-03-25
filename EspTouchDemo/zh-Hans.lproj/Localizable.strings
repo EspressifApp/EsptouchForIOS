@@ -12,8 +12,13 @@
 "EspTouch-result-one" = "已经连上 Wi-Fi";
 "EspTouch-result-title" = "执行结果";
 "EspTouch-more-results-message" = "\n有更多结果未显示\n";
-"EspTouch-no-results-message" = "没有找到设备";
+"EspTouch-no-results-message" = "没有找到设备，或者未打开定位无法获取 Wi-Fi 信息";
 "EspTouch-ok" = "确认";
+"EspTouch-location-title" = "定位服务已关闭";
+"EspTouch-location-content" = "您需要打开定位权限，才可以获取到 Wi-Fi 信息进行配网。请到设置 -> 隐私 -> 定位服务中开启 [EspTouch] 定位服务";
+"EspTouch-cancel" = "取消";
+"EspTouch-set" = "设置";
+
 
 "EspTouchV2-Title" = "EspTouch V2";
 "EspTouchV2-SSID" = "SSID:";

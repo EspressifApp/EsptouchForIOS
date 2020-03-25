@@ -30,11 +30,11 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This application use location permissions to get the current connected wi-fi information for device debugging. The application does not collect, store, or record any data obtained through location permissions.</string>
+	<string>请允许APP始终访问位置</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This application use location permissions to get the current connected wi-fi information for device debugging. The application does not collect, store, or record any data obtained through location permissions.</string>
+	<string>请允许APP访问位置</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This application use location permissions to get the current connected wi-fi information for device debugging. The application does not collect, store, or record any data obtained through location permissions.</string>
+	<string>请允许APP在使用期间访问位置</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

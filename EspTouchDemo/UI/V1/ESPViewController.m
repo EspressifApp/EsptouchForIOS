@@ -15,6 +15,7 @@
 #import "AFNetworking.h"
 
 #import "ESPTools.h"
+#import <CoreLocation/CoreLocation.h>
 
 // the three constants are used to hide soft-keyboard when user tap Enter or Return
 #define HEIGHT_KEYBOARD 216
@@ -52,7 +53,7 @@
 
 @end
 
-@interface ESPViewController ()
+@interface ESPViewController ()<CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *_spinner;
 @property (weak, nonatomic) IBOutlet UITextField *_pwdTextView;
@@ -85,11 +86,12 @@
 @property (nonatomic, strong) EspTouchDelegateImpl *_esptouchDelegate;
 
 @property (nonatomic, strong)NSDictionary *netInfo;
+@property (nonatomic, strong)CLLocationManager *locationManagerSystem;
 
 @end
 
 @implementation ESPViewController{
-    CLLocationManager *_locationManagerSystem;
+//    CLLocationManager *_locationManagerSystem;
 }
 
 - (IBAction)tapConfirmCancelBtn:(UIButton *)sender
@@ -311,21 +313,48 @@
     NSMutableDictionary *wifiDic = [NSMutableDictionary dictionaryWithCapacity:0];
     wifiDic[@"ssid"] = ESPTools.getCurrentWiFiSsid;
     wifiDic[@"bssid"] = ESPTools.getCurrentBSSID;
-    NSLog(@"%@", wifiDic);
     return wifiDic;
 }
 
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    BOOL result = NO;
+    switch (status) {
+           case kCLAuthorizationStatusNotDetermined:
+               break;
+           case kCLAuthorizationStatusRestricted:
+               break;
+           case kCLAuthorizationStatusDenied:
+                result = YES;
+               break;
+           case kCLAuthorizationStatusAuthorizedAlways:
+               break;
+           case kCLAuthorizationStatusAuthorizedWhenInUse:
+               break;
+               
+           default:
+               break;
+       }
+    if (result) {
+         UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"EspTouch-location-title", nil) message:NSLocalizedString(@"EspTouch-location-content", nil) preferredStyle:UIAlertControllerStyleAlert];
+         
+         UIAlertAction *action1 = [UIAlertAction actionWithTitle:NSLocalizedString(@"EspTouch-cancel", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
+         UIAlertAction *action2 = [UIAlertAction actionWithTitle:NSLocalizedString(@"EspTouch-set", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+         }];
+         [alert addAction:action1];
+         [alert addAction:action2];
+         [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+ 
 - (BOOL)getUserLocationAuth {
     BOOL result = NO;
     switch ([CLLocationManager authorizationStatus]) {
         case kCLAuthorizationStatusNotDetermined:
-            NSLog(@"123");
             break;
         case kCLAuthorizationStatusRestricted:
-            NSLog(@"123");
             break;
         case kCLAuthorizationStatusDenied:
-            NSLog(@"123");
             break;
         case kCLAuthorizationStatusAuthorizedAlways:
             result = YES;
