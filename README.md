@@ -11,4 +11,3 @@ See [Log](Log.md)
 - Common: [link](Common)
     - It is requirement for both EspTouch and EspTouchV2
 - ESPTouch: [link](ESPTouch)
-- ESPTouchV2: [link](ESPTouchV2)
