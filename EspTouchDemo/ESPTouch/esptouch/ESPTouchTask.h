@@ -2,8 +2,8 @@
 //  ESPTouchTask.h
 //  EspTouchDemo
 //
-//  Created by 白 桦 on 4/14/15.
-//  Copyright (c) 2015 白 桦. All rights reserved.
+//  Created by fby on 4/14/15.
+//  Copyright (c) 2015 fby. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,7 +11,7 @@
 #import "ESPTouchDelegate.h"
 #import "ESPAES.h"
 
-#define ESPTOUCH_VERSION    @"SDK-v0.3.7.0"
+#define ESPTOUCH_VERSION    @"SDK-v1.0.3"
 
 #define DEBUG_ON   YES
 
@@ -28,10 +28,8 @@
  *            the Ap's ssid
  * @param apBssid
  *            the Ap's bssid
- * @param apPassword
+ * @param apPwd
  *            the Ap's password
- * @param isSsidHidden
- *            whether the Ap's ssid is hidden
  */
 - (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd;
 
@@ -47,14 +45,10 @@
  *            the Ap's ssid
  * @param apBssid
  *            the Ap's bssid
- * @param apPassword
+ * @param apPwd
  *            the Ap's password
- * @param isSsidHidden
- *            whether the Ap's ssid is hidden
- * @param timeoutMillisecond(it should be >= 15000+6000)
- * 			  millisecond of total timeout
- * @param context
- *            the Context of the Application
+ * @param timeoutMillisecond (it should be >= 15000+6000)
+ *               millisecond of total timeout
  */
 - (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd andTimeoutMillisecond: (int) timeoutMillisecond;
 
@@ -65,14 +59,12 @@
  *            the Ap's ssid
  * @param apBssid
  *            the Ap's bssid
- * @param apPassword
+ * @param apPwd
  *            the Ap's password
  * @param isSsidHidden
  *            whether the Ap's ssid is hidden
- * @param timeoutMillisecond(it should be >= 15000+6000)
- * 			  millisecond of total timeout
- * @param context
- *            the Context of the Application
+ * @param timeoutMillisecond (it should be >= 15000+6000)
+ *               millisecond of total timeout
  */
 - (id) initWithApSsid: (NSString *)apSsid andApBssid: (NSString *) apBssid andApPwd: (NSString *)apPwd andIsSsidHiden: (BOOL) isSsidHidden andTimeoutMillisecond: (int) timeoutMillisecond  __deprecated_msg("Use initWithApSsid:(NSString *) andApBssid:(NSString *) andApPwd:(NSString *) andTimeoutMillisecond:(int) instead.");
 

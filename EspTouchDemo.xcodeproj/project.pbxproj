@@ -20,6 +20,7 @@
 		077B60351AC036C4000AC046 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 077B60331AC036C4000AC046 /* InfoPlist.strings */; };
 		077B60371AC036C4000AC046 /* EspTouchDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B60361AC036C4000AC046 /* EspTouchDemoTests.m */; };
 		264E417722DC77FD0069139E /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 264E417622DC77FD0069139E /* NetworkExtension.framework */; };
+		26986A5F24348460009885C0 /* ESPCheckAppVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 26986A5E24348460009885C0 /* ESPCheckAppVersion.m */; };
 		8004AFE4242491C900C1706B /* ESPTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 8004AFAB242491C800C1706B /* ESPTools.m */; };
 		8004AFE5242491C900C1706B /* ESP_NetUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8004AFAC242491C800C1706B /* ESP_NetUtil.m */; };
 		8004AFE6242491C900C1706B /* ESP_ByteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8004AFAD242491C800C1706B /* ESP_ByteUtil.m */; };
@@ -74,6 +75,8 @@
 		077B60341AC036C4000AC046 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		077B60361AC036C4000AC046 /* EspTouchDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EspTouchDemoTests.m; sourceTree = "<group>"; };
 		264E417622DC77FD0069139E /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		26986A5D24348460009885C0 /* ESPCheckAppVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPCheckAppVersion.h; sourceTree = "<group>"; };
+		26986A5E24348460009885C0 /* ESPCheckAppVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPCheckAppVersion.m; sourceTree = "<group>"; };
 		8004AFAB242491C800C1706B /* ESPTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPTools.m; sourceTree = "<group>"; };
 		8004AFAC242491C800C1706B /* ESP_NetUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_NetUtil.m; sourceTree = "<group>"; };
 		8004AFAD242491C800C1706B /* ESP_ByteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_ByteUtil.m; sourceTree = "<group>"; };
@@ -232,6 +235,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		26986A5C2434844E009885C0 /* ESPAPPResources */ = {
+			isa = PBXGroup;
+			children = (
+				26986A5D24348460009885C0 /* ESPCheckAppVersion.h */,
+				26986A5E24348460009885C0 /* ESPCheckAppVersion.m */,
+			);
+			path = ESPAPPResources;
+			sourceTree = "<group>";
+		};
 		8004AFA9242491C800C1706B /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +355,7 @@
 		8004B02E242491FF00C1706B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				26986A5C2434844E009885C0 /* ESPAPPResources */,
 				8004B02F242491FF00C1706B /* V1 */,
 			);
 			path = UI;
@@ -479,6 +492,7 @@
 				8004AFED242491C900C1706B /* AFURLRequestSerialization.m in Sources */,
 				8004AFE7242491C900C1706B /* ESP_WifiUtil.m in Sources */,
 				8004B03D242491FF00C1706B /* ESPViewController.m in Sources */,
+				26986A5F24348460009885C0 /* ESPCheckAppVersion.m in Sources */,
 				8004AFE8242491C900C1706B /* ESP_CRC8.m in Sources */,
 				8004B014242491D600C1706B /* ESPUDPSocketServer.m in Sources */,
 				8004B016242491D600C1706B /* ESPGuideCode.m in Sources */,
@@ -664,8 +678,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
 				INFOPLIST_FILE = "EspTouchDemo/EspTouchDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MARKETING_VERSION = 1.3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.espressif.app.esptouch;
 				PRODUCT_NAME = EspTouchDemo;
 				PROVISIONING_PROFILE = "";
@@ -688,9 +702,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EspTouchDemo/EspTouchDemo-Prefix.pch";
 				INFOPLIST_FILE = "EspTouchDemo/EspTouchDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.3.2;
-				PRODUCT_BUNDLE_IDENTIFIER = comcom.espressif.esptouch;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MARKETING_VERSION = 1.3.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.espressif.app.esptouch;
 				PRODUCT_NAME = EspTouchDemo;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

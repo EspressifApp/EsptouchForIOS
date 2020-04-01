@@ -2,25 +2,27 @@
 //  ESPViewController.m
 //  EspTouchDemo
 //
-//  Created by 白 桦 on 3/23/15.
-//  Copyright (c) 2015 白 桦. All rights reserved.
+//  Created by fby on 3/23/15.
+//  Copyright (c) 2015 fby. All rights reserved.
 //
 
 #import "ESPViewController.h"
 #import "ESPTouchTask.h"
-#import "ESPTouchResult.h"
-#import "ESP_NetUtil.h"
-#import "ESPTouchDelegate.h"
-#import "ESPAES.h"
+//#import "ESPTouchResult.h"
+//#import "ESP_NetUtil.h"
+//#import "ESPTouchDelegate.h"
+//#import "ESPAES.h"
 #import "AFNetworking.h"
 
 #import "ESPTools.h"
 #import <CoreLocation/CoreLocation.h>
+#import "ESPCheckAppVersion.h"
 
 // the three constants are used to hide soft-keyboard when user tap Enter or Return
 #define HEIGHT_KEYBOARD 216
 #define HEIGHT_TEXT_FIELD 30
 #define HEIGHT_SPACE (6+HEIGHT_TEXT_FIELD)
+#define ESPTouchAppleID @"Apple ID"
 
 @interface EspTouchDelegateImpl : NSObject<ESPTouchDelegate>
 
@@ -87,6 +89,7 @@
 
 @property (nonatomic, strong)NSDictionary *netInfo;
 @property (nonatomic, strong)CLLocationManager *locationManagerSystem;
+@property (nonatomic, strong)UIAlertController *versionAlert;
 
 @end
 
@@ -242,6 +245,7 @@
     self._versionLabel.text = [NSString stringWithFormat:@"APP-v%@ / %@",currentVersion, ESPTOUCH_VERSION];
     [self enableConfirmBtn];
     
+    [self checkAppVersion];
     [self userLocationAuth];
     //程序进入前台并处于活动状态调用
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wifiViewUpdates) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -264,6 +268,21 @@
         }
     } else {
         [self systemLight];
+    }
+}
+
+- (void)checkAppVersion {
+    ESPVersionStatus espVersionStatus = [[ESPCheckAppVersion sharedInstance] checkAppVersion:ESPTouchAppleID];
+    if (espVersionStatus == ESPVersionAscending) {
+        self.versionAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"EspTouch-version-title", nil) message:NSLocalizedString(@"EspTouch-version-content", nil) preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:NSLocalizedString(@"EspTouch-cancel", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
+        UIAlertAction *action2 = [UIAlertAction actionWithTitle:NSLocalizedString(@"EspTouch-update", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [[ESPCheckAppVersion sharedInstance] appVersionUpdate:ESPTouchAppleID];
+        }];
+        [_versionAlert addAction:action1];
+        [_versionAlert addAction:action2];
+        [self presentViewController:_versionAlert animated:YES completion:nil];
     }
 }
 
@@ -339,11 +358,16 @@
          
          UIAlertAction *action1 = [UIAlertAction actionWithTitle:NSLocalizedString(@"EspTouch-cancel", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
          UIAlertAction *action2 = [UIAlertAction actionWithTitle:NSLocalizedString(@"EspTouch-set", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+             [[ESPCheckAppVersion sharedInstance] gotoSystemSetting];
          }];
          [alert addAction:action1];
          [alert addAction:action2];
-         [self presentViewController:alert animated:YES completion:nil];
+        if (_versionAlert == nil) {
+            [self presentViewController:alert animated:YES completion:nil];
+        }else {
+            [self.versionAlert presentViewController:alert animated:YES completion:nil];
+        }
+         
     }
 }
  

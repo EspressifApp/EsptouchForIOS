@@ -2,8 +2,8 @@
 //  ESP_WifiUtil.h
 //  EspTouchDemo
 //
-//  Created by 白 桦 on 6/15/16.
-//  Copyright © 2016 白 桦. All rights reserved.
+//  Created by fby on 6/15/16.
+//  Copyright © 2016 fby. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

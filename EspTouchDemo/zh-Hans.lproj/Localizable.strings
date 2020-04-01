@@ -19,6 +19,10 @@
 "EspTouch-cancel" = "取消";
 "EspTouch-set" = "设置";
 
+"EspTouch-version-title" = "版本有更新";
+"EspTouch-version-content" = "检测到新版本，请立即更新";
+"EspTouch-update" = "更新";
+
 
 "EspTouchV2-Title" = "EspTouch V2";
 "EspTouchV2-SSID" = "SSID:";

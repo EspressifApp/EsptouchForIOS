@@ -2,8 +2,8 @@
 //  ESPNetUtil.m
 //  EspTouchDemo
 //
-//  Created by 白 桦 on 5/15/15.
-//  Copyright (c) 2015 白 桦. All rights reserved.
+//  Created by fby on 5/15/15.
+//  Copyright (c) 2015 fby. All rights reserved.
 //
 
 #import "ESP_NetUtil.h"

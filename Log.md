@@ -1,9 +1,5 @@
 # Update Log
 
-## v1.3.3
-
-- Add Chinese translation
-
 ## v1.3.2
 
 - Fix content display problem in Dark mode
