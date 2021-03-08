@@ -6,22 +6,19 @@
   Copyright © 2020 Espressif. All rights reserved.
 */
 
+"EspTouch-Main-Title" = "Main";
 "EspTouch-Title" = "EspTouch";
 "EspTouch-confirm" = "Confirm";
 "EspTouch-cancel" = "Cancel";
 "EspTouch-result-one" = "has connected the Wi-Fi";
 "EspTouch-result-title" = "Execute Result";
 "EspTouch-more-results-message" = "\nthere's %lu more result(s) without showing\n";
-"EspTouch-no-results-message" = "Not found any devices,or location not turned on can't get Wi-Fi information";
+"EspTouch-no-results-message" = "Not found any devices";
 "EspTouch-ok" = "OK";
 "EspTouch-location-title" = "Location service is down";
 "EspTouch-location-content" = "You need to open the location permission to get Wi Fi information. Please go to settings - > Privacy - > location service to open the [esptouch] location service";
 "EspTouch-cancel" = "cancel";
 "EspTouch-set" = "Set up";
-
-"EspTouch-version-title" = "Version has been updated";
-"EspTouch-version-content" = "New version detected, please update immediately";
-"EspTouch-update" = "Update";
 
 "EspTouchV2-Title" = "EspTouch V2";
 "EspTouchV2-SSID" = "SSID:";

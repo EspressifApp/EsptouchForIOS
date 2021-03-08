@@ -9,6 +9,7 @@
 #import "ESPAppDelegate.h"
 #import "ESPViewController.h"
 #import "ESP_NetUtil.h"
+#import "ESPBaseViewController.h"
 
 @implementation ESPAppDelegate
 
@@ -17,9 +18,7 @@
     // Override point for customization after application launch.
     [ESP_NetUtil tryOpenNetworkPermission];
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"espViewController"];
-    UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:viewController];
+    UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:[ESPBaseViewController new]];
     self.window.rootViewController = navigationController;
     navigationController.navigationBarHidden = NO;
     [self.window makeKeyAndVisible];

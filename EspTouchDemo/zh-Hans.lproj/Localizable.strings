@@ -6,29 +6,25 @@
   Copyright © 2020 Espressif. All rights reserved.
 */
 
+"EspTouch-Main-Title" = "主页";
 "EspTouch-Title" = "EspTouch";
 "EspTouch-confirm" = "确认";
 "EspTouch-cancel" = "取消";
 "EspTouch-result-one" = "已经连上 Wi-Fi";
 "EspTouch-result-title" = "执行结果";
 "EspTouch-more-results-message" = "\n有更多结果未显示\n";
-"EspTouch-no-results-message" = "没有找到设备，或者未打开定位无法获取 Wi-Fi 信息";
+"EspTouch-no-results-message" = "没有找到设备";
 "EspTouch-ok" = "确认";
 "EspTouch-location-title" = "定位服务已关闭";
 "EspTouch-location-content" = "您需要打开定位权限，才可以获取到 Wi-Fi 信息进行配网。请到设置 -> 隐私 -> 定位服务中开启 [EspTouch] 定位服务";
 "EspTouch-cancel" = "取消";
 "EspTouch-set" = "设置";
 
-"EspTouch-version-title" = "版本有更新";
-"EspTouch-version-content" = "检测到新版本，请立即更新";
-"EspTouch-update" = "更新";
-
-
 "EspTouchV2-Title" = "EspTouch V2";
 "EspTouchV2-SSID" = "SSID:";
 "EspTouchV2-BSSID" = "BSSID:";
 "EspTouchV2-Password" = "密码：";
-"EspTouchV2-AES-Key" = "AES 键：";
+"EspTouchV2-AES-Key" = "AES 密钥：";
 "EspTouchV2-Custom-Data" = "自定义数据：";
 "EspTouchV2-confirm" = "确认";
 "EspTouchV2-no-wifi-message" = "没有连上 Wi-Fi";

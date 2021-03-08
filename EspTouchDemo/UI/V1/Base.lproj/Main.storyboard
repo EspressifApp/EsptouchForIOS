@@ -65,21 +65,24 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMk-gg-OoE">
-                                <rect key="frame" x="20" y="149" width="78.666666666666671" height="20.666666666666657"/>
+                                <rect key="frame" x="20" y="155" width="78.666666666666671" height="20.666666666666657"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A8F-Mr-UBB">
-                                <rect key="frame" x="103.66666666666666" y="145" width="290.33333333333337" height="34"/>
+                                <rect key="frame" x="103.66666666666666" y="145" width="290.33333333333337" height="45"/>
                                 <accessibility key="accessibilityConfiguration" hint="wifipsd" identifier="wifiPassword">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="gde-OL-SqO"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device count:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3AB-B6-TWx">
-                                <rect key="frame" x="20" y="199" width="105" height="20.666666666666657"/>
+                                <rect key="frame" x="20" y="215" width="105" height="20.666666666666657"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -96,10 +99,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EDz-Bq-CfG">
-                                <rect key="frame" x="133" y="194" width="71" height="34"/>
+                                <rect key="frame" x="133" y="205" width="71" height="45"/>
                                 <accessibility key="accessibilityConfiguration" hint="deviceCountHint" identifier="deviceCountId"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="71" id="jRx-eF-pbv"/>
+                                    <constraint firstAttribute="height" constant="45" id="q08-kM-wPv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -114,7 +118,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2rZ-fr-WAb">
-                                <rect key="frame" x="20" y="243" width="197" height="32"/>
+                                <rect key="frame" x="20" y="270" width="197" height="32"/>
                                 <segments>
                                     <segment title="Broadcast"/>
                                     <segment title="Multicast"/>
@@ -129,18 +133,31 @@ The device only supports 2.4G</string>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rmj-a7-Rem">
+                                <rect key="frame" x="349" y="145" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="6WN-dn-Khd"/>
+                                    <constraint firstAttribute="height" constant="45" id="i3y-mK-hlf"/>
+                                </constraints>
+                                <state key="normal" image="eyeClose"/>
+                                <connections>
+                                    <action selector="pwdTextSwitch:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="AJw-yY-wUD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2rZ-fr-WAb" firstAttribute="leading" secondItem="xMk-gg-OoE" secondAttribute="leading" id="02z-Ye-lbl"/>
                             <constraint firstItem="A8F-Mr-UBB" firstAttribute="top" secondItem="go3-nv-ztj" secondAttribute="bottom" constant="28" id="2re-bu-Q6V"/>
-                            <constraint firstItem="3AB-B6-TWx" firstAttribute="top" secondItem="A8F-Mr-UBB" secondAttribute="bottom" constant="20" id="6Fd-FV-F3G"/>
+                            <constraint firstItem="3AB-B6-TWx" firstAttribute="top" secondItem="A8F-Mr-UBB" secondAttribute="bottom" constant="25" id="6Fd-FV-F3G"/>
                             <constraint firstItem="EDz-Bq-CfG" firstAttribute="leading" secondItem="3AB-B6-TWx" secondAttribute="trailing" constant="8" symbolic="YES" id="6aP-KB-mWQ"/>
                             <constraint firstItem="2rZ-fr-WAb" firstAttribute="leading" secondItem="Ogm-Hs-Eb3" secondAttribute="leading" id="7Xp-k2-dwX"/>
                             <constraint firstItem="Ogm-Hs-Eb3" firstAttribute="top" secondItem="MoY-lA-hPe" secondAttribute="bottom" constant="15" id="8hm-4W-bXR"/>
                             <constraint firstItem="go3-nv-ztj" firstAttribute="trailing" secondItem="tTX-Fj-plv" secondAttribute="trailing" id="9ft-0A-7K7"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Vw4-bg-GBt" secondAttribute="trailing" constant="20" symbolic="YES" id="EeR-f9-ens"/>
+                            <constraint firstItem="Rmj-a7-Rem" firstAttribute="top" secondItem="A8F-Mr-UBB" secondAttribute="top" id="F6D-g7-dVH"/>
                             <constraint firstAttribute="trailing" secondItem="3Yu-ZJ-GZE" secondAttribute="trailing" constant="10" id="HOG-t1-fbD"/>
+                            <constraint firstItem="Rmj-a7-Rem" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xMk-gg-OoE" secondAttribute="trailing" constant="8" symbolic="YES" id="IQe-PR-WOU"/>
                             <constraint firstItem="tTX-Fj-plv" firstAttribute="leading" secondItem="MoY-lA-hPe" secondAttribute="trailing" constant="5" id="JD2-7g-21J"/>
                             <constraint firstItem="2rZ-fr-WAb" firstAttribute="leading" secondItem="uFO-uG-8Th" secondAttribute="leading" id="JLS-fb-ZGY"/>
                             <constraint firstItem="EDz-Bq-CfG" firstAttribute="top" secondItem="A8F-Mr-UBB" secondAttribute="bottom" constant="15" id="KmR-Kv-LKh"/>
@@ -148,7 +165,7 @@ The device only supports 2.4G</string>
                             <constraint firstItem="1FY-lk-6mW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" symbolic="YES" id="Wn7-jI-VGJ"/>
                             <constraint firstItem="uFO-uG-8Th" firstAttribute="firstBaseline" secondItem="3Yu-ZJ-GZE" secondAttribute="baseline" constant="50" id="XBJ-OZ-c8S"/>
                             <constraint firstItem="tTX-Fj-plv" firstAttribute="top" secondItem="Gqw-gK-P3L" secondAttribute="bottom" constant="16" id="XXc-hm-lsC"/>
-                            <constraint firstItem="xMk-gg-OoE" firstAttribute="top" secondItem="go3-nv-ztj" secondAttribute="bottom" constant="32" id="aIh-zv-9DH"/>
+                            <constraint firstItem="xMk-gg-OoE" firstAttribute="top" secondItem="go3-nv-ztj" secondAttribute="bottom" constant="38" id="aIh-zv-9DH"/>
                             <constraint firstItem="go3-nv-ztj" firstAttribute="top" secondItem="tTX-Fj-plv" secondAttribute="bottom" constant="15" id="arn-1a-32f"/>
                             <constraint firstItem="2rZ-fr-WAb" firstAttribute="leading" secondItem="MoY-lA-hPe" secondAttribute="leading" id="axd-tD-rcK"/>
                             <constraint firstItem="4HN-HJ-Yoc" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="bhF-hI-8HA"/>
@@ -158,13 +175,14 @@ The device only supports 2.4G</string>
                             <constraint firstItem="Vw4-bg-GBt" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="gFd-GB-8ey"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uFO-uG-8Th" secondAttribute="trailing" id="ghC-Er-N2M"/>
                             <constraint firstItem="go3-nv-ztj" firstAttribute="leading" secondItem="Ogm-Hs-Eb3" secondAttribute="trailing" constant="5" id="jAN-mZ-a84"/>
+                            <constraint firstItem="Rmj-a7-Rem" firstAttribute="trailing" secondItem="A8F-Mr-UBB" secondAttribute="trailing" id="jVn-xh-qZ4"/>
                             <constraint firstItem="A8F-Mr-UBB" firstAttribute="trailing" secondItem="uFO-uG-8Th" secondAttribute="trailing" id="kfr-8B-XF4"/>
                             <constraint firstItem="1FY-lk-6mW" firstAttribute="top" secondItem="Gqw-gK-P3L" secondAttribute="bottom" symbolic="YES" id="mxd-q1-484"/>
                             <constraint firstItem="4HN-HJ-Yoc" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="n9j-KE-UIH"/>
                             <constraint firstItem="2rZ-fr-WAb" firstAttribute="trailing" secondItem="4HN-HJ-Yoc" secondAttribute="trailing" id="pTj-oq-prQ"/>
                             <constraint firstItem="Vw4-bg-GBt" firstAttribute="top" secondItem="uFO-uG-8Th" secondAttribute="bottom" constant="8" id="pkd-of-w5H"/>
                             <constraint firstItem="uFO-uG-8Th" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="q7M-dK-e9D"/>
-                            <constraint firstItem="2rZ-fr-WAb" firstAttribute="top" secondItem="EDz-Bq-CfG" secondAttribute="bottom" constant="15" id="qhI-h7-Lyp"/>
+                            <constraint firstItem="2rZ-fr-WAb" firstAttribute="top" secondItem="EDz-Bq-CfG" secondAttribute="bottom" constant="20" id="qhI-h7-Lyp"/>
                             <constraint firstItem="1FY-lk-6mW" firstAttribute="centerX" secondItem="4HN-HJ-Yoc" secondAttribute="centerX" id="xN5-Sj-xb1"/>
                             <constraint firstItem="MoY-lA-hPe" firstAttribute="top" secondItem="Gqw-gK-P3L" secondAttribute="bottom" constant="16" id="ySP-vh-qCz"/>
                         </constraints>
@@ -179,6 +197,7 @@ The device only supports 2.4G</string>
                         <outlet property="bssidLabel" destination="go3-nv-ztj" id="vIJ-RR-1mU"/>
                         <outlet property="bssidTitle" destination="Ogm-Hs-Eb3" id="4La-Po-eBX"/>
                         <outlet property="deviceCountTitle" destination="3AB-B6-TWx" id="wa5-ua-pA4"/>
+                        <outlet property="pwdTextSwitchBtn" destination="Rmj-a7-Rem" id="kHA-a5-y3g"/>
                         <outlet property="pwdTitle" destination="xMk-gg-OoE" id="es5-w9-6ow"/>
                         <outlet property="reminderContent" destination="3Yu-ZJ-GZE" id="oNt-A0-01H"/>
                         <outlet property="ssidLabel" destination="tTX-Fj-plv" id="zoU-ng-se5"/>
@@ -190,4 +209,7 @@ The device only supports 2.4G</string>
             <point key="canvasLocation" x="63.200000000000003" y="115.59220389805098"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="eyeClose" width="32" height="32"/>
+    </resources>
 </document>

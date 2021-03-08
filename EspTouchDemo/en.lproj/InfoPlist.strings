@@ -1,2 +1,10 @@
-/* Localized versions of Info.plist keys */
+/*
+  InfoPlist.strings
+  EspTouchDemo
 
+  Created by fby on 2020/6/11.
+  Copyright © 2020 espressif. All rights reserved.
+*/
+NSLocationAlwaysAndWhenInUseUsageDescription = "This application uses location permissions to obtain currently connected Wi-Fi information. This application does not collect, store or record any location data.";
+NSLocationAlwaysUsageDescription = "This application uses location permissions to obtain currently connected Wi-Fi information. This application does not collect, store or record any location data.";
+NSLocationWhenInUseUsageDescription = "This application uses location permissions to obtain currently connected Wi-Fi information. This application does not collect, store or record any location data.";

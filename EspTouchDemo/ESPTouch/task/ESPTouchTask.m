@@ -62,12 +62,10 @@
 
 - (id)initWithApSsid:(NSString *)apSsid andApBssid:(NSString *)apBssid andApPwd:(NSString *)apPwd andAES:(ESPAES *)aes
 {
-    self = [super init];
     NSLog(@"Welcome Esptouch %@",ESPTOUCH_VERSION);
     if (apSsid==nil||[apSsid isEqualToString:@""])
     {
         perror("ESPTouchTask initWithApSsid() apSsid shouldn't be null or empty");
-        return self;
     }
     // the apSsid should be null or empty
     assert(apSsid!=nil&&![apSsid isEqualToString:@""]);
@@ -76,6 +74,7 @@
         apPwd = @"";
     }
     
+    self = [super init];
     if (self)
     {
         if (DEBUG_ON)

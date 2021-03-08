@@ -8,21 +8,20 @@
 
 #import "ESPViewController.h"
 #import "ESPTouchTask.h"
-//#import "ESPTouchResult.h"
-//#import "ESP_NetUtil.h"
-//#import "ESPTouchDelegate.h"
-//#import "ESPAES.h"
+#import "ESPTouchResult.h"
+#import "ESP_NetUtil.h"
+#import "ESPTouchDelegate.h"
+#import "ESPAES.h"
 #import "AFNetworking.h"
 
 #import "ESPTools.h"
-#import <CoreLocation/CoreLocation.h>
-#import "ESPCheckAppVersion.h"
 
 // the three constants are used to hide soft-keyboard when user tap Enter or Return
 #define HEIGHT_KEYBOARD 216
 #define HEIGHT_TEXT_FIELD 30
 #define HEIGHT_SPACE (6+HEIGHT_TEXT_FIELD)
-#define ESPTouchAppleID @"Apple ID"
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
 @interface EspTouchDelegateImpl : NSObject<ESPTouchDelegate>
 
@@ -51,11 +50,13 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showAlertWithResult:result];
     });
+    NSString *message = [NSString stringWithFormat:@"%@ %@" , result.bssid, NSLocalizedString(@"EspTouch-result-one", nil)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"deviceConfigResult" object:message];
 }
 
 @end
 
-@interface ESPViewController ()<CLLocationManagerDelegate>
+@interface ESPViewController ()
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *_spinner;
 @property (weak, nonatomic) IBOutlet UITextField *_pwdTextView;
@@ -69,6 +70,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *deviceCountTitle;
 @property (weak, nonatomic) IBOutlet UILabel *reminderContent;
 
+@property (weak, nonatomic) IBOutlet UIButton *pwdTextSwitchBtn;
 
 // to cancel ESPTouchTask when
 @property (atomic, strong) ESPTouchTask *_esptouchTask;
@@ -88,17 +90,27 @@
 @property (nonatomic, strong) EspTouchDelegateImpl *_esptouchDelegate;
 
 @property (nonatomic, strong)NSDictionary *netInfo;
-@property (nonatomic, strong)CLLocationManager *locationManagerSystem;
-@property (nonatomic, strong)UIAlertController *versionAlert;
+
+@property (nonatomic, strong)UITextView *configNotify;
 
 @end
 
-@implementation ESPViewController{
-//    CLLocationManager *_locationManagerSystem;
+@implementation ESPViewController
+
+- (IBAction)pwdTextSwitch:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [_pwdTextSwitchBtn setImage:[UIImage imageNamed:@"eyeOpen"] forState:0];
+        __pwdTextView.secureTextEntry = NO;
+    } else {
+        [_pwdTextSwitchBtn setImage:[UIImage imageNamed:@"eyeClose"] forState:0];
+        __pwdTextView.secureTextEntry = YES;
+    }
 }
 
 - (IBAction)tapConfirmCancelBtn:(UIButton *)sender
 {
+    self.configNotify.text = @"";
     [self tapConfirmForResults];
 }
 
@@ -154,6 +166,7 @@
                             [mutableStr appendString:NSLocalizedString(@"EspTouch-more-results-message", nil)];
                         }
                         
+//                        [self showMessage:mutableStr];
                         UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"EspTouch-result-title", nil) message:mutableStr preferredStyle:UIAlertControllerStyleAlert];
                         alert.accessibilityLabel = @"executeResult";
                         
@@ -164,6 +177,7 @@
                     }
                     
                     else {
+                        [self showMessage:NSLocalizedString(@"EspTouch-no-results-message", nil)];
                         UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"EspTouch-result-title", nil) message:NSLocalizedString(@"EspTouch-no-results-message", nil) preferredStyle:UIAlertControllerStyleAlert];
                         alert.accessibilityLabel = @"executeResult";
                         
@@ -227,6 +241,18 @@
     [self._confirmCancelBtn setTitle:NSLocalizedString(@"EspTouch-cancel", nil) forState:UIControlStateNormal];
 }
 
+- (void)showMessage:(NSString *)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.configNotify.text = [self.configNotify.text stringByAppendingFormat:@"%@\n\n",message];
+        self.configNotify.accessibilityLabel = message;
+        [self.configNotify scrollRectToVisible:CGRectMake(0, self.configNotify.contentSize.height -15, self.configNotify.contentSize.width, 10) animated:YES];
+    });
+}
+- (void)deviceConfigResult:(NSNotification *)notifi {
+    [self showMessage:notifi.object];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -245,8 +271,16 @@
     self._versionLabel.text = [NSString stringWithFormat:@"APP-v%@ / %@",currentVersion, ESPTOUCH_VERSION];
     [self enableConfirmBtn];
     
-    [self checkAppVersion];
-    [self userLocationAuth];
+    self.configNotify = [[UITextView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT/2, 120, SCREEN_HEIGHT/2)];
+    self.configNotify.backgroundColor = [UIColor clearColor];
+    self.configNotify.textColor = [UIColor clearColor];
+    self.configNotify.font = [UIFont systemFontOfSize:6.0];
+    [self.configNotify setEditable:NO];
+    self.configNotify.accessibilityIdentifier = @"config_result";
+    [self.view addSubview:self.configNotify];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceConfigResult:) name:@"deviceConfigResult" object:nil];
+    
     //程序进入前台并处于活动状态调用
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wifiViewUpdates) name:UIApplicationDidBecomeActiveNotification object:nil];
     //注册Wi-Fi变化通知
@@ -271,21 +305,6 @@
     }
 }
 
-- (void)checkAppVersion {
-    ESPVersionStatus espVersionStatus = [[ESPCheckAppVersion sharedInstance] checkAppVersion:ESPTouchAppleID];
-    if (espVersionStatus == ESPVersionAscending) {
-        self.versionAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"EspTouch-version-title", nil) message:NSLocalizedString(@"EspTouch-version-content", nil) preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *action1 = [UIAlertAction actionWithTitle:NSLocalizedString(@"EspTouch-cancel", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
-        UIAlertAction *action2 = [UIAlertAction actionWithTitle:NSLocalizedString(@"EspTouch-update", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [[ESPCheckAppVersion sharedInstance] appVersionUpdate:ESPTouchAppleID];
-        }];
-        [_versionAlert addAction:action1];
-        [_versionAlert addAction:action2];
-        [self presentViewController:_versionAlert animated:YES completion:nil];
-    }
-}
-
 - (void)systemLight {
     self.view.backgroundColor = [UIColor whiteColor];
     self.ssidLabel.textColor = [UIColor blackColor];
@@ -297,6 +316,7 @@
     self.reminderContent.textColor = [UIColor blackColor];
     self._versionLabel.textColor = [UIColor blackColor];
     self._spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    self._spinner.accessibilityIdentifier = @"ESPTouch_Loading";
 }
 
 - (void)systemDark {
@@ -310,6 +330,7 @@
     self.reminderContent.textColor = [UIColor whiteColor];
     self._versionLabel.textColor = [UIColor whiteColor];
     self._spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    self._spinner.accessibilityIdentifier = @"ESPTouch_Loading";
 }
 
 - (void)wifiViewUpdates {
@@ -317,14 +338,6 @@
     self.netInfo = [self fetchNetInfo];
     self.ssidLabel.text = [_netInfo objectForKey:@"ssid"];
     self.bssidLabel.text = [_netInfo objectForKey:@"bssid"];
-}
-
-- (void)userLocationAuth {
-    if (![self getUserLocationAuth]) {
-        _locationManagerSystem = [[CLLocationManager alloc]init];
-        _locationManagerSystem.delegate = self;
-        [_locationManagerSystem requestWhenInUseAuthorization];
-    }
 }
 
 - (NSDictionary *)fetchNetInfo
@@ -335,63 +348,6 @@
     return wifiDic;
 }
 
-- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    BOOL result = NO;
-    switch (status) {
-           case kCLAuthorizationStatusNotDetermined:
-               break;
-           case kCLAuthorizationStatusRestricted:
-               break;
-           case kCLAuthorizationStatusDenied:
-                result = YES;
-               break;
-           case kCLAuthorizationStatusAuthorizedAlways:
-               break;
-           case kCLAuthorizationStatusAuthorizedWhenInUse:
-               break;
-               
-           default:
-               break;
-       }
-    if (result) {
-         UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"EspTouch-location-title", nil) message:NSLocalizedString(@"EspTouch-location-content", nil) preferredStyle:UIAlertControllerStyleAlert];
-         
-         UIAlertAction *action1 = [UIAlertAction actionWithTitle:NSLocalizedString(@"EspTouch-cancel", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
-         UIAlertAction *action2 = [UIAlertAction actionWithTitle:NSLocalizedString(@"EspTouch-set", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-             [[ESPCheckAppVersion sharedInstance] gotoSystemSetting];
-         }];
-         [alert addAction:action1];
-         [alert addAction:action2];
-        if (_versionAlert == nil) {
-            [self presentViewController:alert animated:YES completion:nil];
-        }else {
-            [self.versionAlert presentViewController:alert animated:YES completion:nil];
-        }
-         
-    }
-}
- 
-- (BOOL)getUserLocationAuth {
-    BOOL result = NO;
-    switch ([CLLocationManager authorizationStatus]) {
-        case kCLAuthorizationStatusNotDetermined:
-            break;
-        case kCLAuthorizationStatusRestricted:
-            break;
-        case kCLAuthorizationStatusDenied:
-            break;
-        case kCLAuthorizationStatusAuthorizedAlways:
-            result = YES;
-            break;
-        case kCLAuthorizationStatusAuthorizedWhenInUse:
-            result = YES;
-            break;
-            
-        default:
-            break;
-    }
-    return result;
-}
 
 #pragma mark - the follow codes are just to make soft-keyboard disappear at necessary time
 
