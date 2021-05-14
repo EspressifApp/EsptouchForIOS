@@ -7,6 +7,7 @@
 //
 
 #import "ESPTouchTaskParameter.h"
+#import "ESP_NetUtil.h"
 
 @interface ESPTaskParameter()
 @property (nonatomic,assign) long intervalGuideCodeMillisecond;
@@ -147,7 +148,9 @@ static int _datagramCount = 0;
 {
     if (_isIPv4Supported0) {
         if (self.broadcast) {
-            return @"255.255.255.255";
+            NSString *localInetAddr4 = [ESP_NetUtil getLocalIPv4];
+            NSArray *arr = [localInetAddr4 componentsSeparatedByString:@"."];
+            return [NSString stringWithFormat:@"%@.%@.%@.255",arr[0], arr[1], arr[2]];
         } else {
             int count = [self __getNextDatagramCount];
             return [NSString stringWithFormat: @"234.%d.%d.%d", count, count, count];

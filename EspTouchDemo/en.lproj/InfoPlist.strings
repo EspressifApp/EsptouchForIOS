@@ -8,3 +8,4 @@
 NSLocationAlwaysAndWhenInUseUsageDescription = "This application uses location permissions to obtain currently connected Wi-Fi information. This application does not collect, store or record any location data.";
 NSLocationAlwaysUsageDescription = "This application uses location permissions to obtain currently connected Wi-Fi information. This application does not collect, store or record any location data.";
 NSLocationWhenInUseUsageDescription = "This application uses location permissions to obtain currently connected Wi-Fi information. This application does not collect, store or record any location data.";
+NSLocalNetworkUsageDescription = "The application needs to access the local network, allowing UDP to send broadcasts.";

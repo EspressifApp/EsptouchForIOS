@@ -133,7 +133,7 @@
                      andInterval: (long) interval
 {
     // init socket parameters
-    bool isBroadcast = [targetHostName isEqualToString:@"255.255.255.255"];
+    bool isBroadcast = [targetHostName hasSuffix:@"255"];
     socklen_t addr_len;
     struct sockaddr_in target_addr;
     memset(&target_addr, 0, sizeof(target_addr));

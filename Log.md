@@ -1,5 +1,14 @@
 # Update Log
 
+## v2.2.0
+
+- iOS 14.5 UDP data sending bug fixed
+
+## v2.1.0
+
+- iOS 14.0 compatibility optimization
+- App replaces new logo
+
 ## v1.3.3
 
 - Add Chinese translation

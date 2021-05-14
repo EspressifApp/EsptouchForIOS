@@ -1,10 +1,6 @@
 # EspTouch for iOS
 To configure network for Esp8266/Esp32 devices, the devices need run on smart-config.
 
-## EspressifTouchSDK
-
-See [EspressifTouchSDK](https://github.com/EspressifApps/EspressifTouchSDK)
-
 ## Licence
 See [Licence](ESPRESSIF_MIT_LICENSE_V1.LICENSE)
 
@@ -12,6 +8,7 @@ See [Licence](ESPRESSIF_MIT_LICENSE_V1.LICENSE)
 See [Log](Log.md)
 
 ## Modules
-- Common: [link](EspTouchDemo/Common)
+- Common: [link](Common)
     - It is requirement for both EspTouch and EspTouchV2
-- ESPTouch: [link](EspTouchDemo/ESPTouch)
+- ESPTouch: [link](ESPTouch)
+- ESPTouchV2: [link](ESPTouchV2)

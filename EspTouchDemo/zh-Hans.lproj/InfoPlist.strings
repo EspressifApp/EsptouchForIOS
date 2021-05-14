@@ -8,3 +8,4 @@
 NSLocationAlwaysAndWhenInUseUsageDescription = "此应用程序使用位置权限来获取当前连接的Wi-Fi信息。 此应用程序不收集，存储或记录任何位置数据。";
 NSLocationAlwaysUsageDescription = "此应用程序使用位置权限来获取当前连接的Wi-Fi信息。 此应用程序不收集，存储或记录任何位置数据。";
 NSLocationWhenInUseUsageDescription = "此应用程序使用位置权限来获取当前连接的Wi-Fi信息。 此应用程序不收集，存储或记录任何位置数据。";
+NSLocalNetworkUsageDescription = "应用程序需要访问本地网络，允许 UDP 发送广播";

@@ -11,6 +11,7 @@
 #import "ESPProvisioningResult.h"
 #import "ESPProvisioningParams.h"
 #import "ESPPacketUtils.h"
+#import "ESP_NetUtil.h"
 
 #define SYNC_INTERVAL 0.1
 #define PROVISION_INTERVAL 0.015
@@ -190,7 +191,10 @@ static const long TAG_PROVISION = 2;
         }
         
         [_syncCondition lock];
-        NSString *address = _syncSocket.isIPv4 ? DEVICE_ADDRESS4 : DEVICE_ADDRESS6;
+        NSString *localInetAddr4 = [ESP_NetUtil getLocalIPv4];
+        NSArray *arr = [localInetAddr4 componentsSeparatedByString:@"."];
+        NSString *deviceAddress4 = [NSString stringWithFormat:@"%@.%@.%@.255",arr[0], arr[1], arr[2]];
+        NSString *address = _syncSocket.isIPv4 ? deviceAddress4 : DEVICE_ADDRESS6;
         [_syncSocket sendData:_syncData toHost:address port:DEVICE_PORT withTimeout:-1 tag:TAG_SYNC];
         [_syncCondition wait];
         [_syncCondition unlock];
@@ -297,7 +301,10 @@ static const long TAG_PROVISION = 2;
                 goto SendEnd;
             }
             [_provisionCondition lock];
-            NSString *address = _provisionSocket.isIPv4 ? DEVICE_ADDRESS4 : DEVICE_ADDRESS6;
+            NSString *localInetAddr4 = [ESP_NetUtil getLocalIPv4];
+            NSArray *arr = [localInetAddr4 componentsSeparatedByString:@"."];
+            NSString *deviceAddress4 = [NSString stringWithFormat:@"%@.%@.%@.255",arr[0], arr[1], arr[2]];
+            NSString *address = _provisionSocket.isIPv4 ? deviceAddress4 : DEVICE_ADDRESS6;
             [_provisionSocket sendData:data toHost:address port:DEVICE_PORT withTimeout:-1 tag:TAG_PROVISION];
             [_provisionCondition wait];
             [_provisionCondition unlock];
