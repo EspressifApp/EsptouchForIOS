@@ -8,7 +8,7 @@ See [Licence](ESPRESSIF_MIT_LICENSE_V1.LICENSE)
 See [Log](Log.md)
 
 ## Modules
-- Common: [link](Common)
+- Common: [link](EspTouchDemo/Common)
     - It is requirement for both EspTouch and EspTouchV2
-- ESPTouch: [link](ESPTouch)
-- ESPTouchV2: [link](ESPTouchV2)
+- ESPTouch: [link](EspTouchDemo/ESPTouch)
+- ESPTouchV2: [link](EspTouchDemo/ESPTouchV2)
