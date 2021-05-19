@@ -11,7 +11,7 @@
 #import "ESPTouchDelegate.h"
 #import "ESPAES.h"
 
-#define ESPTOUCH_VERSION    @"SDK-v1.0.1"
+#define ESPTOUCH_VERSION    @"SDK-v1.1.0"
 
 #define DEBUG_ON   YES
 
