@@ -16,6 +16,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 #define DEVICE_PORT 7001
+#define DEVICE_ACK_PORT 7002
 #define DEVICE_ADDRESS6 @"ff02::1%en0"
 static const int APP_POSTS_COUNT = 4;
 static const uint16_t APP_PORTS[] = {18266, 28266, 38266, 48266};

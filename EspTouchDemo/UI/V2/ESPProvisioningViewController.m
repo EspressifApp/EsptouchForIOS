@@ -179,6 +179,13 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.resultArray addObject:result];
         [self.resultView reloadData];
+        
+        if ([self.request.deviceCount intValue] > 0) {
+            // check result array size == expect size
+            if (self.resultArray.count >= [self.request.deviceCount intValue]) {
+                [self stopProvisioning:nil];
+            }
+        }
     }];
 }
 

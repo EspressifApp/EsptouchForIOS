@@ -24,11 +24,12 @@
 "EspTouchV2-SSID" = "SSID:";
 "EspTouchV2-BSSID" = "BSSID:";
 "EspTouchV2-Password" = "密码：";
+"EspTouchV2-deviceCount" = "设备数量:";
 "EspTouchV2-AES-Key" = "AES 密钥：";
 "EspTouchV2-Custom-Data" = "自定义数据：";
 "EspTouchV2-confirm" = "确认";
 "EspTouchV2-no-wifi-message" = "没有连上 Wi-Fi";
-"EspTouchV2-custom-data-length-message" = "自定义数据不能超过 127 个字节";
+"EspTouchV2-custom-data-length-message" = "自定义数据不能超过 64 个字节";
 
 "EspProvision-Titile" = "EspProvision";
 "EspProvision-stop" = "停止";

@@ -29,6 +29,8 @@
 @property(strong, nonatomic)UILabel *bssidContentLab;
 @property(strong, nonatomic)UILabel *pwdTitle;
 @property(strong, nonatomic)UITextField *pwdContentTextField;
+@property(strong, nonatomic)UILabel *deviceCountTitle;
+@property(strong, nonatomic)UITextField *deviceCountTextField;
 @property(strong, nonatomic)UILabel *aesKeyTitle;
 @property(strong, nonatomic)UITextField *aesKeyContentTextField;
 @property(strong, nonatomic)UILabel *customDataTitle;
@@ -117,21 +119,36 @@
     [_pwdTextSwitchBtn addTarget:self action:@selector(pwdTextSwitch:) forControlEvents:UIControlEventTouchUpInside];
     [contentView addSubview:_pwdTextSwitchBtn];
     
+    self.deviceCountTitle = [[UILabel alloc]init];
+    self.deviceCountTitle.text = NSLocalizedString(@"EspTouchV2-deviceCount", nil);
+    [contentView addSubview:_deviceCountTitle];
+    CGFloat DCWith = [UILabel getWidthWithTitle:_deviceCountTitle.text font:_deviceCountTitle.font];
+    self.deviceCountTitle.frame = CGRectMake(0, 135, DCWith, 35);
+    
+    self.deviceCountTextField = [[UITextField alloc]initWithFrame:CGRectMake(DCWith + 5, 130, contentView.bounds.size.width - DCWith - 5, 45)];
+    self.deviceCountTextField.accessibilityIdentifier = @"deviceCount";
+    self.deviceCountTextField.accessibilityLabel = self.pwdContentTextField.text;
+    self.deviceCountTextField.borderStyle = UITextBorderStyleRoundedRect;
+    self.deviceCountTextField.delegate = self;
+    self.deviceCountTextField.keyboardType = UIKeyboardTypeNumberPad;
+    [contentView addSubview:_deviceCountTextField];
+    
     self.aesKeyTitle = [[UILabel alloc] init];
     self.aesKeyTitle.text = NSLocalizedString(@"EspTouchV2-AES-Key", nil);
     [contentView addSubview:_aesKeyTitle];
     CGFloat AESKeyWith = [UILabel getWidthWithTitle:_aesKeyTitle.text font:_aesKeyTitle.font];
-    self.aesKeyTitle.frame = CGRectMake(0, 135, AESKeyWith, 35);
+    self.aesKeyTitle.frame = CGRectMake(0, 190, AESKeyWith, 35);
     
-    self.aesKeyContentTextField = [[UITextField alloc] initWithFrame:CGRectMake(AESKeyWith + 5, 130, contentView.bounds.size.width - AESKeyWith - 5, 45)];
+    self.aesKeyContentTextField = [[UITextField alloc] initWithFrame:CGRectMake(AESKeyWith + 5, 185, contentView.bounds.size.width - AESKeyWith - 5, 45)];
     self.aesKeyContentTextField.accessibilityIdentifier = @"aesKeyContent";
     self.aesKeyContentTextField.accessibilityLabel = self.aesKeyContentTextField.text;
     self.aesKeyContentTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.aesKeyContentTextField.delegate = self;
+    self.aesKeyContentTextField.secureTextEntry = YES;
     self.aesKeyContentTextField.keyboardType = UIKeyboardTypeASCIICapable;
     [contentView addSubview:_aesKeyContentTextField];
     
-    self.aesKeySwitchBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.aesKeyContentTextField.bounds.size.width + AESKeyWith - 35, 135, 35, 35)];
+    self.aesKeySwitchBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.aesKeyContentTextField.bounds.size.width + AESKeyWith - 35, 190, 35, 35)];
     [_aesKeySwitchBtn setImage:[UIImage imageNamed:@"eyeClose"] forState:0];
     [_aesKeySwitchBtn addTarget:self action:@selector(aesKeyTextSwitch:) forControlEvents:UIControlEventTouchUpInside];
     [contentView addSubview:_aesKeySwitchBtn];
@@ -140,9 +157,9 @@
     self.customDataTitle.text = NSLocalizedString(@"EspTouchV2-Custom-Data", nil);
     [contentView addSubview:_customDataTitle];
     CGFloat CustomDataWith = [UILabel getWidthWithTitle:_customDataTitle.text font:_customDataTitle.font];
-    self.customDataTitle.frame = CGRectMake(0, 190, CustomDataWith, 35);
+    self.customDataTitle.frame = CGRectMake(0, 245, CustomDataWith, 35);
     
-    self.customDataContentTextField = [[UITextField alloc] initWithFrame:CGRectMake(CustomDataWith + 5, 185, contentView.bounds.size.width - CustomDataWith - 5, 45)];
+    self.customDataContentTextField = [[UITextField alloc] initWithFrame:CGRectMake(CustomDataWith + 5, 240, contentView.bounds.size.width - CustomDataWith - 5, 45)];
     self.customDataContentTextField.accessibilityIdentifier = @"customDataContent";
     self.customDataContentTextField.accessibilityLabel = self.customDataContentTextField.text;
     self.customDataContentTextField.borderStyle = UITextBorderStyleRoundedRect;
@@ -214,15 +231,20 @@
     NSString *apBssid = self.bssidContentLab.text;
     NSString *aesKey = self.aesKeyContentTextField.text;
     NSString *customData = self.customDataContentTextField.text;
+    NSString *deviceCount = _deviceCountTextField.text;
+    if ([deviceCount isEqualToString:@""]) {
+        deviceCount = @"0";
+    }
     
     ESPProvisioningRequest *request = [[ESPProvisioningRequest alloc] init];
     request.ssid = [ESP_ByteUtil getBytesByNSString:apSsid];
     request.password = [ESP_ByteUtil getBytesByNSString:apPwd];
     request.bssid = [ESP_NetUtil parseBssid2bytes:apBssid];
+    request.deviceCount = deviceCount;
     request.aesKey = aesKey;
     request.reservedData = [ESP_ByteUtil getBytesByNSString:customData];
     
-    if (request.reservedData.length > 127) {
+    if (request.reservedData.length > 64) {
         self.messageView.text = NSLocalizedString(@"EspTouchV2-custom-data-length-message", nil);
         return;
     } else {

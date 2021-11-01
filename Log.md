@@ -1,5 +1,9 @@
 # Update Log
 
+## v2.3.0
+
+- Optimize the data sent
+
 ## v2.2.0
 
 - iOS 14.5 UDP data sending bug fixed

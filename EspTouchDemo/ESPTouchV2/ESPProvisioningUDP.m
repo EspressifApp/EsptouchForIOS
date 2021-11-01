@@ -33,6 +33,7 @@
 
 @property(strong, nonatomic)NSMutableSet *responseMacs;
 @property(strong, nonatomic)NSOperationQueue *cbQueue;
+@property(strong, nonatomic)NSLock *cbLock;
 
 @property(strong, nonatomic)ESPProvisionResultCB provisionResultCB;
 @property(strong, nonatomic)ESPProvisionErrorCB provisionErrorCB;
@@ -41,6 +42,7 @@
 
 static const long TAG_SYNC = 1;
 static const long TAG_PROVISION = 2;
+static const long TAG_ACK = 3;
 
 @implementation ESPProvisioningUDP
 //单例模式
@@ -59,13 +61,14 @@ static const long TAG_PROVISION = 2;
         _syncSocket = nil;
         _syncCondition = [[NSCondition alloc] init];
         _syncData = [ESPPacketUtils getSyncPacket];
-        NSLog(@"SYNC Len = %ld", _syncData.length);
+        NSLog(@"SYNC Len = %lu", (unsigned long)_syncData.length);
         
         _provisionSocket = nil;
         _provisionCondition = [[NSCondition alloc] init];
         
         _cbQueue = [[NSOperationQueue alloc] init];
         _responseMacs = [[NSMutableSet alloc] init];
+        _cbLock = [[NSLock alloc] init];
     }
     return self;
 }
@@ -124,6 +127,8 @@ static const long TAG_PROVISION = 2;
         [_provisionCondition lock];
         [_provisionCondition signal];
         [_provisionCondition unlock];
+    } else if (tag == TAG_ACK) {
+        [sock close];
     }
 }
 
@@ -137,6 +142,8 @@ static const long TAG_PROVISION = 2;
         [_provisionCondition lock];
         [_provisionCondition signal];
         [_provisionCondition unlock];
+    } else if (tag == TAG_ACK) {
+        [sock close];
     }
 }
 
@@ -147,22 +154,34 @@ static const long TAG_PROVISION = 2;
         return;
     }
     
+    // Send Ack
+    [_cbQueue addOperationWithBlock:^{
+        for (int i = 0; i < 2; ++i) {
+            GCDAsyncUdpSocket *udpSocket = [self createUDPSocket];
+            Byte bytes[1];
+            bytes[0] = 1;
+            NSData *data = [[NSData alloc] initWithBytes:bytes length:1];
+            [udpSocket sendData:data toAddress:address withTimeout:0.1 tag:TAG_ACK];
+        }
+    }];
+    
+    
     //取得发送发的ip和端口
     if (_provisionResultCB) {
         ESPProvisionResultCB resultCB = _provisionResultCB;
         Byte *buf = (Byte *)data.bytes;
         NSString *bssid = [NSString stringWithFormat:@"%x:%x:%x:%x:%x:%x", buf[1], buf[2], buf[3], buf[4], buf[5], buf[6]];
-        @synchronized (_responseMacs) {
-            if (![_responseMacs containsObject:bssid]) {
-                [_responseMacs addObject:bssid];
-                
-                [_cbQueue addOperationWithBlock:^{
-                    NSString *hostAddr = [GCDAsyncUdpSocket hostFromAddress:address];
-                    ESPProvisioningResult *result = [[ESPProvisioningResult alloc] initWithAddress:hostAddr bssid:bssid];
-                    resultCB(result);
-                }];
-            }
+        [_cbLock lock];
+        if (![_responseMacs containsObject:bssid]) {
+            [_responseMacs addObject:bssid];
+            
+            [_cbQueue addOperationWithBlock:^{
+                NSString *hostAddr = [GCDAsyncUdpSocket hostFromAddress:address];
+                ESPProvisioningResult *result = [[ESPProvisioningResult alloc] initWithAddress:hostAddr bssid:bssid];
+                resultCB(result);
+            }];
         }
+        [_cbLock unlock];
     }
 }
 

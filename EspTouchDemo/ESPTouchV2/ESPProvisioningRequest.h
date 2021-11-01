@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(strong, nonatomic) NSData * ssid;
 @property(strong, nonatomic) NSData * bssid;
 @property(strong, nonatomic) NSData * password;
+@property(strong, nonatomic) NSString * deviceCount;
 @property(strong, nonatomic) NSData * reservedData;
 @property(strong, nonatomic) NSString * aesKey;
 

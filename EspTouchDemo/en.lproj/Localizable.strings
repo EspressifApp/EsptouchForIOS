@@ -24,11 +24,12 @@
 "EspTouchV2-SSID" = "SSID:";
 "EspTouchV2-BSSID" = "BSSID:";
 "EspTouchV2-Password" = "Password:";
+"EspTouchV2-deviceCount" = "Device Count:";
 "EspTouchV2-AES-Key" = "AES Key:";
 "EspTouchV2-Custom-Data" = "Custom Data:";
 "EspTouchV2-confirm" = "Confirm";
 "EspTouchV2-no-wifi-message" = "No Wi-Fi connection";
-"EspTouchV2-custom-data-length-message" = "Custom data can't over than 127 bytes";
+"EspTouchV2-custom-data-length-message" = "Custom data can't over than 64 bytes";
 
 "EspProvision-Titile" = "EspProvision";
 "EspProvision-stop" = "Stop";

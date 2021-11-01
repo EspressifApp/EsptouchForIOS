@@ -49,7 +49,7 @@
   request.ssid = []; // AP's SSID data, nullable
   request.password = []; // AP's BSSID data, nonnull
   request.bssid = []; // AP's password data, nullable if the AP is open
-  request.reservedData = []; // User's custom data, nullable. If not null, the max length is 127
+  request.reservedData = []; // User's custom data, nullable. If not null, the max length is 64
   request.aesKey = @"1234567890123456"; // nullable, if not null, it must be 16 bytes. App developer should negotiate an AES key with Device developer first.
     
   [provisioner startProvisioning:request withDelegate:delegate]; // delegate is nullable
