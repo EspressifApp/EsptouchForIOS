@@ -24,6 +24,13 @@
 + (NSString *)getIPAddress4;
 
 /**
+ * get local Subetmask by IPv4
+ *
+ * @return local Subnetmask by IPv4(or nil when en0/ipv4 unaccessible;
+ */
++ (NSString *)getIPSubNetmask4;
+
+/**
  * get local ip address by IPv6
  *
  * @return local ip address by IPv6(or nil when en0/ipv6 unaccessible)

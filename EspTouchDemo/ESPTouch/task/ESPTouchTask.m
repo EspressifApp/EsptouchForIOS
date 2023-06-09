@@ -451,7 +451,8 @@
     
     // generator the esptouch byte[][] to be transformed, which will cost
     // some time(maybe a bit much)
-    ESPTouchGenerator *generator = [[ESPTouchGenerator alloc]initWithSsid:self._apSsid andApBssid:self._apBssid andApPassword:self._apPwd andInetAddrData:self._localInetAddrData andIsSsidHidden:self._isSsidHidden];
+    
+    ESPTouchGenerator *generator = [[ESPTouchGenerator alloc]initWithSsid:self. _apSsid andApBssid:self._apBssid andApPassword:self._apPwd andInetAddrData:self._localInetAddrData andIsSsidHidden:self._isSsidHidden];
     // listen the esptouch result asyn
     [self __listenAsyn:[self._parameter getEsptouchResultTotalLen]];
     BOOL isSuc = NO;

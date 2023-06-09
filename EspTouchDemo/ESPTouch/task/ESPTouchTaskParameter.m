@@ -148,7 +148,7 @@ static int _datagramCount = 0;
 {
     if (_isIPv4Supported0) {
         if (self.broadcast) {
-            NSString *localInetAddr4 = [ESP_NetUtil getLocalIPv4];
+            NSString *localInetAddr4 = [ESP_NetUtil getBroadcastIPv4Addr];
             NSArray *arr = [localInetAddr4 componentsSeparatedByString:@"."];
             return [NSString stringWithFormat:@"%@.%@.%@.255",arr[0], arr[1], arr[2]];
         } else {
