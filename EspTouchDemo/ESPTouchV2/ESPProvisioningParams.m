@@ -48,8 +48,7 @@ static const NSInteger SEQUENCE_FIRST = -1;
         _reservedData = reservedData ? reservedData : _emptyData;
         _aesKey = key ? key : @"";
         _appPortMark = mark;
-        Byte aesIVBytes[16] = {};
-        _aesIV = [[NSString alloc] initWithData:[NSData dataWithBytes:aesIVBytes length:16] encoding:NSUTF8StringEncoding];
+        _aesIV = nil;
         _securityVer = securityVer;
         
         _dataPackets = [[NSMutableArray alloc] init];
@@ -92,20 +91,31 @@ static const NSInteger SEQUENCE_FIRST = -1;
     return [[NSData alloc] initWithBytes:buf length:length];
 }
 
+- (NSString *)randomString:(int)length {
+    NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    NSMutableString *randomString = [NSMutableString stringWithCapacity:length];
+    
+    for (int i = 0; i < length; i++) {
+        u_int32_t randomIndex = arc4random_uniform((u_int32_t)[letters length]);
+        unichar randomChar = [letters characterAtIndex:randomIndex];
+        [randomString appendFormat:@"%C", randomChar];
+    }
+    
+    return randomString;
+}
+
 - (NSData *)aesCBC:(NSData *)data {
     char keyPtr[kCCKeySizeAES128 + 1];  //kCCKeySizeAES128是加密位数 可以替换成256位的
     bzero(keyPtr, sizeof(keyPtr));
     [_aesKey getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
     // IV
     char ivPtr[kCCBlockSizeAES128 + 1];
+    bzero(ivPtr, sizeof(ivPtr));
     if (_securityVer == 2) {
-        int rdResult = SecRandomCopyBytes(kSecRandomDefault, sizeof(ivPtr), ivPtr);
-        if (rdResult != errSecSuccess) {
-            NSLog(@"aesCBC: SecRandomCopyBytes failed: %d", rdResult);
-            return nil;
-        }
+        _aesIV = [self randomString:16];
     } else {
-        bzero(ivPtr, sizeof(ivPtr));
+        Byte aesIVBytes[16] = {};
+        _aesIV = [[NSString alloc] initWithData:[NSData dataWithBytes:aesIVBytes length:16] encoding:NSUTF8StringEncoding];
     }
     [_aesIV getCString:ivPtr maxLength:sizeof(ivPtr) encoding:NSUTF8StringEncoding];
     
