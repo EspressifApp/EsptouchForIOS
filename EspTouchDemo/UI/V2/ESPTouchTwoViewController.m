@@ -235,6 +235,8 @@
     if ([deviceCount isEqualToString:@""]) {
         deviceCount = @"0";
     }
+    int securityVer = SECURITY_V1;
+    // todo
     
     ESPProvisioningRequest *request = [[ESPProvisioningRequest alloc] init];
     request.ssid = [ESP_ByteUtil getBytesByNSString:apSsid];
@@ -242,6 +244,7 @@
     request.bssid = [ESP_NetUtil parseBssid2bytes:apBssid];
     request.deviceCount = deviceCount;
     request.aesKey = aesKey;
+    request.securityVer = securityVer;
     request.reservedData = [ESP_ByteUtil getBytesByNSString:customData];
     
     if (request.reservedData.length > 64) {

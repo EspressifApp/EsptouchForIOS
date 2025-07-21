@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define SECURITY_V1 1
+#define SECURITY_V2 2
+
 @interface ESPProvisioningRequest : NSObject
 
 @property(strong, nonatomic) NSData * ssid;
