@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(strong, nonatomic) NSString * deviceCount;
 @property(strong, nonatomic) NSData * reservedData;
 @property(strong, nonatomic) NSString * aesKey;
+@property(assign, nonatomic) int securityVer;
 
 @end
 

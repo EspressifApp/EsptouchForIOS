@@ -17,9 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(strong, nonatomic) NSData * password;
 @property(strong, nonatomic) NSData * reservedData;
 @property(strong, nonatomic) NSString * aesKey;
+@property(assign, nonatomic) int securityVer;
 @property(assign, nonatomic) int appPortMark;
 
-- (instancetype)initWithSsid:(NSData *)ssid bssid:(NSData *)bssid password:(NSData *)password reservedData:(NSData *)reservedData aesKey:(NSString *)key appPortMark:(int)mark;
+- (instancetype)initWithSsid:(NSData *)ssid bssid:(NSData *)bssid password:(NSData *)password reservedData:(NSData *)reservedData aesKey:(NSString *)key securityVer:(int)securityVer appPortMark:(int)mark;
 
 - (NSArray<NSData *> *)getDataPackets;
 

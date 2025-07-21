@@ -11,7 +11,7 @@
 #import "ESPProvisioningResult.h"
 #import "ESPProvisioningListeners.h"
 
-#define ESPTOUCH_V2_VERSION    @"SDK-v2.1.0"
+#define ESPTOUCH_V2_VERSION    @"SDK-v2.2.0"
 
 NS_ASSUME_NONNULL_BEGIN
 

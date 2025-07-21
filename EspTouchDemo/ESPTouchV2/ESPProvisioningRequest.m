@@ -12,6 +12,9 @@
 #import "ESPProvisioningParams.h"
 #import "ESPProvisioningUDP.h"
 
+#define SECURITY_V1 1
+#define SECURITY_V2 2
+
 @interface ESPProvisioningRequest ()
 
 @end
