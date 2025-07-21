@@ -50,6 +50,7 @@ static const NSInteger SEQUENCE_FIRST = -1;
         _appPortMark = mark;
         _aesIV = nil;
         _securityVer = securityVer;
+        NSLog(@"_securityVer: %d", _securityVer);
         
         _dataPackets = [[NSMutableArray alloc] init];
         
