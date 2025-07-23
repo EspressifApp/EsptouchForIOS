@@ -36,7 +36,7 @@ static const NSInteger SEQUENCE_FIRST = -1;
 
 @implementation ESPProvisioningParams
 
-- (instancetype)initWithSsid:(NSData *)ssid bssid:(NSData *)bssid password:(NSData *)password reservedData:(NSData *)reservedData aesKey:(NSString *)key appPortMark:(int)mark {
+- (instancetype)initWithSsid:(NSData *)ssid bssid:(NSData *)bssid password:(NSData *)password reservedData:(NSData *)reservedData aesKey:(NSString *)key securityVer:(int)securityVer appPortMark:(int)mark {
     self = [super init];
     if (self) {
         Byte emptyBytes[0];
@@ -48,8 +48,9 @@ static const NSInteger SEQUENCE_FIRST = -1;
         _reservedData = reservedData ? reservedData : _emptyData;
         _aesKey = key ? key : @"";
         _appPortMark = mark;
-        Byte aesIVBytes[16] = {};
-        _aesIV = [[NSString alloc] initWithData:[NSData dataWithBytes:aesIVBytes length:16] encoding:NSUTF8StringEncoding];
+        _aesIV = nil;
+        _securityVer = securityVer;
+        NSLog(@"_securityVer: %d", _securityVer);
         
         _dataPackets = [[NSMutableArray alloc] init];
         
@@ -91,6 +92,19 @@ static const NSInteger SEQUENCE_FIRST = -1;
     return [[NSData alloc] initWithBytes:buf length:length];
 }
 
+- (NSString *)randomString:(int)length {
+    NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    NSMutableString *randomString = [NSMutableString stringWithCapacity:length];
+    
+    for (int i = 0; i < length; i++) {
+        u_int32_t randomIndex = arc4random_uniform((u_int32_t)[letters length]);
+        unichar randomChar = [letters characterAtIndex:randomIndex];
+        [randomString appendFormat:@"%C", randomChar];
+    }
+    
+    return randomString;
+}
+
 - (NSData *)aesCBC:(NSData *)data {
     char keyPtr[kCCKeySizeAES128 + 1];  //kCCKeySizeAES128是加密位数 可以替换成256位的
     bzero(keyPtr, sizeof(keyPtr));
@@ -98,6 +112,12 @@ static const NSInteger SEQUENCE_FIRST = -1;
     // IV
     char ivPtr[kCCBlockSizeAES128 + 1];
     bzero(ivPtr, sizeof(ivPtr));
+    if (_securityVer == 2) {
+        _aesIV = [self randomString:16];
+    } else {
+        Byte aesIVBytes[16] = {};
+        _aesIV = [[NSString alloc] initWithData:[NSData dataWithBytes:aesIVBytes length:16] encoding:NSUTF8StringEncoding];
+    }
     [_aesIV getCString:ivPtr maxLength:sizeof(ivPtr) encoding:NSUTF8StringEncoding];
     
     size_t bufferSize = [data length] + kCCBlockSizeAES128;
@@ -129,7 +149,7 @@ static const NSInteger SEQUENCE_FIRST = -1;
     Byte bssidCrc = [self crc:_bssid];
     
     int flag = (isIPv4 ? 1 : 0) // bit0: ipv4 or ipv6
-    | (_willEncrypt ? 0b010 : 0) // bit1 bit2: crypt
+    | (_willEncrypt ? (_securityVer << 1) : 0) // bit1 bit2: crypt
     | ((_appPortMark & 0b11) << 3) // bit3 bit4: app port
     | ((VERSION & 0b11) << 6); // bit6 bit7: version
     
@@ -166,11 +186,19 @@ static const NSInteger SEQUENCE_FIRST = -1;
     NSInteger ssidPaddingFactor;
     BOOL ssidEncode;
     
+    NSData *aesIV = _emptyData;
+    
     if (_willEncrypt) {
         NSMutableData *willEncryptData = [NSMutableData data];
         [willEncryptData appendData:_password];
         [willEncryptData appendData:_reservedData];
         NSData *encryptedData = [self aesCBC:willEncryptData];
+        // _aesIV 在 aesCBC 中完成初始化
+        if (_securityVer == 2) {
+            NSData *currentIV = [_aesIV dataUsingEncoding:NSUTF8StringEncoding];
+            aesIV = [NSData dataWithBytes:currentIV.bytes length:20];
+        }
+        
         password = encryptedData;
         passwordEncode = YES;
         passwordPaddingFactor = 5;
@@ -236,11 +264,13 @@ static const NSInteger SEQUENCE_FIRST = -1;
     [bufData appendData:passwordPadding];
     [bufData appendData:reservedData];
     [bufData appendData:reservedPadding];
+    [bufData appendData:aesIV];
     [bufData appendData:ssid];
     [bufData appendData:ssidPadding];
     
     NSInteger reservedBeginPosition = _head.length + password.length + passwordPadding.length;
-    NSInteger ssidBeginPosition = reservedBeginPosition + reservedData.length + reservedPadding.length;
+    NSInteger ivBeginPosition = reservedBeginPosition + reservedData.length + reservedPadding.length;
+    NSInteger ssidBeginPosition = ivBeginPosition + aesIV.length;
     NSInteger offset = 0;
     NSInputStream *is = [NSInputStream inputStreamWithData:bufData];
     [is open];
@@ -248,23 +278,27 @@ static const NSInteger SEQUENCE_FIRST = -1;
     NSInteger count = 0;
     while ([is hasBytesAvailable]) {
         NSInteger expectLength;
-        BOOL tailIsCrc;
+        BOOL crcInPacket;
         if (sequence < SEQUENCE_FIRST + 1) {
             // First packet
-            tailIsCrc = false;
+            crcInPacket = true;
             expectLength = 6;
         } else {
             if (offset < reservedBeginPosition) {
                 // Password data
-                tailIsCrc = !passwordEncode;
+                crcInPacket = passwordEncode;
                 expectLength = passwordPaddingFactor;
-            } else if (offset < ssidBeginPosition) {
+            } else if (offset < ivBeginPosition) {
                 // Reserved data
-                tailIsCrc = !reservedEncode;
+                crcInPacket = reservedEncode;
                 expectLength = reservedPaddingFactor;
+            } else if (offset < ssidBeginPosition) {
+                // aes iv data
+                crcInPacket = true;
+                expectLength = 5;
             } else {
                 // SSID data
-                tailIsCrc = !ssidEncode;
+                crcInPacket = ssidEncode;
                 expectLength = ssidPaddingFactor;
             }
         }
@@ -281,7 +315,7 @@ static const NSInteger SEQUENCE_FIRST = -1;
         if (expectLength < 6) {
             buf[5] = seqCrc;
         }
-        [self addDataFor6Bytes:buf sequence:sequence crc:seqCrc tailIsCrc:tailIsCrc];
+        [self addDataFor6Bytes:buf sequence:sequence crc:seqCrc tailIsCrc:!crcInPacket];
         ++sequence;
         ++count;
     }

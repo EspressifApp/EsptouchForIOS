@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define SECURITY_V1 1
+#define SECURITY_V2 2
+
 @interface ESPProvisioningRequest : NSObject
 
 @property(strong, nonatomic) NSData * ssid;
@@ -18,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(strong, nonatomic) NSString * deviceCount;
 @property(strong, nonatomic) NSData * reservedData;
 @property(strong, nonatomic) NSString * aesKey;
+@property(assign, nonatomic) int securityVer;
 
 @end
 

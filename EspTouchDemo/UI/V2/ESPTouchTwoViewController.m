@@ -40,10 +40,14 @@
 @property(strong, nonatomic)UILabel *versionLab;
 @property(strong, nonatomic)UIButton *pwdTextSwitchBtn;
 @property(strong, nonatomic)UIButton *aesKeySwitchBtn;
+@property(strong, nonatomic)UILabel *encryptOptionTitle;
+@property(strong, nonatomic)UIButton *encryptYesBtn;
+@property(strong, nonatomic)UIButton *encryptNoBtn;
 
 @property(strong, nonatomic)NSDictionary *netInfo;
 
 @property(strong, nonatomic)NSOperation *onSyncStopOp;
+@property(assign, nonatomic)BOOL shouldEncrypt;
 
 @end
 
@@ -167,6 +171,23 @@
     self.customDataContentTextField.keyboardType = UIKeyboardTypeDefault;
     [contentView addSubview:_customDataContentTextField];
     
+    // 是否加密 Label
+    self.encryptOptionTitle = [[UILabel alloc] init];
+    self.encryptOptionTitle.text = NSLocalizedString(@"EspTouchV2-Encrypt-Option", nil); // 建议你在本地化中添加这个key
+    [contentView addSubview:_encryptOptionTitle];
+    CGFloat encryptOptionWith = [UILabel getWidthWithTitle:_encryptOptionTitle.text font:_encryptOptionTitle.font];
+    self.encryptOptionTitle.frame = CGRectMake(0, 295, encryptOptionWith, 35);
+    
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"EspTouchV2-Encrypt-Yes", nil), NSLocalizedString(@"EspTouchV2-Encrypt-No", nil)]];
+    segmentedControl.frame = CGRectMake(encryptOptionWith + 10, 295, 200, 35);
+    segmentedControl.selectedSegmentIndex = 0;
+    [segmentedControl addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
+    [contentView addSubview:segmentedControl];
+
+
+    // 默认选择“不加密”
+    self.encryptNoBtn.selected = YES;
+    
     self.messageView = [[UILabel alloc] initWithFrame:CGRectMake(0, 205, contentWidth, 50)];
     self.messageView.numberOfLines = 2;
     self.messageView.textColor = [UIColor redColor];
@@ -187,6 +208,12 @@
     self.versionLab.text = [NSString stringWithFormat:@"APP-v%@ / %@",currentVersion, ESPTOUCH_V2_VERSION];
     [self.view addSubview:_versionLab];
 }
+
+- (void)segmentChanged:(UISegmentedControl *)sender {
+    NSInteger selectedIndex = sender.selectedSegmentIndex;
+    self.shouldEncrypt = selectedIndex == 0 ? YES : NO;
+}
+
 
 - (void)pwdTextSwitch:(UIButton *)sender {
     sender.selected = !sender.selected;
@@ -235,6 +262,7 @@
     if ([deviceCount isEqualToString:@""]) {
         deviceCount = @"0";
     }
+    int securityVer = self.shouldEncrypt ? SECURITY_V1 : SECURITY_V2;
     
     ESPProvisioningRequest *request = [[ESPProvisioningRequest alloc] init];
     request.ssid = [ESP_ByteUtil getBytesByNSString:apSsid];
@@ -242,6 +270,7 @@
     request.bssid = [ESP_NetUtil parseBssid2bytes:apBssid];
     request.deviceCount = deviceCount;
     request.aesKey = aesKey;
+    request.securityVer = securityVer;
     request.reservedData = [ESP_ByteUtil getBytesByNSString:customData];
     
     if (request.reservedData.length > 64) {

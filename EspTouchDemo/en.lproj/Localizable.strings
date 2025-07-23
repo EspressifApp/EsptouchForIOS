@@ -31,6 +31,10 @@
 "EspTouchV2-no-wifi-message" = "No Wi-Fi connection";
 "EspTouchV2-custom-data-length-message" = "Custom data can't over than 64 bytes";
 
+"EspTouchV2-Encrypt-Option" = "Encrypt:";
+"EspTouchV2-Encrypt-Yes" = "Model 1";
+"EspTouchV2-Encrypt-No" = "Model 2";
+
 "EspProvision-Titile" = "EspProvision";
 "EspProvision-stop" = "Stop";
 "EspProvision-exception-message" = "Some exception have occured";

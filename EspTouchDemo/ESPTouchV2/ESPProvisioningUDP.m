@@ -302,7 +302,7 @@ static const long TAG_ACK = 3;
     _provisionResultCB = resultCB;
     _provisionErrorCB = errorCB;
     
-    ESPProvisioningParams *params = [[ESPProvisioningParams alloc] initWithSsid:request.ssid bssid:request.bssid password:request.password reservedData:request.reservedData aesKey:request.aesKey appPortMark:portMark];
+    ESPProvisioningParams *params = [[ESPProvisioningParams alloc] initWithSsid:request.ssid bssid:request.bssid password:request.password reservedData:request.reservedData aesKey:request.aesKey securityVer:request.securityVer appPortMark:portMark];
     NSArray *sendDataArr = [params getDataPackets];
     
     if (startCB) {
