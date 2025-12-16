@@ -62,6 +62,11 @@
 + (NSString *) descriptionInetAddr4ByData: (NSData *) inetAddrData;
 
 /**
+ * get the local broadcast address of ipv4;
+ */
++ (NSString *) getBroadcastIPv4Addr;
+
+/**
  * descrpion inetAddrData for print pretty IPv6
  */
 + (NSString *) descriptionInetAddr6ByData: (NSData *) inetAddrData;

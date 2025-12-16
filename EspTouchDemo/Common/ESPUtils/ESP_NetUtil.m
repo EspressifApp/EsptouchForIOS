@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 fby. All rights reserved.
 //
 
+#include <arpa/inet.h>
 #import "ESP_NetUtil.h"
 #import "ESP_WifiUtil.h"
 #import "ESP_ByteUtil.h"
@@ -148,6 +149,21 @@
         [[urlSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
         }] resume];
     }
+}
+
++ (NSString *) getBroadcastIPv4Addr
+{
+    NSString *localIPV4Addr = [ESP_WifiUtil getIPAddress4];
+    NSString *netmaskIPV4Addr = [ESP_WifiUtil getIPSubNetmask4];
+    struct in_addr localAddr;
+    struct in_addr netmaskAddr;
+    inet_aton([localIPV4Addr UTF8String], &localAddr);
+    inet_aton([netmaskIPV4Addr UTF8String], &netmaskAddr);
+    
+    localAddr.s_addr |= ~(netmaskAddr.s_addr);
+    
+    NSString *broadCastAddress = [NSString stringWithUTF8String:inet_ntoa(localAddr)];
+    return broadCastAddress;
 }
 
 @end

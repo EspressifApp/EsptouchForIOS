@@ -16,6 +16,7 @@
 #define IOS_WIFI        @"en0"
 #define IOS_VPN         @"utun0"
 #define IP_ADDR_IPv4    @"ipv4"
+#define IP_NETMASK_IPv4 @"netmask_ipv4"
 #define IP_ADDR_IPv6    @"ipv6"
 
 @implementation ESP_WifiUtil
@@ -51,24 +52,28 @@
             if(!(interface->ifa_flags & IFF_UP) /* || (interface->ifa_flags & IFF_LOOPBACK) */ ) {
                 continue; // deeply nested code harder to read
             }
-            const struct sockaddr_in *addr = (const struct sockaddr_in*)interface->ifa_addr;
+            struct sockaddr_in *addr = (struct sockaddr_in *)interface->ifa_addr;
             char addrBuf[ MAX(INET_ADDRSTRLEN, INET6_ADDRSTRLEN) ];
             if(addr && (addr->sin_family==AF_INET || addr->sin_family==AF_INET6)) {
                 NSString *name = [NSString stringWithUTF8String:interface->ifa_name];
-                NSString *type;
                 if(addr->sin_family == AF_INET) {
                     if(inet_ntop(AF_INET, &addr->sin_addr, addrBuf, INET_ADDRSTRLEN)) {
-                        type = IP_ADDR_IPv4;
+                        NSString *key = [NSString stringWithFormat:@"%@/%@", name, IP_ADDR_IPv4];
+                        addresses[key] = [NSString stringWithUTF8String:addrBuf];
+                    }
+                    addr = (struct sockaddr_in *)interface->ifa_netmask;
+                    if(addr->sin_family == AF_INET) {
+                        if(inet_ntop(AF_INET, &addr->sin_addr, addrBuf, INET_ADDRSTRLEN)) {
+                            NSString *key = [NSString stringWithFormat:@"%@/%@", name, IP_NETMASK_IPv4];
+                            addresses[key] = [NSString stringWithUTF8String:addrBuf];
+                        }
                     }
                 } else {
                     const struct sockaddr_in6 *addr6 = (const struct sockaddr_in6*)interface->ifa_addr;
                     if(inet_ntop(AF_INET6, &addr6->sin6_addr, addrBuf, INET6_ADDRSTRLEN)) {
-                        type = IP_ADDR_IPv6;
+                        NSString *key = [NSString stringWithFormat:@"%@/%@", name, IP_ADDR_IPv6];
+                        addresses[key] = [NSString stringWithUTF8String:addrBuf];
                     }
-                }
-                if(type) {
-                    NSString *key = [NSString stringWithFormat:@"%@/%@", name, type];
-                    addresses[key] = [NSString stringWithUTF8String:addrBuf];
                 }
             }
         }
@@ -83,6 +88,13 @@
     NSString *key = [NSString stringWithFormat:@"%@/%@",IOS_WIFI,IP_ADDR_IPv4];
     NSString *ipv4 = [[self getIPAddresses]objectForKey:key];
     return ipv4;
+}
+
++ (NSString *)getIPSubNetmask4
+{
+    NSString *key = [NSString stringWithFormat:@"%@/%@", IOS_WIFI, IP_NETMASK_IPv4];
+    NSString *netmask = [[self getIPAddresses]objectForKey:key];
+    return netmask;
 }
 
 + (NSString *)getIpAddress6
