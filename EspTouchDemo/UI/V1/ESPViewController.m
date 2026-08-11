@@ -78,6 +78,9 @@
 // the state of the confirm/cancel button
 @property (nonatomic, assign) BOOL _isConfirmState;
 
+// 防止异步获取 Wi-Fi 信息期间重复点击确认按钮
+@property (nonatomic, assign) BOOL isFetchingWiFiInfo;
+
 // without the condition, if the user tap confirm/cancel quickly enough,
 // the bug will arise. the reason is follows:
 // 0. task is starting created, but not finished
@@ -117,10 +120,27 @@
 
 - (void) tapConfirmForResults
 {
-    self.netInfo = [self fetchNetInfo];
-    self.ssidLabel.text = [_netInfo objectForKey:@"ssid"];
-    self.bssidLabel.text = [_netInfo objectForKey:@"bssid"];
-    
+    if (self.isFetchingWiFiInfo) {
+        return;
+    }
+    self.isFetchingWiFiInfo = YES;
+    [self fetchNetInfoWithCompletion:^(NSDictionary *netInfo) {
+        self.isFetchingWiFiInfo = NO;
+        self.netInfo = netInfo;
+        self.ssidLabel.text = [netInfo objectForKey:@"ssid"];
+        self.bssidLabel.text = [netInfo objectForKey:@"bssid"];
+        [self tapConfirmContinue];
+    }];
+    // 兜底：NEHotspotNetwork.fetchCurrent 在个别系统版本可能不回调，
+    // 超时强制复位，避免确认按钮被永久锁死
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.isFetchingWiFiInfo = NO;
+    });
+}
+
+// 原 tapConfirmForResults 的确认/取消逻辑，由异步获取 Wi-Fi 信息后触发
+- (void)tapConfirmContinue
+{
     // do confirm
     if (self._isConfirmState)
     {
@@ -335,17 +355,23 @@
 
 - (void)wifiViewUpdates {
     [self systemLightAndDark];
-    self.netInfo = [self fetchNetInfo];
-    self.ssidLabel.text = [_netInfo objectForKey:@"ssid"];
-    self.bssidLabel.text = [_netInfo objectForKey:@"bssid"];
+    [self fetchNetInfoWithCompletion:^(NSDictionary *netInfo) {
+        self.netInfo = netInfo;
+        self.ssidLabel.text = [netInfo objectForKey:@"ssid"];
+        self.bssidLabel.text = [netInfo objectForKey:@"bssid"];
+    }];
 }
 
-- (NSDictionary *)fetchNetInfo
+- (void)fetchNetInfoWithCompletion:(void (^)(NSDictionary *netInfo))completion
 {
-    NSMutableDictionary *wifiDic = [NSMutableDictionary dictionaryWithCapacity:0];
-    wifiDic[@"ssid"] = ESPTools.getCurrentWiFiSsid;
-    wifiDic[@"bssid"] = ESPTools.getCurrentBSSID;
-    return wifiDic;
+    [ESPTools fetchCurrentWiFiInfoWithCompletion:^(NSString *ssid, NSString *bssid) {
+        NSMutableDictionary *wifiDic = [NSMutableDictionary dictionaryWithCapacity:0];
+        if (ssid.length) wifiDic[@"ssid"] = ssid;
+        if (bssid.length) wifiDic[@"bssid"] = bssid;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) completion(wifiDic);
+        });
+    }];
 }
 
 

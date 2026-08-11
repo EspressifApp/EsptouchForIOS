@@ -11,6 +11,7 @@
 #import <arpa/inet.h>
 #import <net/if.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
+#import <NetworkExtension/NetworkExtension.h>
 
 #define IOS_CELLULAR    @"pdp_ip0"
 #define IOS_WIFI        @"en0"
@@ -44,6 +45,21 @@
     }
     // Key: BSSID, SSID, SSIDDATA
     return [(NSDictionary*)info objectForKey:@"BSSID"];
+}
+
++ (void)fetchCurrentWiFiInfoWithCompletion:(void (^)(NSString * _Nullable ssid, NSString * _Nullable bssid))completion {
+    if (@available(iOS 13.0, *)) {
+        // iOS 26 起 CNCopyCurrentNetworkInfo 废弃（总是返回 nil），改用 NEHotspotNetwork
+        [NEHotspotNetwork fetchCurrentWithCompletionHandler:^(NEHotspotNetwork * _Nullable currentNetwork) {
+            if (completion) {
+                completion(currentNetwork.SSID, currentNetwork.BSSID);
+            }
+        }];
+    } else {
+        if (completion) {
+            completion([self getCurrentWiFiSsid], [self getCurrentBSSID]);
+        }
+    }
 }
 
 + (NSString *)getIPAddress:(BOOL)preferIPv4 {

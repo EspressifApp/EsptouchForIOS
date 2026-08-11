@@ -67,12 +67,13 @@
     }];
     
     [self versionTwoViewUI];
-    [self checkWiFi];
+    [self checkWiFi];          // 初始禁用确认按钮，等待异步获取结果
+    [self refreshWiFiInfo];
 //    [[ESPProvisioner share] startSync];
 }
 
 - (void)versionTwoViewUI {
-    self.netInfo = [self fetchNetInfo];
+    self.netInfo = @{};
     
     const CGFloat contentWidth = SCREEN_WIDTH - 40;
     const CGFloat contentHeight = SCREEN_HEIGHT - statusHeight - 60 - TabBarHeight - 80;
@@ -267,7 +268,11 @@
     ESPProvisioningRequest *request = [[ESPProvisioningRequest alloc] init];
     request.ssid = [ESP_ByteUtil getBytesByNSString:apSsid];
     request.password = [ESP_ByteUtil getBytesByNSString:apPwd];
-    request.bssid = [ESP_NetUtil parseBssid2bytes:apBssid];
+    if (apBssid.length) {
+        request.bssid = [ESP_NetUtil parseBssid2bytes:apBssid];
+    }
+    // bssid 为空时不赋值：iOS 14+ BSSID 可能被隐私处理（全零/空），
+    // 设备端 bssidCrc 会相应使用空数据，属固有妥协
     request.deviceCount = deviceCount;
     request.aesKey = aesKey;
     request.securityVer = securityVer;
@@ -331,17 +336,22 @@
 
 - (void)wifiViewUpdates {
     [self systemLightAndDark];
-    self.netInfo = [self fetchNetInfo];
-    dispatch_async(dispatch_get_main_queue(), ^(){
-        self.ssidContentLab.text = [self.netInfo objectForKey:@"ssid"];
-        self.bssidContentLab.text = [self.netInfo objectForKey:@"bssid"];
+    [self refreshWiFiInfo];
+}
+
+// 异步获取当前 Wi-Fi 信息并刷新 UI、更新连接状态
+- (void)refreshWiFiInfo {
+    [self fetchNetInfoWithCompletion:^(NSDictionary *netInfo) {
+        self.netInfo = netInfo;
+        self.ssidContentLab.text = [netInfo objectForKey:@"ssid"];
+        self.bssidContentLab.text = [netInfo objectForKey:@"bssid"];
         [self checkWiFi];
-    });
+    }];
 }
 
 - (void)checkWiFi {
-    NSString *bssid = self.bssidContentLab.text;
-    if (!bssid || bssid.length == 0) {
+    NSString *ssid = self.ssidContentLab.text;
+    if (!ssid || ssid.length == 0) {
         // No Wi-Fi connection
         [self.confirmBtn setEnabled:NO];
         self.messageView.text = NSLocalizedString(@"EspTouchV2-no-wifi-message", nil);
@@ -351,11 +361,15 @@
     }
 }
 
-- (NSDictionary *)fetchNetInfo {
-    NSMutableDictionary *wifiDic = [NSMutableDictionary dictionaryWithCapacity:2];
-    wifiDic[@"ssid"] = ESPTools.getCurrentWiFiSsid;
-    wifiDic[@"bssid"] = ESPTools.getCurrentBSSID;
-    return wifiDic;
+- (void)fetchNetInfoWithCompletion:(void (^)(NSDictionary *netInfo))completion {
+    [ESPTools fetchCurrentWiFiInfoWithCompletion:^(NSString *ssid, NSString *bssid) {
+        NSMutableDictionary *wifiDic = [NSMutableDictionary dictionaryWithCapacity:2];
+        if (ssid.length) wifiDic[@"ssid"] = ssid;
+        if (bssid.length) wifiDic[@"bssid"] = bssid;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) completion(wifiDic);
+        });
+    }];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
